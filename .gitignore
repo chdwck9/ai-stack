@@ -1,0 +1,12 @@
+.env*
+*.env
+.DS_Store
+.claude/
+.obsidian/
+.trash/
+
+plugins/mambu/
+
+archive/
+data/
+config/

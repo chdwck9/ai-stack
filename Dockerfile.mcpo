@@ -1,0 +1,11 @@
+FROM ghcr.io/open-webui/mcpo:main
+
+# Add Node.js 20 for npm-based MCP servers
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install mcp Python package for skill-loader
+RUN pip install mcp hatchling --break-system-packages

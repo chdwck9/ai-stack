@@ -1,0 +1,62 @@
+services:
+
+  hermes-webui:
+    image: ghcr.io/nesquena/hermes-webui:latest
+    container_name: ai-hermes-webui
+    restart: unless-stopped
+    ports:
+      - "7801:8787"
+    environment:
+      HERMES_WEBUI_HOST: 0.0.0.0
+      HERMES_WEBUI_PORT: 8787
+      HERMES_WEBUI_GATEWAY_BASE_URL: http://host.docker.internal:8642
+      HERMES_WEBUI_GATEWAY_API_KEY: ${API_SERVER_KEY}
+      HERMES_WEBUI_GATEWAY_USE_RUNS_API: "true"
+      HERMES_WEBUI_PASSWORD: ${HERMES_WEBUI_PASSWORD:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /Volumes/Live/@Edge/.ai/config/hermes-webui:/home/hermeswebui/.hermes/webui
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: ai-open-webui
+    restart: unless-stopped
+    ports:
+      - "7802:8080"
+    environment:
+      ENABLE_OLLAMA_API: "false"
+      OPENAI_API_BASE_URL: http://host.docker.internal:8642/v1
+      OPENAI_API_KEY: ${API_SERVER_KEY}
+      ANONYMIZED_TELEMETRY: "false"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /Volumes/Live/@Edge/.ai/data/openwebui:/app/backend/data
+      - /Volumes/Live/@Edge/.ai/skills:/app/backend/data/open_webui/skills
+
+  searxng:
+    image: searxng/searxng:latest
+    container_name: ai-searxng
+    restart: unless-stopped
+    ports:
+      - "7803:8080"
+    volumes:
+      - /Volumes/Live/@Edge/.ai/config/searxng:/etc/searxng
+      - /Volumes/Live/@Edge/.ai/data/searxng:/var/cache/searxng
+
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    container_name: ai-anythingllm
+    restart: unless-stopped
+    ports:
+      - "7805:3001"
+    environment:
+      STORAGE_DIR: /app/server/storage
+    volumes:
+      - /Volumes/Live/@Edge/.ai/data/anythingllm:/app/server/storage
+
+networks:
+  default:
+    name: edge-net
+    external: true

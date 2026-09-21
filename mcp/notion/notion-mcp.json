@@ -1,0 +1,16 @@
+[
+  {
+    "type": "mcp",
+    "url": "https://mcp.notion.com/mcp",
+    "spec_type": "url",
+    "spec": "",
+    "path": "openapi.json",
+    "auth_type": "oauth_2.1",
+    "key": "",
+    "info": {
+      "id": "ntn",
+      "name": "Notion",
+      "description": "Search, read, create, and manage Notion pages and databases."
+    }
+  }
+]
