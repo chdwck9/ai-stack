@@ -1,0 +1,107 @@
+{
+ "run": "morning-mechanical",
+ "generated_at": "2026-11-06T08:00:20.431834+01:00",
+ "day": "2026-11-06",
+ "window": {
+  "start": "2026-11-06T00:00:00+01:00",
+  "end": "2026-11-07T00:00:00+01:00"
+ },
+ "steps": {
+  "calendar-to-ship": {
+   "step": "calendar-to-ship",
+   "window_kind": "day",
+   "day": "2026-11-06",
+   "window": {
+    "start": "2026-11-06T00:00:00+01:00",
+    "end": "2026-11-07T00:00:00+01:00"
+   },
+   "events": 9,
+   "created": [
+    {
+     "name": "DR daily",
+     "start": "2026-11-06T08:30:00.000Z",
+     "account": "work"
+    }
+   ],
+   "refreshed": [],
+   "failed": [],
+   "already_on_board": 2,
+   "duplicate_rows": [],
+   "recurring_one_row_kept": {
+    "follow-up": 2,
+    "😎 decompress": 2
+   },
+   "needs_richard": {
+    "untitled_invites": [],
+    "birthdays": [
+     {
+      "name": "Toni Michelle Brien's birthday",
+      "start": "2026-11-06"
+     }
+    ],
+    "holidays_not_tasks": []
+   },
+   "placeholders_skipped": [
+    "Focus Block",
+    "Home",
+    "Lunch"
+   ],
+   "dry_run": false
+  },
+  "mail-noise": {
+   "step": "mail-noise",
+   "window": "newer_than:2d",
+   "scanned": 18,
+   "noise": 17,
+   "archived": 17,
+   "by_sender": {
+    "jooble.org": 12,
+    "mail.notion.com": 5
+   },
+   "dry_run": false,
+   "ts": "2026-11-06T08:00:12.177298+01:00"
+  },
+  "openrouter": {
+   "step": "openrouter",
+   "built": true,
+   "report": "wrote /tmp/or_usage.html\nOpenRouter — balance\n  credits $65.00 · used $56.41 · REMAINING $8.59\n  key limit $30.00 · remaining $17.71 · free tier False\n\nOUR INFERENCE SPEND (OpenRouter actual + local equivalent)\n  Today        OpenRouter    $0.00   local-eq    $0.00   TOTAL    $0.00   (saved $0.00)\n  Last 7 days  OpenRouter   $12.30   local-eq    $0.01   TOTAL   $12.31   (saved $0.01)\n  Last 30 days OpenRouter   $48.94   local-eq    $1.26   TOTAL   $50.20   (saved $1.26)\n  local valued at qwen/qwen3.6-35b-a3b rates\n\nOpenRouter — usage (rolling, authoritative for this key)\n  today    $0.00\n  last 7d  $11.82\n  last 30d $12.29\n  all-time $56.40\n\nOpenRouter — account spend by app (AUTHORITATIVE, last 30d)\n  TOTAL                              $56.40\n  Hermes Agent                       $55.15   ",
+   "embed": {
+    "ok": true,
+    "tail": "embed source=\"notion-file-block://47ce8ed3-b611-406c-a97a-7f208923ff32/fda17d00-9d33-4049-a99b-9f0a29fb266d?space_id=914e3c34-0a79-4cf8-863d-f6dd6391f772&name=openrouter-usage.html\"> Inference Spend \n"
+   },
+   "ts": "2026-11-06T08:00:19.548382+01:00"
+  }
+ },
+ "board": {
+  "rows_in_window": 8,
+  "undated": [],
+  "meetings": [
+   "Follow-up",
+   "😎 Decompress",
+   "DR daily"
+  ]
+ },
+ "headline": {
+  "rows_created": 1,
+  "rows_refreshed": 0,
+  "calendar_step_failed": 0,
+  "mail_noise_archived": 17,
+  "openrouter_ok": true
+ },
+ "needs_richard": {
+  "untitled_invites": [],
+  "birthdays": [
+   {
+    "name": "Toni Michelle Brien's birthday",
+    "start": "2026-11-06"
+   }
+  ],
+  "holidays_not_tasks": []
+ },
+ "placeholders_skipped": [
+  "Focus Block",
+  "Home",
+  "Lunch"
+ ],
+ "duplicate_rows": []
+}

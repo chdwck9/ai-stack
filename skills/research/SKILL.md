@@ -5,7 +5,9 @@ name: research
 
 uuid: 39224dc8-ccd9-8125-a0c9-f6bc01838689
 
-version: 4
+version: 5
+
+last-used: "2026-09-23T15:50:00+02:00"
 
 description: "Research"
 
@@ -234,6 +236,8 @@ Expected: completes full research and bias self-audit, then applies `/humanize` 
 - Never loop more than 3 times on a sub-question that returns empty results — mark inconclusive and move on
 
 - Never push to Notion before surfacing a summary and confirming with the user
+
+- If the user moves to a new task without confirming the push, treat the offer as still open — do not re-attempt the push automatically, and only raise it again if the user returns to the topic or explicitly asks
 
 - Never omit the Research Questions section — all sub-questions must appear, including inconclusive ones
 

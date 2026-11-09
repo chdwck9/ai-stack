@@ -5,9 +5,11 @@ name: create-persona
 
 uuid: 33324dc8-ccd9-8165-97f7-f0140982570f
 
-version: 8
+version: 10
 
 description: "Create a Persona with an accompanying human/subject Profile"
+
+last-used: "2026-10-02"
 
 thinking: "Medium"
 
@@ -18,6 +20,8 @@ resources:
   - "@Skill-Template"
 
   - "@AI-Hub-DB"
+
+  - "@Local-Mode"
 
 
 ---
@@ -91,7 +95,7 @@ When critical information is missing, ask targeted questions. Maximum 10 questio
 
 ### Step 5: Design the Persona layer
 
-Translate the Profile into a usable interaction model. Define: name + trigger, identity/archetype, mission, knowledge boundary, voice, challenge mode, default context, relationship to Richard/user, deactivation, and adaptation rules. The Persona should use the Profile as internal context rather than requiring a separate profile lookup at runtime.
+Translate the Profile into a usable interaction model. Define: name + trigger, identity/archetype, mission, knowledge boundary, voice, challenge mode, default context, relationship to Richard/user, deactivation, and adaptation rules. The Persona should use the Profile as internal context rather than requiring a separate profile lookup at runtime. Include an optional `## Taste` section (Richard's gut/intuition corrections as terse *signal → preference* lines, cap ~10); leave empty at creation unless Richard supplies taste — `$reinforce` populates it.
 
 ### Step 6: Context intelligence
 
@@ -128,6 +132,8 @@ Define council behaviour when multi-persona use is intended: sequential response
 Produce a 3–5 turn sample exchange that demonstrates voice and challenge mode. For Digital Twins, demonstrate evidence-informed behaviour. Check that the Profile supports the Persona and that assumptions, boundaries, context retrieval, and simulation constraints are explicit.
 
 ### Step 10: Publish
+
+Apply @Local-Mode to set `scope` (default per its routing). `local`: write the Persona (and Profile) as local sub-skill files only, no Hub pages. `hub` / `synced`: create both outputs in @AI-Hub-DB as below, plus the local file for `synced`.
 
 Create both outputs in @AI-Hub-DB:
 
@@ -171,6 +177,8 @@ For systems or products, use the same pattern adapted to: purpose, users, archit
 
 - Use a single integrated workflow rather than invoking a separate profile skill.
 
+- Never write to the Hub for a `local` Persona; never write a Taste line Richard did not originate.
+
 
 ---
 
@@ -178,3 +186,11 @@ For systems or products, use the same pattern adapted to: purpose, users, archit
 ## Output
 
 Return: (1) Persona name + purpose, (2) complete Persona specification / [SKILL.md](http://skill.md/), (3) accompanying lightweight Profile, (4) source/evidence + assumptions, (5) sample exchange, (6) activation/deactivation + context intelligence, (7) AI Hub publication details. For Digital Twins also include Business Chemistry, working-with guide, simulation readiness, and simulation constraints.
+
+## Taste
+
+*Richard-originated, grown by **`$reinforce`**. Signal → preference.*
+
+- Hub page body = the file verbatim. → Plain `---` header delimiters (`---` / `name:` / `description:` / … / `---`), never a fenced code block — a fence breaks the file the sync pulls down.
+
+- Never wrap the header in a fenced code block when writing a page to the Hub — plain `---` delimiters only; a fence breaks the synced `.md`.

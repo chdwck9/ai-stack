@@ -5,7 +5,7 @@ name: create-reactor
 
 uuid: 38824dc8-ccd9-8131-b96d-c8b638a8eaa3
 
-version: 5
+version: 6
 
 description: "Create Reactor"
 
@@ -176,3 +176,11 @@ Expected: Extracts all answers from brief, skips interview, drafts skill immedia
 - Single [SKILL.md](http://skill.md/) published to Notion AI Hub with real UUID
 
 - First-run REPORT block, STATUS QUO seed, and JSX artifact rendered in chat
+
+## Taste
+
+*Richard-originated, grown by **`$reinforce`**. Signal → preference.*
+
+- Hub page body = the file verbatim. → Plain `---` header delimiters (`---` / `name:` / `description:` / … / `---`), never a fenced code block — a fence breaks the file the sync pulls down.
+
+- Never wrap the header in a fenced code block when writing a page to the Hub — plain `---` delimiters only; a fence breaks the synced `.md`.

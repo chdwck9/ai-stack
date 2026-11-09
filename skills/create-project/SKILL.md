@@ -5,9 +5,9 @@ name: create-project
 
 uuid: 38824dc8-ccd9-8195-a25e-fff22f31e2e3
 
-version: 9
+version: 12
 
-last-used: "2026-09-16T19:12:00+02:00"
+last-used: "2026-10-02"
 
 description: "Create Project"
 
@@ -24,6 +24,8 @@ temperature: 0.3
 resources:
 
   - "@Skill-Template"
+
+  - "@Local-Mode"
 
 
 ---
@@ -46,6 +48,8 @@ Copy these steps verbatim into the task list before starting. A skipped step sta
 Extract name, outcome/scope, domain, timeframe, priority, stakeholders, milestones, constraints, decisions, desired skills/agent behaviour, and operational sources. Accept source links/handles such as Jira boards/filters, trackers, Grafana dashboards, GitHub, Slack and canonical docs. If an existing spec/MCD or additional source material is provided, read it first.
 
 If timeframe is unclear, preferably ask duration; otherwise default `today → today+90 days`. Priority defaults to `#5`; use `#3` when explicitly urgent and `#1` when explicitly NB.
+
+If the project's product/domain scope isn't explicitly stated and could plausibly be inferred from the requester's usual work area, confirm scope explicitly as one of the clarification questions rather than inferring it — an inferred domain that turns out wrong costs a full correction pass across the Agent, MCD, and Ship record.
 
 ### 2. Build / update MCD
 
@@ -77,6 +81,8 @@ Populate existing fields when supported by context: `Goals`, `Milestone`, `Phase
 
 For Mambu projects, set `Parent` to `https://app.notion.com/p/chdwck9/Mambu-31824dc8ccd980d18072dbe901d281c9`.
 
+After writing the `When?` date, re-fetch the page and confirm `start`, `end`, and `is_datetime` all match what was sent — a partial date payload has been observed to silently default to "now" with `is_datetime=1` instead of the intended date-only range.
+
 ### 5. Source wiring
 
 The MCD Resources section is the canonical source registry. Do not create a competing operational-resource property in Ship. Ensure the Project Agent can resolve the registered resources/handles. If a required operational source is supplied but cannot be connected, record the gap rather than inventing access.
@@ -88,6 +94,10 @@ For projects with a weekly cadence, state that `$track-project` will use the Shi
 ### 7. Verify
 
 Re-fetch the created/updated MCD, Agent and Ship project. Confirm required Ship fields, relations, source wiring and Agent/MCD links. Repair only specific defects found; do not regenerate unrelated content.
+
+### 7b. Local first sync
+
+Apply @Local-Mode. Ship project and MCD are always created in every mode. If running in a local-first harness (Claude Code / CLI / repo with [CLAUDE.md](http://claude.md/) or [AGENTS.md](http://agents.md/)), also perform the first sync: write the published Project Agent into the repo's [CLAUDE.md/AGENTS.md](http://claude.md/AGENTS.md) (merge under existing content, never overwrite unrelated sections), set `scope: synced` and `synced-version: 1` on both copies. The Hub Agent page stays the source of truth. Outside a local-first harness: skip with `skip: not local`.
 
 ### 8. Install checklist
 
@@ -107,6 +117,8 @@ Output:
 
 - [ ]Any required connectors enabled
 
+- [ ]Local-first harness only: Agent synced to [CLAUDE.md/AGENTS.md](http://claude.md/AGENTS.md) (`scope: synced`)
+
 ## Agent template
 
 ```yaml
@@ -114,6 +126,7 @@ Output:
 name: [slug]
 uuid: TBD
 version: 1
+scope: hub
 description: "[Project Name] Project Agent"
 tools:
   - [tools]
@@ -124,6 +137,8 @@ resources:
 [One-liner.]
 ## Project instructions
 [Constraints / behaviour overrides.]
+## Taste (optional)
+[Richard's gut/intuition rules for this project, signal → preference. Omit if none; populated by `$reinforce`.]
 ## Permissions
 **Always:** / **Ask first:** / **Never:**
 ## Resources
@@ -167,3 +182,15 @@ Remove empty sections and keep `<60` lines.
 - Never exceed 5 clarification questions.
 
 - Never exceed 60 lines in the generated Project Agent.
+
+- Never skip the Ship project because the run is local; never overwrite unrelated [CLAUDE.md/AGENTS.md](http://claude.md/AGENTS.md) content during the first sync.
+
+- Never write a Taste line Richard did not originate.
+
+## Taste
+
+*Richard-originated, grown by **`$reinforce`**. Signal → preference.*
+
+- Hub page body = the file verbatim. → Plain `---` header delimiters (`---` / `name:` / `description:` / … / `---`), never a fenced code block — a fence breaks the file the sync pulls down.
+
+- Never wrap the header in a fenced code block when writing a page to the Hub — plain `---` delimiters only; a fence breaks the synced `.md`.

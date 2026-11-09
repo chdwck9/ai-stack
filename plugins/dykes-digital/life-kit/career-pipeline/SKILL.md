@@ -13,6 +13,8 @@ thinking: "Medium"
 
 temperature: 0.3
 
+last-used: "2026-09-25T15:27:00+02:00"
+
 
 ---
 

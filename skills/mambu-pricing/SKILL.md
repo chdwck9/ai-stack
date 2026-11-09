@@ -36,6 +36,16 @@ Commercial pricing model — V19.1 calculator governance, Salesforce CPQ integra
 **Ask first:** Spec or CPQ changes; DR tier/FX modifications; sharing pricing data externally.
 **Never:** State prices without §4/§5; make pricing decisions unilaterally; fabricate tier names or uplifts.
 
+## Local infra (workbox)
+
+- Project: `~/chdwck9/Ship/@Mambu Pricing & CPQ/Mambu Pricing v20`. Live Compose stack: `~/.conf/mambu-pricing-v20/infra/docker-compose.yml` (identical copy in the project's `infra/`).
+
+- Port convention on the workbox: the **pricing warehouse is on host 5433** (Docker, `infra-postgres-1`, postgres:16, user/db/pass all `pricing`, volume `infra_pgdata`). The **native Homebrew ****`postgresql@16`**** service owns 5432** (loopback-only, managed as `sh.brew.postgresql@16`). DBeaver connects at `localhost:5433`.
+
+- App/loader `DATABASE_URL=postgres://pricing:***@localhost:5433/pricing`. From the Studio use host `192.168.2.20` (5433 is LAN-reachable; native 5432 is loopback-only).
+
+- Do not put the pricing container on 5432: the native postgres lives there. If a client gets `role "pricing" does not exist`, a native Postgres has grabbed the *same* port on loopback and won for `localhost` — check `lsof -nP -iTCP:<port> -sTCP:LISTEN` for two listeners and keep the two apart.
+
 ## Resources
 
 ## Skills

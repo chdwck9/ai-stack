@@ -5,7 +5,7 @@ name: create-jpd
 
 uuid: 3c924dc8-ccd9-81b0-beae-fae190540a73
 
-version: 5
+version: 6
 
 description: "Create Jpd"
 
@@ -152,3 +152,11 @@ Copy these steps verbatim into the task list before starting. A skipped step sta
 ## Next steps
 
 Invoke with a JPD ticket key/link or free text. Thin free text triggers one clarifying question before research starts.
+
+## Taste
+
+*Richard-originated, grown by **`$reinforce`**. Signal → preference.*
+
+- Hub page body = the file verbatim. → Plain `---` header delimiters (`---` / `name:` / `description:` / … / `---`), never a fenced code block — a fence breaks the file the sync pulls down.
+
+- Never wrap the header in a fenced code block when writing a page to the Hub — plain `---` delimiters only; a fence breaks the synced `.md`.

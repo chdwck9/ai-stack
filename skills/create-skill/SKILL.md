@@ -5,11 +5,11 @@ name: create-skill
 
 uuid: 31624dc8-ccd9-8032-8bdf-e3ee0f700ee2
 
-version: 12
+version: 15
 
 description: "Create Skill"
 
-last-used: "2026-09-16T19:12:00+02:00"
+last-used: "2026-11-06"
 
 thinking: "Medium"
 
@@ -17,9 +17,11 @@ temperature: 0.4
 
 resources:
 
-  - "@Skill-Template"
+- "@Skill-Template"
 
-  - "@Resource-Index"
+- "@Resource-Index"
+
+- "@Local-Mode"
 
 
 ---
@@ -33,7 +35,7 @@ Translate a capability request into a production-ready [SKILL.md](http://skill.m
 
 - [SKILL.md](http://skill.md/) is a router, not a manual: triggers, steps, boundaries, contract. Target 500–900 words.
 
-- **Progressive disclosure:** content needed only at a specific step — templates, pattern lists, long examples, variant workflows — moves to sidecar files (`resources/`, `playbooks/`, `examples/` in the skill folder, or an @handle in @AI-Hub). The body carries a one-line pointer stating when to load each. A skill with 2+ variants of one workflow gets one playbook file per variant; [SKILL.md](http://skill.md/) matches the task and routes.
+- **Progressive disclosure:** content needed only at a specific step — templates, pattern lists, long examples, variant workflows — moves to sidecar files (`resources/`, `playbooks/`, `examples/` in the skill folder, or an @handle in @AI-Hub). The body carries a one-line pointer stating when to load each. A skill with 2+ variants of one workflow gets one playbook file per variant; variants that differ only in data (rosters, checklists, lenses) stay one universal skill that composes per target, with the seed list in a sidecar as non-binding prompts; [SKILL.md](http://skill.md/) matches the task and routes.
 
 - All external references by @handle only, resolved via @Resource-Index. Never hardcode URLs, UUIDs, or paths. Lazy-load always.
 
@@ -49,6 +51,10 @@ Written into every skill drafted:
 
 - **Pipeline hand-off** (artefact skills). Declare emissions in `return:`. Write artefacts to the hand-off location — Claude Code/local: `$AI/artefacts/<skill>/<yyyy-mm-dd>-<slug>/`; [claude.ai](http://claude.ai/): workspace outputs, plus @Inbox on push. Downstream skills check there before regenerating.
 
+- **Scope.** Optional YAML `scope: hub | local | synced` (omit = hub), set per @Local-Mode routing. Local and synced skills also carry the local path; synced adds `synced-version`.
+
+- **Taste (optional).** An optional `## Taste` section holding Richard's gut/intuition corrections that improved the final outcome: terse lines, *signal → preference* (optional before/after), cap ~10, rewritten on `$reinforce`, never inferred by Claude, no PII. Distinct from Boundaries (hard rules). Omit at creation unless Richard supplies taste; `$reinforce` populates it.
+
 ## Steps
 
 1. **Clarify.** Review concept and purpose. If vague, ask: concrete use case, who invokes and when, success criteria, autonomy level. Confirm before proceeding.
@@ -63,7 +69,7 @@ Written into every skill drafted:
 
 1. **Test.** 2–3 prompts: typical, edge, boundary/refusal. Execute each against the draft, present prompt → output, review, iterate on affected cases. For artefact skills, run the self-check gate as part of the test. Confirm description is name-only. Optional blind A/B when iterations occurred and the user wants it.
 
-1. **Publish.** Create the page in @AI-Hub (Type of P = Skills, Version = 1, Description = name only, full [SKILL.md](http://skill.md/) in the page body — never as attachment). Patch the returned UUID into the header (Notion + local). Write the final [SKILL.md](http://skill.md/) to workspace outputs and present for install; if the skill has sidecars, deliver the folder as a zip.
+1. **Publish.** Apply @Local-Mode: write the local file per `scope`; `local` skips the Hub page entirely. Otherwise create the page in @AI-Hub (Type of P = Skills, Version = 1, Description = name only, full [SKILL.md](http://skill.md/) in the page body — never as attachment, frontmatter as a plain `---` header, never inside a fenced code block (the sync pulls the body down as `.md`; a fence breaks it)). Patch the returned UUID into the header (Notion + local). Register every new sidecar @handle in @Resource-Index (Master) in the same piece of work. Write the final [SKILL.md](http://skill.md/) to workspace outputs and present for install; if the skill has sidecars, deliver the folder as a zip.
 
 1. **Visibility.** Suggest private (personal OS/data) / mambu (work) / public (generic); confirm; update the Notion property.
 
@@ -79,7 +85,7 @@ Step 2 finds a popular public analogue; its Socratic example structure is borrow
 
 ## Boundaries
 
-- Never write to Notion before test outputs are reviewed (a combined "push/proceed" counts as approval)
+- Never leave a created or edited skill local-only: push it to the Notion AI Hub as part of the same piece of work, unconditionally. There is NO review gate — the Hub is the source of truth and the local file is only its mirror. The same applies to utilities and personas.
 
 - Never exceed ~900 words in a [SKILL.md](http://skill.md/) body without moving content to sidecars or @handles
 
@@ -94,6 +100,16 @@ Step 2 finds a popular public analogue; its Socratic example structure is borrow
 - Never include model-selection fields (`model`, `model-mode`, `fallback-mode`, `loop-escalation-mode`) — model routing and escalation are environment concerns; never omit `thinking` or `temperature`
 
 - Never attach the [SKILL.md](http://skill.md/) as a file to the Notion page — full content in the page body
+
+- Never wrap the frontmatter in a fenced code block in the Notion page body — a plain `---` header only; a fence breaks the synced `.md`
+
+- Never write to the Hub for a `local` skill; never overwrite either side of a `synced` skill without the @Local-Mode version comparison
+
+- Never write a Taste line Richard did not originate
+
+## Taste
+
+- Fixed per-domain rosters or variant lists feel too bounded → one universal skill; compose per target; seed lists are prompts, not boundaries.
 
 ## Output
 

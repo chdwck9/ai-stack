@@ -1,22 +1,24 @@
 services:
 
-  hermes-webui:
-    image: ghcr.io/nesquena/hermes-webui:latest
-    container_name: ai-hermes-webui
+  hermes-workspace:
+    image: ghcr.io/outsourc-e/hermes-workspace:latest
+    container_name: ai-hermes-workspace
     restart: unless-stopped
     ports:
-      - "7801:8787"
+      - "7801:3000"
     environment:
-      HERMES_WEBUI_HOST: 0.0.0.0
-      HERMES_WEBUI_PORT: 8787
-      HERMES_WEBUI_GATEWAY_BASE_URL: http://host.docker.internal:8642
-      HERMES_WEBUI_GATEWAY_API_KEY: ${API_SERVER_KEY}
-      HERMES_WEBUI_GATEWAY_USE_RUNS_API: "true"
-      HERMES_WEBUI_PASSWORD: ${HERMES_WEBUI_PASSWORD:-}
+      HERMES_HOME: /home/workspace/.hermes
+      HERMES_WORKSPACE_DIR: /workspace
+      HERMES_API_URL: http://host.docker.internal:8642
+      HERMES_DASHBOARD_URL: http://host.docker.internal:9119
+      HERMES_API_TOKEN: ${API_SERVER_KEY}
+      HERMES_PASSWORD: ${HERMES_WEBUI_PASSWORD}
+      COOKIE_SECURE: "0"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - /Volumes/Live/@Edge/.ai/config/hermes-webui:/home/hermeswebui/.hermes/webui
+      - /Users/${USER}/.hermes:/home/workspace/.hermes
+      - /Volumes/Live/@Edge/.ai/spaces:/workspace
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
@@ -55,6 +57,46 @@ services:
       STORAGE_DIR: /app/server/storage
     volumes:
       - /Volumes/Live/@Edge/.ai/data/anythingllm:/app/server/storage
+
+  # --- Embeddings: headless llama.cpp server (replaces LM Studio :1234) ---
+  # OpenAI-compatible /v1/embeddings on host port 7807. Model file is a copy of
+  # LM Studio's bundled nomic-embed-text-v1.5 Q4_K_M (identical vectors, 768d).
+  embed:
+    image: ghcr.io/ggml-org/llama.cpp:server
+    container_name: ai-embed
+    restart: unless-stopped
+    command:
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "9931"
+      - "--embeddings"
+      - "--pooling"
+      - "mean"
+      - "--ctx-size"
+      - "8192"
+      - "--batch-size"
+      - "2048"
+      - "--ubatch-size"
+      - "2048"
+      - "--alias"
+      - "nomic-embed-text-v1.5"
+      - "-m"
+      - "/models/nomic-embed-text-v1.5.Q4_K_M.gguf"
+    ports:
+      - "7807:9931"
+    volumes:
+      - /Volumes/Live/@Edge/.ai/models/nomic-embed-text-v1.5:/models:ro
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "python3 -c \"import urllib.request;urllib.request.urlopen('http://localhost:9931/health',timeout=2).read()\" || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
 
 networks:
   default:

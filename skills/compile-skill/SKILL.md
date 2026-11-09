@@ -97,7 +97,7 @@ All `@RESOURCE-NAME` handles (from YAML and body). These become `.md` files in `
 
 **2e — Sub-skills to embed (recursive):**
 
-Scan the full body for `/skill-name` invocations (e.g. `/reconcile-spec`, `/grill-me`). These are callable sub-skills that a user of the portable package will also need. For each found:
+Scan the full body for `/skill-name` invocations (e.g. `/reconcile-spec`). These are callable sub-skills that a user of the portable package will also need. For each found:
 
 - Locate the sub-skill's [SKILL.md](http://skill.md/) (via skill registry search or filesystem)
 

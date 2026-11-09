@@ -1,0 +1,75 @@
+{
+ "source": "studio-health-watch",
+ "checked_at": "2026-11-09T12:15:00.380323+01:00",
+ "ok": true,
+ "alertable": [],
+ "alerted": false,
+ "alert_window": ">= 12:00",
+ "last_alert_day": null,
+ "problems": [
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "failed",
+   "started_at": "2026-11-09T11:03:12Z"
+  },
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "aborted",
+   "started_at": "2026-11-09T10:59:56Z"
+  },
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "aborted",
+   "started_at": "2026-11-09T10:57:44Z"
+  },
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "aborted",
+   "started_at": "2026-11-09T10:54:14Z"
+  },
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "aborted",
+   "started_at": "2026-11-09T10:50:30Z"
+  },
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "aborted",
+   "started_at": "2026-11-09T10:48:00Z"
+  },
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "aborted",
+   "started_at": "2026-11-09T10:45:17Z"
+  },
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "aborted",
+   "started_at": "2026-11-09T10:44:16Z"
+  },
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "failed",
+   "started_at": "2026-11-09T10:41:32Z"
+  },
+  {
+   "dag": "ai-brain-commit",
+   "kind": "dagu-failed",
+   "detail": "failed",
+   "started_at": "2026-11-09T10:39:16Z"
+  }
+ ],
+ "delivery": {
+  "delivered": false,
+  "reason": "nothing to report"
+ }
+}

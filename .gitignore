@@ -2,6 +2,7 @@
 *.env
 .DS_Store
 .claude/
+.claudian/
 .obsidian/
 .trash/
 
@@ -10,3 +11,6 @@ plugins/mambu/
 archive/
 data/
 config/
+# Local hand-off secrets (never commit)
+.secrets/
+models/

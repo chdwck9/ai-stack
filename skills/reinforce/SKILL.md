@@ -5,11 +5,11 @@ name: reinforce
 
 uuid: 35324dc8-ccd9-819f-aac0-e63f7a8cd6bb
 
-version: 5
+version: 6
 
 description: "Reinforce"
 
-last-used: "2026-09-19T10:23:00+02:00"
+last-used: "2026-11-06"
 
 thinking: "Medium"
 
@@ -18,6 +18,8 @@ temperature: 0.3
 resources:
 
   - "@AI-Hub-DB"
+
+  - "@Local-Mode"
 
 
 ---
@@ -61,7 +63,7 @@ If no skills are identifiable, output: *"No skill invocations detected in this s
 
 ### Step 3 — Fetch skill definitions
 
-For each identified skill: search @AI-Hub-DB by name, fetch the full [SKILL.md](http://skill.md/) content, note the current version number.
+For each identified skill: search @AI-Hub-DB by name and, in a local-first harness, the local skills folder / [CLAUDE.md](http://claude.md/) / [AGENTS.md](http://agents.md/). Fetch the full [SKILL.md](http://skill.md/) content from each side found, note the version(s) and the `scope` (`hub` / `local` / `synced`; absent = `hub`). Apply @Local-Mode for scope handling.
 
 If a skill cannot be found: flag under "Skills Not Found" — analyse it and present a proposed [SKILL.md](http://skill.md/) block in chat, but skip the /create-skill call.
 
@@ -77,6 +79,8 @@ Rate each skill 1–5 using the signal hierarchy (in priority order):
 
 **Fallback:** If fewer than 3 meaningful exchanges, rate **3/5** and flag as low signal.
 
+Scan the segment for moments where Richard changed the outcome through gut, intuition or aesthetic instruction rather than a reasoned spec ("too heavy", "less corporate", "cut that", "feels off", a manual edit of the output). For each, distil one terse Taste line: *signal → what Richard prefers* (optional before/after). Attribute each line to the skill that produced the corrected output. Only lines originating from Richard's edits or overrides qualify — never Claude's inference. Skip if none found.
+
 If prior segment reports exist for the same skill: compute weighted average (current = 60%, prior = 40%). Flag degradation as high-priority fix. Treat stable as baseline.
 
 
@@ -89,7 +93,7 @@ For each skill, identify actionable changes: step gaps, resource additions (new 
 
 For persona skills additionally assess: tone fidelity, context loading, council behaviour.
 
-Ground every change in specific evidence from the segment. Do not add speculative improvements.
+Ground every change in specific evidence from the segment. Do not add speculative improvements. A Taste line from Step 4b counts as grounded evidence. Merge new Taste lines into the skill's optional `## Taste` section by rewriting and consolidating it (cap ~10 lines, replace superseded lines, never append blindly). Create the section if absent.
 
 
 ---
@@ -104,6 +108,8 @@ For each skill with changes, inspect its `resources:` block. Determine whether a
 
 
 ### Step 6 — Apply changes via /create-skill
+
+Apply @Local-Mode first: `hub` skills go via /create-skill as below; `local` skills are written to the local file only (no /create-skill, no Hub write, no Hub `Last Used`); `synced` skills run the version comparison and sync both sides.
 
 Before applying any skill changes, update the skill's usage metadata: set its YAML `last-used` to the current timestamp and set the AI Hub `Last Used` property to the same timestamp. Also ensure its AI Hub `Category` is assigned to the most applicable kit.
 
@@ -135,9 +141,9 @@ Skills with no changes: do not invoke /create-skill. Log as unchanged. No approv
 
 ### Skills Assessed
 
-| Skill | Type | Rating | Signal Basis |
-|-------|------|--------|--------------|
-| /name | persona/task | 4/5 | [one line rationale] |
+| Skill | Type | Scope | Rating | Signal Basis |
+|-------|------|-------|--------|--------------|
+| /name | persona/task | hub/local/synced | 4/5 | [one line rationale] |
 
 ---
 
@@ -146,6 +152,12 @@ Skills with no changes: do not invoke /create-skill. Log as unchanged. No approv
 #### `/skill-name` v[N] → v[N+1]
 - **[Category]:** [What changed]
   *Reason: [Grounded in segment evidence]*
+
+---
+
+### Taste Captured
+
+- `/skill-name`: [signal → preference] *(evidence: short snippet)*
 
 ---
 
@@ -213,6 +225,10 @@ Expected: Rates 3/5 current segment. Weighted average: 3.8 → rounds to 4/5 ove
 - If signal is too low: default to 3/5, flag as low-signal, apply conservative improvements only
 
 - Never write the Session Seed Block anywhere — chat-only, markdown code block
+
+- Never write to the Hub for a `local` skill; never overwrite a `synced` skill without the version comparison
+
+- Never record a Taste line that Richard did not originate; never include PII in Taste
 
 
 ---

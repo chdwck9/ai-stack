@@ -5,7 +5,7 @@ name: create-shortcut
 
 uuid: 35e24dc8-ccd9-8187-8c35-f6d1877e6b3a
 
-version: 7
+version: 8
 
 description: "Create Shortcut"
 
@@ -316,3 +316,11 @@ Expected output:
 ## Next steps
 
 Invoke with `/create-recipe`. Paste a source skill or gem to convert, or describe the new recipe you want to build.
+
+## Taste
+
+*Richard-originated, grown by **`$reinforce`**. Signal → preference.*
+
+- Hub page body = the file verbatim. → Plain `---` header delimiters (`---` / `name:` / `description:` / … / `---`), never a fenced code block — a fence breaks the file the sync pulls down.
+
+- Never wrap the header in a fenced code block when writing a page to the Hub — plain `---` delimiters only; a fence breaks the synced `.md`.

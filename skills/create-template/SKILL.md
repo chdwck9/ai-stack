@@ -5,7 +5,7 @@ name: create-template
 
 uuid: 37324dc8-ccd9-8121-ba98-f801566db215
 
-version: 5
+version: 6
 
 description: "Create template"
 
@@ -58,3 +58,11 @@ Copy these steps verbatim into the task list before starting. A skipped step sta
 ## Output
 
 Notion page URL + updated resource table row, ready to paste into @global-instructions.
+
+## Taste
+
+*Richard-originated, grown by **`$reinforce`**. Signal → preference.*
+
+- Hub page body = the file verbatim. → Plain `---` header delimiters (`---` / `name:` / `description:` / … / `---`), never a fenced code block — a fence breaks the file the sync pulls down.
+
+- Never wrap the header in a fenced code block when writing a page to the Hub — plain `---` delimiters only; a fence breaks the synced `.md`.

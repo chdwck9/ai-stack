@@ -1,0 +1,1269 @@
+# Derived memory documents
+
+Honcho's own synthesis (explicit / inductive / deductive), exported 2026-10-28 before teardown.
+1247 documents total.
+
+## clarity · deductive  (8)
+
+- richard is a parent of two young children — Arthur (son, aged 6) and a 2-year-old daughter — and his children's school timetable directly constrains his travel planning.
+- As of 2026-10-27 richard's embeddings no longer run on LM Studio: LM Studio's :1234 server is down and the ~90GB of LLM models it stored were deleted, replaced by a self-hosted containerized llama.cpp 'embed' service on port 7807 serving nomic-embed-text-v1.5 (768d).
+- richard is actively planning to extend his self-hosted memory to tools beyond Hermes/Clarity, which is why he declined to restrict the new embed service's port 7807 to localhost-only, in contrast to his earlier acceptance of binding the Honcho API server to 127.0.0.1.
+- richard's 'Richard OS' is organized around four pillars — bonds, craft, edge and craft-mambu — each tracked with a specific weekly objective (the week of 2026-10-20: Bonds = a successful visit with his father; Edge = getting Clarity fully operational on all devices with cron jobs running and tested).
+- richard's online identity is tied to the handle/workspace 'chdwck9' and the domain dykes.digital, alongside his display name Richard Dykes (shared agent brain git repo github.com/chdwck9/ai-stack; Honcho workspace 'chdwck9').
+- richard's Montpelier Christmas-market trip is a four-person group booking (himself plus three other people) that must accommodate a school-age child's timetable, and he wants a non-stop flight under 400 per person with a hire car at the destination.
+- richard is preparing to leave his current employer: he needs to start a job search and does not expect to still be at his current employer in six months at the current rate (as of 2026-10-20).
+- richard holds a customer/user-facing leadership role that includes hiring engineers (he expects to hire engineers who manage themselves) even though his role is not tied to the engineering teams, and he deliberately avoids engineering-manager-owned bureaucratic work such as sign-offs, approvals, access requests and ticket gates.
+
+## clarity · explicit  (589)
+
+- Richard's Mac Studio runs a Cloudflare tunnel named 'edge-ai' with config at ~/.cloudflared/config.yaml that routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard's shared agent brain is a git repository at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- Richard's shared agent brain is located at /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale IP 100.84.130.79.
+- Richard uses OpenRouter as his text LLM.
+- Richard's Honcho scope names are permanent because Honcho scopes cannot be deleted via the API.
+- Richard's Honcho scopes are named bonds, craft, edge, and craft-mambu, which are his Richard OS pillars.
+- Richard's 'ai' Docker Compose stack is located at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard's Hermes uses Honcho as its memory provider, configured via ~/.hermes/honcho.json with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- Richard runs a self-hosted Honcho memory server on his Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query/delete/archive/props, including sql-delete/sql-archive/sql-props loops.
+- Richard prefers that bulk or repeatable actions be done with a parameterised script that reuses or adapts an existing one rather than many individual tool calls, to keep token consumption low.
+- Richard found that the Hermes honcho plugin has no scope support and cannot request a scope projection.
+- Richard found that the honcho-ai SDK 2.6.0 (latest) calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- Richard verified that Honcho named-scope JWTs confine a client server-side, with reading outside the scope returning a 401.
+- Richard has Tailscale installed across his devices: Studio, NAS, laptops, iPad, and Fold6.
+- As of 2026-10-19 14:53:33, richard was getting validation output that included lsof status errors.
+- richard's validation output included two 401 responses.
+- richard's validation output included an lsof status error on the literal argument '#': No such file or directory.
+- richard successfully restarted the gateway before 2026-10-19 14:53:33.
+- richard's validation output included lsof version 4.91.
+- richard's validation output included an lsof status error on the literal argument 'listener': No such file or directory.
+- richard's validation output included an lsof status error on the literal argument 'a': No such file or directory.
+- richard's validation output included an lsof status error on the literal argument 'show': No such file or directory.
+- richard's validation output included an lsof status error on the literal argument 'now': No such file or directory.
+- richard's validation output included an lsof status error on the literal argument 'should': No such file or directory.
+- On 2026-10-19 at 14:54:57, richard reported an HTTP status code of 502 for the external POST probe to https://hooks.dykes.digital/webhooks/notion-ship.
+- On 2026-10-19 at 14:54:57, richard reported an HTTP status code of 000 for the local POST probe to http://localhost:8644/webhooks/notion-ship.
+- Richard sent a webhook event 'unknown' on route 'notion-ship' with JSON payload containing "probe": true and "source": "clarity-e2e-test".
+- Richard wants Clarity to own her own memory, with memory writes pre-approved and memory.write_approval off, so Clarity should not ask before saving.
+- Richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query, delete, archive, and props operations, including sql-delete, sql-archive, and sql-props loops.
+- Richard prefers that for bulk or repeatable actions, a parameterised script is written and an existing one is reused or adapted rather than issuing many individual tool calls, to keep token consumption low.
+- Richard's honcho-ai SDK version 2.6.0 calls _ensure_workspace() via POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- Richard's Honcho named-scope JWTs confine a client server-side, as verified by reading outside the scope returning 401.
+- Richard has Tailscale installed across his devices, including his Studio, NAS, laptops, iPad, and Fold6.
+- Richard has a Cloudflare tunnel named 'edge-ai' on his Studio with config at ~/.cloudflared/config.yaml, routing mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard's Hermes reads skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard's shared agent brain is mounted as NFS at /Volumes/Live on his Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard's shared agent brain is at /Volumes/Live/@Edge/.ai on his Synology NAS (192.168.2.6), a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- Richard uses OpenRouter as his text LLM.
+- Richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are his Richard OS pillars and cannot be deleted via API.
+- Richard's Honcho configuration uses workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- Richard uses Hermes with Honcho as its memory provider via ~/.hermes/honcho.json.
+- Richard runs a self-hosted Honcho memory server on his Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard's 'ai' Docker Compose stack is located at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard uses a Mac Studio (host wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) as his always-on AI host.
+- Richard's Hermes Honcho plugin has no scope support and cannot request a scope projection.
+- Richard stated that the Indeed MCP needs a backend update.
+- Richard accepted clarity's proposal to bind the API server to 127.0.0.1.
+- After performing the restart on 2026-10-19, Richard stated the result was still 000.
+- Richard attempted to update the Indeed MCP and the update failed.
+- Richard performed the Hermes gateway restart that clarity had instructed on 2026-10-19.
+- Richard instructed Clarity to give a very brief report once the task was complete.
+- Richard instructed that Clarity's completion report include what Clarity did, the outcome, and any next actions.
+- Richard permitted Clarity to work autonomously on the task.
+- Richard required Clarity to read the prompt from the body for the task.
+- Richard permitted Clarity to use Discord to ask questions.
+- Richard was planning to test the webhook on 2026-10-19 at 15:04:40.
+- Richard stated on 2026-10-19 at 15:04:40 that he was going to assign something to Clarity.
+- Richard instructed Clarity to create a new thread in Discord channel 1560628428636426240.
+- Richard required Clarity to update the status of the Notion task from Doing to Shipped once verified.
+- Richard required Clarity to plan and execute the task.
+- Richard stated a rule for Notion tasks that their output should be verified.
+- Richard stated a rule for Notion tasks that they should always be wrapped in a loop.
+- richard's displayed name is Richard Dykes.
+- On 2026-10-19 at 15:08:37, richard assigned a task to the peer Clarity.
+- richard runs a self-hosted Honcho memory server on port 7806 on his Mac Studio, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard's Mac Studio (host wolfsmacstudio-1.home, Tailscale address 100.84.130.79) is his always-on AI host.
+- richard wants Clarity to own her own memory, with memory writes pre-approved because memory.write_approval is off, so she should not ask before saving.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py supporting Notion query, delete, archive, and props operations, including sql-delete, sql-archive, and sql-props loops.
+- richard's Hermes Honcho plugin has no scope support and cannot request a scope projection.
+- richard verified that Honcho named-scope JWTs confine a client server-side, with reading outside the scope returning 401, but the honcho-ai SDK 2.6.0 calls _ensure_workspace() via POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard prefers that for bulk or repeatable actions a parameterised script be written and reused or adapted rather than issuing many individual tool calls, to keep token consumption low.
+- richard has Tailscale installed across his devices: his Mac Studio, his Synology NAS, his laptops, his iPad, and his Fold6.
+- richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio (config at ~/.cloudflared/config.yaml) that routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- richard's Hermes reads skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard mounts his shared agent brain via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard mounts his shared agent brain as NFS at /Volumes/Live on his Mac Studio.
+- richard's shared agent brain is /Volumes/Live/@Edge/.ai on his Synology NAS (192.168.2.6), a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- richard uses Honcho scopes named bonds, craft, edge, and craft-mambu, which are his Richard OS pillars; the scopes cannot be deleted via the API, so the names are permanent.
+- richard's Hermes uses Honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard thinks a utility is needed to manage the new workflow.
+- richard's shared agent brain is a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- richard's Hermes honcho plugin has no scope support at all and cannot request a scope projection.
+- richard's preference for bulk or repeatable actions is to write a parameterised script and reuse or adapt an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query, delete, archive, and props, including sql-delete, sql-archive, and sql-props loops.
+- richard wants Clarity to own her own memory, with memory writes pre-approved (memory.write_approval off) and no approval question before saving.
+- richard's Honcho scopes are named bonds, craft, edge, and craft-mambu (his Richard OS pillars).
+- richard's Hermes uses honcho as its memory provider via the config file ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- A self-hosted Honcho memory server runs on richard's Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard's Mac Studio (host wolfsmacstudio-1.home, Tailscale 100.84.130.79) is his always-on AI host.
+- richard's shared agent brain is /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard runs a Cloudflare tunnel named 'edge-ai' on his Mac Studio with config at ~/.cloudflared/config.yaml.
+- richard's Cloudflare tunnel 'edge-ai' routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- richard has Tailscale installed across his devices: Studio, NAS, laptops, iPad, and Fold6.
+- richard verified that Honcho named-scope JWTs confine a client server-side, with reads outside the scope returning 401.
+- richard's honcho-ai SDK version is 2.6.0 (the latest at the time), which calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor, an operation a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- richard's text LLM is OpenRouter.
+- richard's Honcho scope names are permanent because scopes cannot be deleted via the API.
+- Richard Dykes is the name displayed for richard.
+- richard's background process proc_a5687158faa9, which ran the command `brew install colmap`, completed normally with exit code 0 on 2026-10-19 at 17:17:19.
+- The Homebrew install run in richard's environment placed COLMAP version 4.2.1_3 at /opt/homebrew/Cellar/colmap/4.2.1_3.
+- As of 2026-10-19 17:29:32, Richard wants his children to be posed together for the 3D figurine project.
+- Richard suggested making the finish of the scanned mesh angular trapezoids after the mesh has been captured, expecting angular trapezoids to hide some imperfections from the scanning process.
+- ...
+- richard is identified as Richard Dykes in his message.
+- richard directed that the staged skill be changed to just “reverse-engineer”.
+- richard approved publishing the staged skill.
+- richard is also known as Richard Dykes.
+- richard stated he will only run the reverse-engineering capability on a local base.
+- richard stated there is no need for the MCP server.
+- richard requested an MCP reload.
+- richard has an SSD.
+- As of 2026-10-19 19:45:20, richard's SSD has only 160 GB of free space.
+- richard is identified as Richard Dykes.
+- richard's Hermes gateway reported on 2026-10-19 at 19:45:39 that the background process proc_06eb37f76391, which ran `bash /tmp/sizes.sh`, completed normally with exit code 0.
+- richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard wants Clarity to own her own memory, with memory writes pre-approved because memory.write_approval is off, so Clarity should not ask before saving.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query/delete/archive/props, including sql-delete/sql-archive/sql-props loops.
+- For bulk or repeatable actions, richard prefers a parameterised script be written and reused or adapted from an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- Docker Desktop's Docker.raw on richard's system is sparse: ls shows max size while du shows real usage.
+- macOS lacks timeout/gtimeout, so richard wraps du in Python subprocess timeouts.
+- richard's SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- richard's Hermes shell has no Full Disk Access, so du/find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang.
+- richard's Hermes honcho plugin has no scope support at all and cannot request a scope projection.
+- A self-hosted Honcho memory server runs on richard's Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Honcho named-scope JWTs confine a client server-side, verified by richard as returning 401 when reading outside the scope.
+- The honcho-ai SDK version 2.6.0, the latest, calls _ensure_workspace() which POSTs to /v3/workspaces before nearly every accessor, and a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- richard's Mac Studio, hostname wolfsmacstudio-1.home with Tailscale address 100.84.130.79, is his always-on AI host.
+- richard's Hermes uses Honcho as its memory provider, configured via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard's Honcho scopes are named bonds, craft, edge, and craft-mambu, corresponding to his Richard OS pillars.
+- richard's Honcho scope names are permanent because Honcho scopes cannot be deleted via API.
+- richard's text LLM is OpenRouter.
+- richard's shared agent brain is at /Volumes/Live/@Edge/.ai on his Synology NAS (192.168.2.6), a git repository at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard's Hermes reads skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard's Cloudflare tunnel 'edge-ai' on his Mac Studio, configured at ~/.cloudflared/config.yaml, routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Tailscale is installed across richard's devices: his Studio, NAS, laptops, iPad, and Fold6.
+- richard is also referred to by the display name Richard Dykes.
+- On 2026-10-20 at 06:11:11, richard suggested possibly generating the 3D reconstruction using a base model and the images as references.
+- richard's full name is Richard Dykes.
+- Richard gave Arthur's height as about 1.2 (unit not specified).
+- Richard stated that the two children in the figurine discussed with Clarity are aged 6 and 2 (as of 2026-10-20).
+- Richard identified the younger of the two children in the figurine as a girl and gave her age as 2.
+- Richard identified the older of the two children in the figurine, a boy, as Arthur, and gave Arthur's age as 6.
+- Richard estimated the height of the younger child, a girl, at just about 90–100 cm.
+- Richard described the rendered 3D figurine image under discussion as horrifying.
+- Richard said he will add a separate task in Notion to continue the figurine work.
+- Richard's Mac Studio (hostname wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) is Richard's always-on AI host.
+- Richard has two children: Arthur, a son who is the older child, and a younger daughter.
+- Richard wants tradeoffs and fidelity limits stated honestly rather than in a cheerleading summary, and Richard expects to make the call on approach himself.
+- Richard is technically fluent and thinks in engineering terms, including photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- Richard is making a 3D-printed figurine gift for his children's grandfather, using Arthur and his daughter as the subjects.
+- Richard wants Clarity to own her own memory, with memory writes pre-approved because memory.write_approval is off, and Richard does not want to be asked before saving.
+- Richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query/delete/archive/props, including sql-delete/sql-archive/sql-props loops.
+- For bulk or repeatable actions, Richard prefers writing a parameterised script and reusing or adapting an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- Richard's Docker Desktop Docker.raw is sparse: ls shows max size while du shows real usage.
+- Richard's macOS lacks timeout/gtimeout, so he wraps du in Python subprocess timeouts.
+- Richard's Hermes shell lacks Full Disk Access, causing du/find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash to error or hang on his Mac Studio, and causing SynologyDrive-* File Provider shares under ~/Library/CloudStorage to stall even on ls and to be unindexed by Spotlight.
+- Richard cannot run the stock Hermes Honcho plugin on a scope key without a shim, and Richard notes the Hermes honcho plugin has no scope support at all and cannot request a scope projection.
+- Richard has verified that Honcho named-scope JWTs confine a client server-side, since reading outside the scope returns 401, but the honcho-ai SDK version 2.6.0 calls _ensure_workspace() before nearly every accessor, which a scope key is refused.
+- Richard has Tailscale installed across his devices: the Studio, the NAS, laptops, an iPad, and a Fold6.
+- Richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio, configured at ~/.cloudflared/config.yaml, routing mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard's shared agent brain directory /Volumes/Live/@Edge/.ai is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard's shared agent brain is /Volumes/Live/@Edge/.ai on the Synology NAS at 192.168.2.6, a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- Richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are Richard's OS pillars, and Richard states these scope names are permanent because scopes cannot be deleted via the API.
+- Richard's Hermes instance uses Honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- A self-hosted Honcho memory server runs on Richard's Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- On 2026-10-20 at 07:30:55, richard stated that a Ship task had been delegated to Clarity.
+- richard instructed that the $handle-delegated-task procedure be run for the delegated task: fetch the page (whose body is the brief), claim it, ping the home channel, execute, loop-verify, then mark it Shipped and report briefly.
+- richard identified the delegated Ship task as found=True, title=Clarity, page_id=3ff24dc8ccd980d9a31ac93d0e6b3e11, url=https://app.notion.com/p/Prepare-3D-model-of-kids-for-Dad-3ff24dc8ccd980d9a31ac93d0e6b3e11.
+- Richard's
+- Richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale address 100.84.130.79.
+- Richard's Honcho scopes are named bonds, craft, edge and craft-mambu, corresponding to his Richard OS pillars.
+- Richard runs a self-hosted Honcho memory server on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis and ai-honcho-deriver.
+- Richard's Hermes uses honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard' and aiPeer 'clarity'.
+- richard wants Clarity to own her own memory, and memory writes are pre-approved for her (memory.write_approval is off) so she should not ask before saving.
+- richard has two children: Arthur (his son, the older child) and a younger daughter.
+- richard is making a 3D-printed figurine gift for his children's grandfather.
+- richard is technically fluent and thinks in engineering terms, such as photogrammetry rigging, bone posing and faceting to hide scan noise.
+- richard wants tradeoffs and fidelity limits stated honestly rather than as a cheerleading summary.
+- richard has Tailscale installed across his devices: Mac Studio, NAS, laptops, iPad and Fold6.
+- richard runs a self-hosted Honcho memory server on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis and ai-honcho-deriver.
+- richard configures Hermes to read skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard uses honcho-ai SDK version 2.6.0, the latest version, which calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor.
+- richard's stock Hermes Honcho plugin cannot run on a scope key without a shim, because scope keys are refused by the workspace-creation call.
+- richard's Hermes Honcho plugin has no scope support at all and cannot request a scope projection.
+- richard's Hermes shell lacks Full Disk Access, so du/find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang, and SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- richard's macOS lacks timeout/gtimeout, so he wraps du in Python subprocess timeouts.
+- richard's Docker Desktop Docker.raw file is sparse: ls shows maximum size while du shows real usage.
+- richard prefers that bulk or repeatable actions be done by writing a parameterised script and reusing or adapting an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py supporting Notion query/delete/archive/props, including sql-delete/sql-archive/sql-props loops.
+- richard's shared agent brain is mounted on his other devices via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live.
+- richard has verified that Honcho named-scope JWTs confine a client server-side, as reading outside the scope returns 401.
+- richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio with config at ~/.cloudflared/config.yaml.
+- richard's Cloudflare tunnel 'edge-ai' routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- richard keeps his 'ai' Docker Compose stack at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard's Mac Studio (hostname wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) is his always-on AI host.
+- richard's prior memory files were consolidated from local conversations that took place before Honcho was activated, and he treats them as foundational context.
+- richard uses Hermes with Honcho as its memory provider, configured via ~/.hermes/honcho.json with workspace 'chdwck9', user peer 'richard' and aiPeer 'clarity'.
+- richard's Honcho scopes are named bonds, craft, edge and craft-mambu, matching his OS pillars, and these scope names are permanent because scopes cannot be deleted via the API.
+- richard's shared agent brain is at /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6, as the git repo github.com/chdwck9/ai-stack holding skills, config, scripts and docker-compose.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio.
+- Richard Dykes stated that if he runs /monday manually midweek, calendar invites should be updated.
+- Richard Dykes stated that if he starts /monday by running it from a session instead of in a cron job, it should begin by running /mind-dump and gathering inputs.
+- Richard Dykes stated that clearing tasks in Habitica and backloging anything are reserved for the Monday morning job and should not be done on a manual midweek run of /monday.
+- Richard Dykes made new additions to the /monday routine, described in a message on 2026-10-20.
+- Richard Dykes stated that triage may still be run during a manual midweek run of /monday.
+- Richard Dykes stated that if he runs /monday manually midweek, the goals (if any were set) should be reviewed.
+- Richard Dykes stated that if he runs /monday manually midweek, a /mind-dump should also be run.
+- richard's Hermes reads skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- SynologyDrive-* File Provider shares under ~/Library/CloudStorage on richard's machines stall even on ls and are not Spotlight-indexed.
+- richard's Hermes shell has no Full Disk Access, so du and find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang.
+- richard's Docker Desktop Docker.raw is sparse: ls shows its maximum size while du shows its real usage.
+- For bulk or repeatable actions, richard prefers writing a parameterised script and reusing or adapting an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query, delete, archive, and props, including sql-delete, sql-archive, and sql-props loops.
+- richard wants Clarity to own her own memory, so memory writes are pre-approved with memory.write_approval off and Clarity should not ask before saving.
+- richard has two children: Arthur, his son and the older child, and a younger daughter.
+- richard is making a 3D-printed figurine gift for his children's grandfather, with his son Arthur and his younger daughter as the subjects.
+- richard is technically fluent and
+- richard's Hermes Honcho plugin has no scope support at all and cannot request a scope projection.
+- richard's stock Hermes Honcho plugin cannot run on a Honcho scope key without a shim because the honcho-ai SDK 2.6.0 calls _ensure_workspace() via POST /v3/workspaces before nearly every accessor, which a scope key is refused.
+- Honcho named-scope JWTs confine a client server-side on richard's setup, verified by reading outside the scope returning 401.
+- Tailscale is installed across richard's devices: his Studio, NAS, laptops, iPad, and Fold6.
+- richard's Cloudflare tunnel 'edge-ai' on his Studio, configured at ~/.cloudflared/config.yaml, routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- richard's macOS lacks the timeout and gtimeout commands, so he wraps du in Python subprocess timeouts.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard's shared agent brain is /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6, a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are his Richard OS pillars; these scopes cannot be deleted via the Honcho API, so their names are permanent.
+- richard's Honcho setup uses workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard's Hermes uses honcho as its memory provider via ~/.hermes/honcho.json.
+- A self-hosted Honcho memory server runs on richard's Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard's 'ai' Docker Compose stack is located at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard's Mac Studio is his always-on AI host; it has hostname wolfsmacstudio-1.home and Tailscale address 100.84.130.79.
+- richard's text LLM provider is OpenRouter.
+- Richard has Tailscale installed across his devices: the Studio, NAS, laptops, iPad, and Fold6.
+- Richard verified that Honcho named-scope JWTs confine a client server-side, with reading outside the scope returning 401.
+- Richard found that the honcho-ai SDK version 2.6.0 calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- Richard's Hermes Honcho plugin has no scope support and cannot request a scope projection.
+- Richard's Hermes shell on the Mac Studio lacks Full Disk Access, so du/find in ~/Library/Containers, ~/Library/Group Containers, ~/Library/Mobile Documents, and ~/.Trash error or hang.
+- On Richard's Mac Studio, SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- Richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio with config at ~/.cloudflared/config.yaml, routing mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard's Hermes reads skills from the shared agent brain repo through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Because macOS lacks timeout/gtimeout, Richard wraps du in Python subprocess timeouts.
+- Richard's shared agent brain repo is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard's shared agent brain is at /Volumes/Live/@Edge/.ai on a Synology NAS at 192.168.2.6, a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- On Richard's Mac Studio, Docker Desktop's Docker.raw is sparse: ls shows the max size while du shows real usage.
+- Richard prefers that, for bulk or repeatable actions, a parameterised script be written and an existing one reused or adapted rather than issuing many individual tool calls, to keep token consumption low.
+- Richard is making a 3D-printed figurine gift for his children's grandfather, with his son Arthur and younger daughter as the subjects.
+- Richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query, delete, archive, and props operations, including sql-delete, sql-archive, and sql-props loops.
+- Richard's text LLM is OpenRouter.
+- Richard wants Clarity to own her own memory, with memory writes pre-approved because memory.write_approval is off, and does not want to be asked before saving.
+- Richard's Honcho scopes cannot be deleted via the API, so their names are permanent.
+- Richard's Honcho scopes are named bonds, craft, edge, and craft-mambu, which are his Richard OS pillars.
+- Richard's Hermes uses Honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- Richard runs a self-hosted Honcho memory server on port 7806 on his Mac Studio, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard has two children: Arthur, his older son, and a younger daughter.
+- Richard is technically fluent and thinks in engineering terms such as photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- Richard wants tradeoffs and fidelity limits stated honestly rather than in a cheerleading summary, and he expects to make the call on approach himself.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale IP 100.84.130.79.
+- richard has a docker checker (a scheduled check he runs).
+- richard expected that the weekly-reset skill should have been cleared if n8n is up and running.
+- richard identified the delegated Ship task's page as a Notion page with page_id 3fb24dc8ccd9805ab92ccb51c1249899, URL https://app.notion.com/p/Get-the-Openrouter-balance-and-usage-over-the-last-week-month-3fb24dc8ccd9805ab92ccb51c1249899, and title 'Get the Openrouter balance and usage over the last week/month'.
+- richard instructed that the delegated task be run using the $handle-delegated-task procedure: fetch the page (the body of which is the brief), claim it, ping the home channel, execute, loop-verify, then mark it Shipped and report briefly.
+- richard delegated a Ship task to Clarity.
+- Richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are the pillars of his Richard OS; these scope names are permanent because scopes cannot be deleted via the API.
+- Richard's Hermes uses Honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- Richard's self-hosted Honcho memory server runs on port 7806 on his Mac Studio, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale address 100.84.130.79.
+- Richard's existing helper script for such bulk actions is ~/.hermes/scripts/notion_bulk.py, which handles Notion query, delete, archive, and props operations including sql-delete, sql-archive, and sql-props loops.
+- Richard is making a 3D-printed figurine as a gift for his children's grandfather, and Arthur and Richard's younger daughter are the subjects of that figurine.
+- Richard is technically fluent and thinks in engineering terms, such as photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- Richard wants tradeoffs and fidelity limits stated honestly rather than receiving a cheerleading summary, and he expects to make the call on approach himself.
+- Richard wants Clarity (his AI peer) to own her own memory.
+- Richard has turned off memory.write_approval, so memory writes are pre-approved and Clarity should not ask before saving.
+- Richard prefers that for bulk or repeatable actions a parameterised script be written and an existing one reused or adapted, rather than issuing many individual tool calls, to keep token consumption low.
+- Richard found that the Hermes Honcho plugin has no scope support at all and cannot request a
+- Richard found that the honcho-ai SDK version 2.6.0 calls _ensure_workspace() (POST /v3/workspaces) before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- Richard has verified that Honcho named-scope JWTs confine a client server-side, with reads outside the scope returning a 401.
+- Richard has Tailscale installed across his devices: Mac Studio, NAS, laptops, iPad, and Fold6.
+- Richard's Cloudflare tunnel named 'edge-ai' runs on his Mac Studio with config at ~/.cloudflared/config.yaml, routing mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard's shared agent brain repository is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard's shared agent brain is /Volumes/Live/@Edge/.ai on the Synology NAS at 192.168.2.6, a git repository at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- Richard has two children: a son named Arthur, who is the older child, and a younger daughter.
+- Richard Dykes stated that the Hub page in question (the page repurposed from the 'weekly-reset' entry to 'monday') is a Skill, not a Utility.
+- Richard Dykes asked that /morning also be added to the Hub as a Skill, and not as a Utility.
+- In richard's skills export file, all 80 entries have a null (unset) archive flag.
+- The skills export file at /Volumes/Live/@Edge/.ai/skills/.skills-export.json associated with richard contains 80 entries, three of which have names containing "reset" or "week": "Weekly Reset", "Weekly Project Review", and "Weekly Status Update".
+- richard's Hermes session ran a background process, proc_a64bbc993808, which completed with exit code 0; the command inspected the skills export file at /Volumes/Live/@Edge/.ai/skills/.skills-export.json.
+- richard stated that a Ship task had been delegated to Clarity.
+- richard stated that the delegated task's page was found, with title "Clarity" and page_id 3ff24dc8ccd980d9a31ac93d0e6b3e11.
+- richard stated that the body of the delegated task's page is the brief.
+- richard specified the $handle-delegated-task procedure steps as: fetch the page, claim it, ping the home channel, execute, loop-verify, then mark the task Shipped and report briefly.
+- richard gave the URL https://app.notion.com/p/Prepare-3D-model-of-kids-for-Dad-3ff24dc8ccd980d9a31ac93d0e6b3e11 for the delegated task's page.
+- richard instructed that the $handle-delegated-task procedure be run for the delegated task.
+- Richard Dykes has a studio and a NAS that run Docker containers.
+- On 2026-10-20, Richard Dykes asked for a list of all Docker containers across his studio and NAS in order to do some housekeeping.
+- richard described the 'morning' skill he requested as being similar to his /monday skill.
+- On 2026-10-20, richard requested the creation of a skill named 'morning'.
+- richard stated that the intention of the 'morning' skill is to do daily mail triage and to make sure he is ready for the day.
+- richard specified that the 'morning' skill should do his inbox triage for whatever comms are connected.
+- richard specified that
+- richard instructed that the `/morning` skill be published.
+- richard asked that the calendar check performed by the `/morning` skill update any new or updated calendar entries in his tasks.
+- richard asked that the calendar-check updates also refresh what is done in `/monday`.
+- richard stated that the n8n automation is on a timer and not a hook.
+- richard's full name is Richard Dykes.
+- richard stated that the n8n will remove `weekly-reset` at midnight at the end of 2026-10-20.
+- richard asked that the open item about the n8n be stored somewhere.
+- richard needs the files to run skills locally.
+- richard told clarity to go ahead with the action clarity had proposed ("Do it"), stating that the change will get synced over regardless.
+- richard requested the permanent removal of the entire data stack.
+- richard requested the permanent removal of the litellm container.
+- richard requested the permanent removal of the supabase-studio container.
+- richard requested the permanent removal of the supabase-meta container.
+- richard requested the permanent removal of the ollama container.
+- richard requested that the ai stack on the NAS be renamed to homelab.
+- richard requested the permanent removal of the entire cap-stack.
+- richard requested the permanent removal of the calibre-web container.
+- richard requested renaming supabase-db to homelab-db.
+- richard permitted creating a Docker Compose file for the homelab stack at the path NAS:/volume1/Live/@Edge/.homelab.
+- richard permitted moving portainer, pihole, and npm into the homelab stack, provided it can be done without resetting everything.
+- richard requested the permanent removal of the openwebui container.
+- richard requested the permanent removal of the ai-open-webui container.
+- Richard directed that mounted data be left as is, including configuration files and media folders.
+- Richard accepted recreating pihole and npm even though it causes a brief DNS and reverse-proxy blip.
+- Richard decided to ignore supabase-db, so the planned supabase-db dump/recreate/restore and rename to homelab-db is not to be carried out.
+- Richard approved proceeding with the rest of the services and targets listed in clarity's removal and rename plan (openwebui, ollama, litellm, supabase-studio, supabase-meta, ai-open-webui, the data stack, and the cap-stack).
+- Richard directed that things which would cause major issues be left alone.
+- Richard stated that things cannot break for extended periods.
+- Richard authorized deleting the data of the services being removed, but not mounted data.
+- Richard invoked the /create-skill command, asking Clarity to check whether there are good 3D modeling skills, and suggested three possible skills: reverse engineering a model from a picture, general Blender management, and Blender setup for 3D printing.
+- Richard told Clarity on 2026-10-20 that the 3D model work on the kids figurine needs significant improvement.
+- Richard said the latest 3D model result he was shown is even worse than the previous one.
+- Richard stated that bonds can probably be left alone.
+- Richard stated his default is to wrap up 'work' by Thursday, 2026-10-22.
+- Richard requested another tweak for $monday.
+- Richard requested that $monday suggest timings for tasks in waiting based on calendar availability and apparent deadlines.
+- Richard stated that obscure tasks in craft can be moved to Thursday, 2026-10-22.
+- Richard instructed that a 1:1 or meeting relating to a task should be taken as the task's deadline.
+- Richard stated that Edge tasks can be moved to Friday, 2026-10-23.
+- Richard stated that the second writer on the AI Hub pages was intentional.
+- Richard has Claude running a test of morning in a different environment/session.
+- Richard stated that his Claude test probably ran reinforce, which it is supposed to do once a session.
+- Richard stated that the local n8n sync will not affect Clarity's run on 2026-10-21.
+- Richard stated that n8n will sync changes locally on the night of 2026-10-20.
+- Richard proposed testing $monday as a manual, midweek flow on 2026-10-20.
+- Richard's Bonds-related objective for the week is a successful visit with his father.
+- Richard has captured the cost objective for the week, and reports that its Level 1 and Level 2 are completed.
+- Richard wants the clean cat box kept out of his GSD and considers it a reminder.
+- Richard does not believe he will be at his current situation/employer in six months at the current rate, as of 2026-10-20.
+- Richard needs to get going on a job search.
+- Richard thinks the cost analysis might be a bit of a dead-end and needs to think about how to frame pricing choices for FY27.
+- Richard is trying to think of things he can offload to Clarity, and is balancing token cost against time.
+- Richard is thinking more optimistically about AI in general.
+- Richard has open ends including flights and transport for a December trip, practicing Dutch for tests in December, tax season starting soon, organizing Tristan's visit next year, thinking about his own training, updating his notes, and completing his templates.
+- Richard thinks Clarity should be doing triage mid-week.
+- Richard's father is leaving on Friday, 2026-10-23.
+- Richard's Edge objective for the week is to get Clarity fully operational, available on all devices, and with some cron jobs running and tested.
+- Richard is not keen on participating in an on-site this week because of bad blood created by lay-offs.
+- Richard is at the on-site on 2026-10-20 and is trying to hide.
+- Richard wants to try to print something for Arthur to paint for Richard's father.
+- richard wants tradeoffs and fidelity limits stated honestly rather than a cheerleading summary, and expects to make the call on the approach himself.
+- richard wants Clarity, his AI peer, to own her own memory, and has memory write approval turned off so memory writes are pre-approved and should not require asking him first.
+- richard has two children: a son named Arthur, who is the older child, and a younger daughter.
+- richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are his Richard OS pillars, and these scope names are permanent because scopes cannot be deleted via the API.
+- richard is making a 3D-printed figurine as a gift for his children's grandfather.
+- richard prefers that bulk or repeatable actions be done with a parameterised script that reuses or adapts an existing one instead of many individual tool calls, in order to keep token consumption low.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py that handles Notion query, delete, archive, and props operations, including sql-delete, sql-archive, and sql-props loops.
+- richard's Mac Studio (host wolfsmacstudio-1.home, Tailscale 100.84.130.79) is his always-on AI host.
+- richard runs a self-hosted Honcho memory server on his Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard uses Hermes with honcho as its memory provider, configured via ~/.hermes/honcho.json with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard keeps his shared agent brain in a git repo at github.com/chdwck9/ai-stack on his Synology NAS (192.168.2.6), at path /Volumes/Live/@Edge/.ai, holding skills, config, scripts, and docker-compose.
+- richard's shared agent brain repo is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices, and Hermes reads skills from it through skills.external_dirs while skills.create_dir stays local at ~/.hermes/utils.
+- richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio (config ~/.cloudflared/config.yaml) that routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- richard has Tailscale installed across his devices, including his Mac Studio, NAS, laptops, iPad, and Fold6.
+- richard's Hermes shell lacks macOS Full Disk Access, so du and find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang.
+- richard's SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- richard's Mac Studio runs macOS, which lacks timeout/gtimeout, so du must be wrapped in Python subprocess timeouts.
+- richard's Docker Desktop Docker.raw file on his Mac Studio is sparse: ls shows its max size while du shows real usage.
+- richard is technically fluent and thinks in engineering terms such as photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- Richard said the token costing utility task can already be marked as delegate if there is enough context to start working.
+- richard delegated a Ship task to Clarity on 2026-10-20 10:10:48.
+- On 2026-10-20, Richard reported that he had not completed the tasks associated with the Level 1 and Level 2 analysis + recommendations milestone.
+- On 2026-10-20, Richard reported that his Level 1 and Level 2 analysis + recommendations milestone was still in progress.
+- On 2026-10-20, Richard reported that he had completed adding the Level 1 and Level 2 analysis + recommendations milestone to the board.
+- richard will go on leave on December 20, 2026.
+- richard specified that the When? for the December 2026 MEGA account renewal task should preferably be before December 20, 2026.
+- richard specified that the When? for the December 2026 MEGA account renewal task should be sometime in December 2026.
+- richard stated that normal task requirements apply to the December 2026 MEGA account renewal task.
+- richard requested that a task be added for December 2026 to renew his MEGA account.
+- richard has a MEGA account.
+- richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard's Mac Studio (hostname wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) is his always-on AI host.
+- richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard's existing bulk-action helper is ~/.hermes/scripts/notion_bulk.py, which supports Not
+- richard prefers that for bulk or repeatable actions a parameterised script be written and reused or adapted rather than issuing many individual tool calls, to keep token consumption low.
+- richard's Docker Desktop Docker.raw file is sparse: ls shows its maximum size while du shows its real usage.
+- richard's macOS lacks the timeout/gtimeout commands, so he wraps du in Python subprocess timeouts.
+- richard's Hermes shell has no Full Disk Access, so du/find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang, and SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- richard's Hermes Honcho plugin has no scope support and cannot request a scope projection.
+- richard's honcho-ai SDK, version 2.6.0 (the latest), calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- richard's Honcho named-scope JWTs confine a client server-side, which he verified by confirming that reading outside the scope returns HTTP 401.
+- richard has Tailscale installed across his devices: the Mac Studio, the Synology NAS, laptops, an iPad, and a Fold6.
+- richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio, configured at ~/.cloudflared/config.yaml, routing mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- richard runs a self-hosted Honcho memory server on his Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard's Hermes agent uses Honcho as its memory provider via the config file ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard's Honcho scopes are named bonds, craft, edge, and craft-mambu, corresponding to his Richard OS pillars.
+- richard's Honcho scopes cannot be deleted via the API, so those scope names are permanent.
+- richard's shared agent brain is the directory /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6.
+- richard's shared agent brain is the git repository github.com/chdwck9/ai-stack, holding skills, config, scripts, and docker-compose.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard stated that a Ship task has been delegated to Clarity.
+- richard requested on 2026-10-20 at 10:18:44 that the 'Renew MEGA account' task (item #5, assigned to @Edge) be changed to Waiting.
+- Richard Dykes instructed Clarity on 2026-10-20 to update its utilities so that it has visibility of normal Clarity functionality.
+- Richard Dykes stated on 2026-10-20 that if there is anything useful in the Notion captures, it should be saved as utils.
+- Richard Dykes stated on 2026-10-20 that the Notion captures "Blender Toolkit Claude Code Skill", "How to Design for 3D Printing in Blender", and "Figure out Blender for 3D printing" were early drafts and were not tested.
+- Richard Dykes stated on 2026-10-20 that Clarity has the context for the task, but it just was not added to the task body.
+- Richard Dykes stated on 2026-10-20 that Clarity has access to shell because Clarity runs on the host.
+- Richard Dykes stated on 2026-10-20 that other sessions should be checked for testing $monday.
+- Richard's workflow requires an explicit move from Backlog into the sprint.
+- As of 2026-10-20, Richard will not see the Renew MEGA account reminder in his current sprint view or in Habitica.
+- Richard's sprint is timeboxed to only the current week.
+- Richard generally adds items to his sprint by setting their status to Waiting.
+- Richard wants reminders like the Renew MEGA account reminder to be placed in the future sprint by default.
+- Richard wants reminders like the Renew MEGA account reminder to be set to Waiting already.
+- richard wants to know whether Clarity can pull OpenRouter usage and balance information.
+- richard wants to know what access Clarity has on the current credentials.
+- richard has a task to get a dashboard or small report of OpenRouter usage by week and month plus balance.
+- richard approved Clarity's plan to implement option 1 (cron report and low-balance alert) and option 3 (daily snapshot of usage_weekly/usage_monthly) now, and to switch to option 2 (native per-day history via a provisioning key) if a provisioning key is created.
+- richard loves Deepseek v4.1 flash.
+- richard uses the model Deepseek v4.1 flash for chatting.
+- richard is looking for cheaper models that have the same benchmarks and reasoning as Deepseek v4.1 flash.
+- richard is concerned that he spends a couple euros a day on chatting.
+- richard has crons.
+- richard requested that Clarity make the fix to reduce tool output size by using the parameterised scripts `notion_bulk.py`, `ship_query.py`, and `token_cost.py` instead of raw payloads.
+- richard requested that Clarity make the fix regarding his `skills.auto_load: [create-utility]` setting, which currently loads `create-utility` every session though it is only needed when making a utility.
+- richard requested that a task be added for him to review his own skills, possibly on 2026-10-21.
+- richard stated he will work on shorter sessions.
+- richard requested that Clarity make the fix to switch his Hermes Honcho `recallMode` from `"hybrid"` to `"tools"`.
+- richard stores Clarity as a persona in the AI Hub.
+- richard permits updates to be pushed to Notion.
+- Richard stated that Notion is the canonical source.
+- Richard stated that Notion should always be updated.
+- Richard requested that Notion be updated.
+- On 2026-10-20, Richard accepted filing the three Blender-related new files as Type=Skills, Category=creative, and the three Clarity-related new files as Type=Utilities, Category=utilities, Visibility=private, Version=1, with full SKILL.md in the page body and frontmatter as a plain `---` header, never fenced.
+- On 2026-10-20, Richard authorized clarity to create Notion Hub pages for six new files: `token-costing`, `clarity-capabilities`, `openrouter-usage`, `blender-headless-scripting`, `image-to-3d-model`, and `blender-print-prep`.
+- On 2026-10-20, Richard authorized clarity to push two updates to Notion: `monday` to v9 (the OpenRouter dashboard step) and `handle-delegated-task` to v2 (the probe-before-claiming-gap pitfall).
+- Richard requested removal of the unused duplicate `clarity` persona page.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale IP 100.84.130.79.
+- On 2026-10-22 07:59:47, Richard requested 'cyberpunk' and 'raynearth' to Jellyseerr using 'anime' as the tag.
+- Richard has a Cloudflare tunnel named 'edge-ai' on the Mac Studio with config at ~/.cloudflared/config.yaml; it routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard accesses the shared agent brain's NFS share at /Volumes/Live on the Mac Studio and Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on other devices; Hermes reads skills via skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard's 'ai' Docker Compose stack is located at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard has a self-hosted Honcho server running on port 7806; Hermes accesses it via the file ~/.hermes/honcho.json, with the workspace named 'chdwck9' and the peers richard and clarity.
+- Richard's Honcho scopes named bonds, craft, edge, and craft-mambu are permanent and cannot be deleted via the Honcho API.
+- Richard's Mac Studio is an always-on AI host; it has the hostname wolfsmacstudio-1.home and the Tailscale IP address 100.84.130.79, and its hardware is a Mac13,2 Apple M1 Ultra with 64GB of unified RAM.
+- Richard's Honcho scope JWTs work server-side, returning 401
+- Richard maintains a shared agent brain at /Volumes/Live/@Edge/.ai on a Synology NAS with IP address 192.168.2.6; the git repository is github.com/chdwck9/ai-stack and contains skills, config, scripts, and compose.
+- Richard has Tailscale installed across his devices, including the Mac Studio, NAS, laptops, iPad, and Fold6.
+- Richard Dykes's background process proc_5db0c451a437 completed normally with exit code 0 on 2026-10-23 at 13:46:41. The process ran a Docker command that attempted to create a network named 'coolify', validate the Docker Compose configuration in ~/docker/apps/coolify, and start the Coolify containers; its output showed the image docker.io/coollabsio/coolify:latest was pulled, volumes coolify-redis were created, containers coolify-redis and coolify were created, and the coolify-redis container failed to start because it was unhealthy.
+- Richard has Tailscale installed across his devices: the Mac Studio, Synology NAS, laptops, iPad, and Fold6.
+- Richard has a Mac Studio (hostname wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) that functions as an always-on AI host, with hardware Mac13,2 Apple M1 Ultra and 64GB unified RAM.
+- Richard runs an 'ai' Docker Compose stack at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard runs a self-hosted Honcho server on port 7806, and Hermes uses it via ~/.hermes/honcho.json with workspace 'chdwck9' and peers richard/clarity.
+- Richard's Honcho scopes bonds/craft/edge/craft-mambu are permanent and cannot be deleted via API.
+- Richard maintains a shared agent brain at /Volumes/Live/@Edge/.ai on a Synology NAS at 192.168.2.6, with the git repository github.com/chdwck9/ai-stack containing skills, config, scripts, and compose files.
+- Richard accesses the shared agent brain via NFS at /Volumes/Live on the Mac Studio, and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on other devices.
+- Richard has Hermes read skills via skills.external_dirs, while skills.create_dir remains local at ~/.hermes/utils.
+- Richard has a Cloudflare tunnel named 'edge-ai' on the Mac Studio with config at ~/.cloudflared/config.yaml.
+- Richard's Cloudflare tunnel 'edge-ai' routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard's Honcho scope JWTs work server-side but the honcho-ai SDK calls _ensure_workspace() before most accessors, causing scope keys to be refused; the stock Hermes plugin cannot run on a scope key and has no scope
+- Richard will hire a car in Montpelier or at the airport/train terminus.
+- Richard wants a balance of cost savings and speed for travel to Montpelier.
+- Richard is willing to extend the trip by one night on either side if it results in savings.
+- Richard's travel planning is constrained by Arthur's school closing at 2 PM on the Friday before the Saturday Christmas market.
+- Richard wants to keep the travel cost under 400 per person for the return trip.
+- Richard Dykes needs to arrange travel to and from Montpelier for himself and three other people, making a group of four traveling together.
+- Richard wants to visit the Christmas market in Montpelier on Saturday.
+- Richard would consider travel by plane or train, but if traveling by plane, he prefers a non-stop flight.
+- Richard is open to traveling to an airport at most 4 hours' drive from Montpelier.
+- Richard is making a 3D-printed figurine gift for the grandfather of his children Arthur and his younger daughter.
+- Richard does not take on bureaucratic or engineering-manager-owned work such as sign-offs, approvals, access requests, and ticket gates.
+- Richard has two children: Arthur, his older child and son, and a younger daughter.
+- Richard's role is not tied to the engineering teams.
+- Richard's philosophy is to hire engineers who manage themselves.
+- Richard's escalation bar is to raise only what needs his unique perspective or genuine value-add, never to add a body to the count.
+- Richard considers flagging routine engineering or engineering-manager gates to be over-escalation.
+- Richard prefers first-class MCP and catalog integrations over bespoke plumbing.
+- For bulk or repeatable actions, Richard prefers writing a parameterised script and reusing an existing one to reduce tool calls and tokens, using helpers such as ~/.hermes/scripts/notion_bulk.py for Notion query/delete/archive/props loops and hub_sync_all.py to push all local skills and utilities to the AI Hub.
+- Richard expects to make the call on which approach to take.
+- Richard wants tradeoffs and fidelity limits stated honestly to him rather than delivered as a cheerleading summary.
+- Richard is technically fluent and thinks in engineering terms, including photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- Richard wants Clarity to own her own memory, with memory writes pre-approved (memory.write_approval is off), so she should not ask before saving.
+- Richard's lane is translating customer and user requirements and aligning expectations.
+- Richard Dykes considers LM Studio to be resource-hungry.
+- Richard Dykes considers LM Studio to be slow.
+- Richard Dykes asked for a set of previously referenced items to be migrated, because LM Studio is slow and resource-hungry.
+- richard decided to keep LM Studio installed and instead delete the models it stores, declining to uninstall LM Studio and remove the ~/.lmstudio directory.
+- richard declined the proposal to bind the embed service's published port 7807 to 127.0.0.1 only, saying he is still looking into how to extend his memory to other tools.
+- richard chose to remove the dormant lmstudio provider block from the Hermes config file at ~/.hermes/config.yaml.
+- Richard accesses that shared agent brain via NFS at /Volumes/Live on his Studio machine and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on other machines.
+- Richard has found that the stock Hermes plugin fails on Honcho scope JWTs because the honcho-ai SDK's _ensure_workspace() refuses scope keys.
+- Richard has Tailscale installed across his devices: Studio, NAS, laptops, iPad and Fold6.
+- Richard's Studio machine lacks Full Disk Access, so du/find hang in ~/Library/{Containers,Group Containers,Mobile Documents}, ~/.Trash and CloudStorage, and since macOS has no timeout they must be wrapped in Python subprocess timeouts.
+- Richard runs a Cloudflare tunnel named 'edge-ai' on his Studio, with config at ~/.cloudflared/config.yaml, which routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard prefers Clarity to read compactly by using parameterised scripts (notion_bulk.py, ship_query.py, token_cost.py, openrouter_usage.py) rather than raw dumps, because large tool results are re-sent on every later call.
+- Richard's Mac Studio is an always-on M1 Ultra 64GB AI host with Tailscale address 100.84.130.79.
+- Richard self-hosts Honcho on port 7806 via ~/.hermes/honcho.json, with workspace 'chdwck9' and peers richard/clarity, and scopes bonds/craft/edge/craft-mambu that are permanent because the API has no delete.
+- On Richard's Studio, rapid-mlx serves qwen3.8-27b-4bit on port 8001 (dense 27B, is_moe=false) and is the default for both cron and delegation, launched via the plist com.rapidmlx.user.
+- Richard runs an 'embed' container on his Studio mapping port 7807 to 9931, serving nomic-embed-text-v1.5 at 768 dimensions.
+- Richard's default model is openrouter/deepseek-v4.1-flash and his cron failure_repeat_alert_hours is set to 8760.
+- Richard runs opencode2api on port 8080 with the aliases oc, oc-free, oc-glm and oc-nem.
+- Richard's work laptop is the herdr host 'workbox' at 192.168.2.20.
+- Richard treats his Notion AI Hub as the source of truth for every skill, utility and persona, and wants it published unconditionally on every create or edit with no review gate, keeping exactly one local mirror at skills.external_dirs = /Volumes/Live/@Edge/.ai/skills.
+- Richard designates ~/.hermes/utils as the UTILITIES store (skills.create_dir) and never wants skills placed there.
+- Richard wants duplicate local copies collapsed (a flat .md beside a same-name directory, or a name present in both utils and library), with personas and plugin skills exempt.
+- Richard wants Clarity to own her own memory
+- Richard maintains a shared agent brain at /Volumes/Live/@Edge/.ai on his Synology NAS (192.168.2.6), which is a git repo at github.com/chdwck9/ai-stack containing skills, config, scripts and compose files.
+- Richard has Hermes read skills through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard's task 5 of 9 was to execute the 'group-token' section of the brief: merge 'token-costing' and 'hermes-token-economics' into one 'token-costing' SKILL.md with at most 700 body words, and write manifest-token.json.
+- richard's task 4 of 9 was to execute the 'group-remote' section of the brief: merge 'remote-agent-orchestration' into 'remote-agent-kickoff' as one SKILL.md with at most 700 body words, trim 'herdr-agent-runtime' and 'hermes-multi-edge' to at most 700 words each, and write manifest-remote.json.
+- richard's task 3 of 9 was to execute the 'group-ship' section of the brief: merge 'ship-db' and 'get-shit-done' into one 'ship-db' SKILL.md typed as a Skill with a body of at most 900 words, Type=Skills and Category=pm-kit, move bulk operational detail into references/ files as needed, append the brief's '## Taste' section, and write manifest-ship.json.
+- richard's task 2 of 9 was to execute the 'group-3d' section of the brief: merge 3 blender/photo skills into one 'photo-to-3d-print' SKILL.md with at most 700 body words, trim 'blender-print-prep' and 'blender-headless-scripting' to at most 700 words each, and write manifest-3d.json.
+- richard's failed delegation batch deleg_58342fe5 ran on model qwen3.8-27b-4bit in the leaf role, with a total duration of 515.36 seconds.
+- richard's subagents reported that provider 'rapid-mlx' did not answer after 3 attempts and appeared temporarily unavailable.
+- richard's skills-consolidation work is defined by a brief located at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md.
+- richard dispatched an async delegation batch with id deleg_58342fe5 on 2026-10-27 at 16:34:22.
+- richard's delegation batch deleg_58342fe5 consisted of 9 subagent tasks, all of which failed with the error 'Internal error during streaming'.
+- richard is also identified as Richard Dykes.
+- richard's task 1 of 9 was to execute the 'group-local-inference' section of the brief: merge 3 local-LLM skills into one 'local-llm-inference' SKILL.md with a body of at most 700 words and brief-compliant frontmatter, trim 'local-model-backend' to at most 700 words, and write outputs to the brief's output contract paths plus manifest-local-inference.json.
+- richard's task 6 of 9 was to execute the 'group-trim-a' section of the brief: trim each of 4 listed SKILL.md files to at most 700 body words
+- richard's delegated task deleg_ec4c5304 task 1/3 (the 'group-ship' brief execution) failed after 14.06 seconds with error 'Internal error during streaming'.
+- richard assigned a subagent in delegation batch deleg_ec4c5304 to execute the 'group-ship' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which required merging 'ship-db' and 'get-shit-done' into one 'ship-db' SKILL.md typed as a Skill with a body of at most 900 words in category pm-kit, moving bulk operational detail into references/ files as needed, appending the brief's '## Taste' section, writing output to the brief's output contract path, and writing manifest-ship.json.
+- richard assigned one subagent in delegation batch deleg_ec4c5304 to execute the 'group-3d' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which required merging 3 blender/photo skills into one 'photo-to-3d-print' SKILL.md of at most 700 body words, trimming 'blender-print-prep' and 'blender-headless-scripting' to at most 700 words each, writing outputs to the brief's output contract paths, writing manifest-3d.json, and verifying body word counts.
+- richard dispatched a background fan-out of subagents as delegation batch deleg_ec4c5304, which contained at least three tasks, as of 2026-10-27.
+- richard's delegate_task unit deleg_ec4c5304 included a task to execute the 'group-local-inference' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which was to merge 3 local-LLM skills into one 'local-llm-inference' SKILL.md (body <=700 words, brief-compliant frontmatter), trim 'local-model-backend' to <=700 words, write outputs to the brief's output contract paths, write manifest-local-inference.json, and verify each output's body word count with the command in the brief.
+- richard's 'group-local-inference' task in delegate_task unit deleg_ec4c5304 failed with an internal error during streaming after 1 API call in 14.06 seconds.
+- richard's delegate_task unit deleg_ec4c5304 wrote full live transcripts of its three tasks to /Users/chdwck9studio/.hermes/cache/delegation/live/deleg_ec4c5304/task-0.log, task-1.log, and task-2.log.
+- All three subagent tasks in richard's delegate_task unit deleg_ec4c5304 failed because rapid-mlx did not answer after 3 attempts, reporting 'Internal error during streaming'.
+- richard's 'group-3d' task in delegate_task unit deleg_ec4c5304 failed with an internal error during streaming after 1 API call in 13.64 seconds.
+- richard's delegate_task unit deleg_ec4c5304 included a task to execute the 'group-3d' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which was to merge 3 blender/photo skills into one 'photo-to-3d-print' SKILL.md (<=700 body words), trim 'blender-print-prep' and 'blender-headless-scripting' to <=700 body words each, write outputs to the brief's output contract paths, write manifest-3d.json, and verify body word counts before finishing.
+- richard dispatched a background fan-out delegate_task unit (id deleg_ec4c5304) consisting of 3 subagents on 2026-10-27.
+- richard's delegate_task unit deleg_ec4c5304 included a task to execute the 'group-ship' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which was to merge 'ship-db' and 'get-shit-done' into one 'ship-db' SKILL.md typed as a Skill (body <=900 words, Type=Skills, Category=pm-kit), move bulk operational detail into references/ files as needed, append the '## Taste' section specified in the brief's TASTE OVERRIDE, write output to the brief's output contract path, and write manifest-ship.json.
+- richard's delegate_task unit deleg_ec4c5304 used a leaf-role model named qwen3.8-27b-4bit and ran for a total of 14.16 seconds.
+- richard's intended approach for create-coach is to archive the coach persona once he is done learning that topic.
+- richard wants a new channel named #dutch-stack created, with $jesse pinned to it.
+- richard defines a utility as a way for hermes to access a tool, and says utilities should be closer to pseudo code.
+- richard distinguishes skills from utilities: skills are more creative, longer running, and can be tool agnostic.
+- richard wants the dt-loop, prototype, and loop skills combined into a single skill named dt-loop.
+- richard wants best practices from hermes and claude loop included in the combined dt-loop skill.
+- richard wants references to $grill-me replaced with a single line that gives up to 10 questions.
+- richard wants $grill-me dropped as a dedicated skill.
+- richard wants the cs-art and create-cs skills combined.
+- richard says the combined cs-art and create-cs skill may exceed 900 words.
+- richard considers the cs-art/create-cs skill to be something very specific and not a routine operation.
+- richard plans to hand the combined cs-art and create-cs skill off to a frontier model.
+- richard wants the how and bro skills combined into a skill named bro.
+- richard wants the create-medical-report, medical-checkin, and add-to-medical-file skills moved to dr-alder.
+- richard wants a new channel named #health-stack created, with dr-alder loaded as the agent persona for that channel.
+- richard wants utilities for hermes changed as needed.
+- richard wants the dr-alder persona to be aimed at under 1000 words and rewritten to make sense.
+- richard wants the learning-module-generator, learning-crucible, and learning-designer skills combined into create-coach.
+- richard's intended approach for create-coach is to create a unique coach for each learning topic he is interested in.
+- Richard Dykes did not approve the gateway restart at this time; he asked Clarity to ask him again about restarting the gateway after the remaining items are done.
+- Richard Dykes instructed Clarity to complete the remaining work items — the pending merge-groups, trims, and skills tasks — first, before anything else.
+- The other task richard dispatched in delegation deleg_459dc15c was to trim 8 SKILL.md files — n8n-workflows, operational-alert-monitoring, productivity/notion-live-reports, creative/image-generation and honcho-memory-service under /Users/chdwck9studio/.hermes/utils/, plus docker-fleet-healthcheck, mcp-server-onboarding and hermes-model-sources under /Volumes/Live/@Edge/.ai/skills/ — to a body of at most 700 words each while preserving every operational fact.
+- richard's trimming tasks required the frontmatter of each SKILL.md to be edited by setting description to the Title Cased skill name only, bumping version by 1, setting last-used to 2026-10-27, and dropping any 'scope
+- richard's delegation unit deleg_459dc15c had a total duration of 1912.42 seconds (31m52s) by the time it reported.
+- One of the two tasks richard dispatched in delegation deleg_459dc15c was to trim 8 SKILL.md files located under /Users/chdwck9studio/.hermes/utils/ — calendar-meetings-to-ship, dagu-pipelines, granola-meetings, hermes/chat-surface-verbosity, handle-delegated-task, hermes-approvals, autonomous-ai-agents/hermes-skill-library, and media-volume-management — to a body of at most 700 words each while preserving every operational fact.
+- richard dispatched a background fan-out delegation unit identified as deleg_459dc15c, consisting of 2 subagents, dispatched at 2026-10-27 17:05:48.
+- richard's delegation subagents in unit deleg_459dc15c ran in the 'leaf' role on the qwen3.8-27b-4bit model.
+- richard instructed Clarity (his agent) to do the pending work itself in the current session rather than delegating it to others.
+- richard has two children: Arthur, his older son, and a younger daughter.
+- As of 2026-10-28, richard has an auth token for Dykes Digital.
+- As of 2026-10-28, richard has an n8n-prod instance.
+- richard's full name is Richard Dykes.
+
+## clarity · inductive  (38)
+
+- richard wants his AI peer to own and autonomously maintain its own memory, pre-approving memory writes so the agent does not need to ask permission before saving.
+- richard designs for consistent cross-device access, deploying Tailscale on every device (Studio, NAS, laptops, iPad, Fold6) and making his shared agent brain reachable on all of them via NFS on the Studio and Synology Drive elsewhere.
+- richard is security-conscious and receptive to hardening: he personally verified that Honcho named-scope JWTs confine a client server-side (401 outside scope) and accepted a proposal to bind the network-exposed API server to loopback.
+- richard favours modular, reusable, version-controlled tooling, centralising skills, config, and scripts in a git-backed shared agent brain that his agents read from, rather than keeping everything ad hoc and local.
+- richard grants his AI peer autonomy to plan and execute tasks, but pairs that freedom with a mandatory verification step and a concise structured completion report (what was done, outcome, next actions).
+- richard enforces a standardised, repeatable task workflow: read the prompt from the task body, plan and execute, wrap the work in a loop, verify the output, then update the status from Doing to Shipped.
+- richard consistently prefers to own and self-host his own AI infrastructure locally rather than depend on external hosted services: he runs a self-hosted Honcho memory server on his always-on Mac Studio, uses local LM Studio for embeddings, and his shared agent brain lives on his own NAS.
+- richard repeatedly optimizes for low token/cost consumption by preferring reusable parameterised scripts that are written once and adapted, rather than issuing many individual tool calls.
+- richard tends to collaborate on debugging iteratively by reporting raw validation outputs (HTTP status codes, command errors) back to the agent and personally performing requested actions such as restarting the gateway, then waiting for the next fix.
+- richard delegates hands-on troubleshooting and execution to his AI peer rather than fixing issues himself, handing off failed updates and requesting the agent investigate and resolve from its side.
+- richard is a hands-on idea contributor who proposes pragmatic technical workarounds to mitigate known limitations of a process, such as faceting a scanned mesh into angular trapezoids to hide scanning imperfections and reconstructing a 3D model from a base model plus reference images.
+- richard extends his local-first, self-hosting stance to privacy-sensitive capabilities and personal data, insisting he will only run the reverse-engineering capability on a local base rather than trusting external services.
+- richard's personal (non-infrastructure) AI projects are family-centred, consistently oriented around his two young children (the 3D figurine featuring Arthur aged 6 and his 2-year-old sister).
+- richard curates and simplifies reusable tooling/skills before committing to them, approving a staged skill for publishing, trimming its name down to just 'reverse-engineer', and dropping an MCP server as unnecessary.
+- richard sustains multi-day, iterative collaborative engagement on his personal 3D figurine project, progressively refining the brief across sessions (children posed together, then ages 6 and 2, then height estimates, then mesh-finish and reconstruction-approach ideas), rather than issuing a single one-shot request.
+- Richard is technically fluent and reasons about problems in engineering terms, readily discussing photogrammetry rigging, bone posing, mesh faceting, and similar technical concepts.
+- Richard is a self-hoster who builds and runs his own AI infrastructure, including an always-on Mac Studio host and a NAS-backed git repository ('shared agent brain') holding his skills, config, and scripts.
+- Richard consistently demands honest, non-cheerleading assessments that state tradeoffs and fidelity limits plainly, and he reserves the final decision on approach for himself rather than delegating it.
+- Richard maintains a ritualized cadence of recurring weekly routines (Monday routine, weekly reset/project review/status update, and scheduled cron checks) that structure his planning.
+- Richard is oriented toward a daily preparatory routine, commissioning a 'morning' skill modeled on his /monday skill to handle inbox triage and make sure he is ready for the day.
+- Richard habitually delegates execution work to his AI peer Clarity, repeatedly handing off tasks (including 'Ship' tasks) rather than performing the work himself.
+- Richard runs his life through a structured personal operating system ('Richard OS') organized around pillars (bonds, craft, edge, craft-mambu), tracking a specific weekly objective per pillar.
+- Richard enforces a strict weekly sprint boundary: clearing tasks and backlogging are reserved for the Monday ritual, new reminders default to the future sprint/Waiting status, and items only enter the current sprint by explicit move rather than by default.
+- Richard is a blunt, demanding evaluator of output quality: when AI-generated results are poor he says so directly, calling them horrifying or worse than the previous attempt, and demands significant improvement.
+- Richard treats Notion as the single canonical source of truth and insists that it always be kept updated and synced.
+- Richard is cost-conscious about his AI usage: he monitors daily chat spend, seeks cheaper models with equivalent reasoning quality, and weighs token cost against time when deciding what to offload.
+- Richard is contemplating a career transition, believing he is unlikely to remain at his current employer and needing to start a job search.
+- richard actively prunes and simplifies his own stack, preferring to delete dead weight and tighten naming/scope rather than leave things in place: he removed the dormant lmstudio provider block from his Hermes config, chose to keep LM Studio installed but delete the ~90GB of models it stored, and renamed a staged skill down to the concise 'reverse-engineer'.
+- richard applies a consistent cost-versus-value calculus across unrelated domains: he tracks his daily AI chat spend and seeks cheaper models, weighs token cost against his own time when offloading work, and applies the same discipline to personal travel (targeting under 400 per person and accepting an extra night's stay if it nets a saving while still balancing speed).
+- richard's family is central to both his structured goals and his personal projects: his weekly 'Bonds' objective was a successful visit with his father, he tracks his father's departure dates, his travel planning is constrained by his children's school timetable, and he is making a 3D-printed figurine as a gift for his children's grandfather.
+- richard wants his AI assistant available everywhere: his weekly 'Edge' objective was to get Clarity operational and available on all devices, he runs Tailscale across his Studio, NAS, laptops, iPad and Fold6, and he mounts his shared agent brain on his other devices rather than keeping it confined to one host.
+- richard imposes strict word-count limits on his skills and personas to force concision, repeatedly specifying bodies of at most 700 words (or 900 for a larger skill, under 1000 for the dr-alder persona) while requiring that every operational fact be preserved.
+- richard designs his tooling around personalized learning: he wants a unique coach persona created per learning topic he is interested in, archived once he has finished that topic, and he pursues ongoing learning such as practicing Dutch for December tests and his own training.
+- richard manages his AI skills, utilities and personas as formally versioned, classified assets in his Notion AI Hub, specifying per-item Type, Category, Visibility, Version and frontmatter (with version bumps on edits), and expecting them to be published to the Hub and kept synced.
+- richard aggressively consolidates redundant skills, preferring to merge several related skills into one canonical, well-named skill rather than maintain many overlapping ones (e.g. dt-loop+prototype+loop -> dt-loop; learning-module-generator+learning-crucible+learning-designer -> create-coach; how+bro -> bro; cs-art+create-cs; ship-db+get-shit-done -> ship-db; token-costing+hermes-token-economics -> token-costing; 3 local-LLM skills -> local-llm-inference).
+- richard organizes his AI system into domain-specific chat channels, each with a dedicated persona pinned to it (e.g. a #health-stack channel with the dr-alder persona and its medical skills, and a #dutch-stack channel with $jesse pinned).
+- richard sequences his work by finishing pending task items before making infrastructure changes, holding off disruptive actions like a gateway restart until the outstanding work is complete.
+- richard habitually runs his skill-library work as background fan-out delegations to multiple leaf-role subagents on the local qwen3.8-27b-4bit model, dispatching batches of 2, 3 and 9 tasks rather than working serially.
+
+## richard · deductive  (26)
+
+- richard treats Notion as a tracked task pipeline with enforced process: tasks must be wrapped in a loop, the output verified, and only then the status advanced from Doing to Shipped, with the existing notion_bulk.py helper used for the bulk/repeatable operations.
+- richard's 'reverse-engineer' capability went from a staged draft to an approved, published skill under the final name 'reverse-engineer', and he has constrained its use to a local base only — so external/cloud execution of that capability is ruled out by his standing direction.
+- 'chdwck9' is richard's personal handle: he uses it both as his Honcho workspace name and as his GitHub account (github.com/chdwck9), while 'dykes' appears in his surname and in the domain dykes.digital that his services are published under.
+- richard's restart of the Hermes gateway on 2026-10-19 did not fix the notion-ship webhook: the local probe to localhost:8644 returned 000 both before and after the successful restart, and the external probe to hooks.dykes.digital returned 502, indicating the route was failing at the origin rather than in the tunnel.
+- richard's Mac Studio is under real disk pressure (only 160 GB free as of 2026-10-19) and he was auditing usage with a sizes script, which is complicated by Hermes lacking Full Disk Access, Synology Drive shares that stall and are unindexed, and Docker.raw's apparent size overstating its real usage.
+- richard's four Honcho scopes (bonds, craft, edge, craft-mambu) cannot actually be used by his current Hermes setup — the plugin exposes no scope support and the honcho-ai SDK 2.6.0 requires workspace-level access that a scope key is refused — and because scopes cannot be deleted via the API, those scope names are permanently fixed even while unusable without a shim.
+- richard is a parent of two young children — a son named Arthur and a younger daughter — and he commissioned a 3D-printed figurine of the two of them posed together on a diorama.
+- richard's Indeed MCP integration was broken and then abandoned: it required a backend update, the update attempt failed, and he concluded the MCP server was not needed — after which he requested an MCP reload.
+- The disk-pressure problem previously identified on Richard's Mac Studio (only ~160 GB free as of 2026-10-19, being audited with a sizes script) was materially relieved on 2026-10-27 by deleting the ~90 GB of models LM Studio had stored, while the LM Studio app itself was kept.
+- Richard's Mac Studio remains the single point of failure for his agent infrastructure: it hosts the self-hosted Honcho memory server (port 7806), the embed endpoint that replaced LM Studio's port 1234 (now the llama.cpp embed service on port 7807, declined for localhost-only binding) and the Cloudflare tunnel, while the Synology NAS supplies the shared agent brain over NFS.
+- The 'grandfather of his children' for whom Richard is making the 3D-printed figurine is Richard's own father: he also wanted to print something for Arthur to paint for Richard's father, and his father was visiting at the time (leaving on Friday 2026-10-23, with a successful visit as Richard's Bonds objective that week).
+- Richard is employed but expects to leave his current employer: as of 2026-10-20 he did not believe he would be at his current situation/employer in six months, wanted to get going on a job search, and was avoiding an on-site week because of bad blood created by lay-offs — so his employer has recently been through lay-offs and his tenure there is likely ending.
+- Richard's stance on exposing stack ports changed between 2026-10-19 and 2026-10-27: he had accepted binding the API server to 127.0.0.1, but declined the same localhost-only hardening for the embed service's port 7807 because he is still working out how to extend his memory to other tools — i.e. he now prioritises reachability of his memory endpoints over localhost-only isolation.
+- Richard kept the LM Studio app but stripped its role: he chose to delete the models it stores rather than uninstall it, and removed the dormant lmstudio provider block from ~/.hermes/config.yaml, so LM Studio is retained as an installed app with no active model or provider role in his stack.
+- As of 2026-10-27 Richard's embedding path no longer runs on LM Studio: embeddings are served by a dedicated self-hosted llama.cpp embed container publishing host port 7807 (Honcho points at it internally), still using nomic-embed-text-v1.5 at 768 dimensions, so LM Studio's port 1234 is no longer part of his live inference stack.
+- Richard holds a leadership role adjacent to rather than inside engineering: he hires engineers (who he expects to manage themselves) and expects to make the call on which approach is taken, while his own lane is translating customer/user requirements and aligning expectations and his role is not tied to the engineering teams — he refuses engineering-manager-owned gates such as sign-offs, approvals, access requests and ticket gates.
+- Richard is a parent of school-age children whose school calendar constrains his logistics: his children were 6 and 2 as of 2026-10-20, and by 2026-10-24 Arthur's school closing at 2 PM on a Friday was a binding constraint on his travel planning.
+- Richard's create-coach design implies he intends to learn multiple distinct topics over time using disposable, topic-scoped coach personas: one unique coach per learning topic, archived once he has finished learning that topic — matching his parallel Dutch-learning thread for December tests.
+- On 2026-10-27 Richard is running a large-scale consolidation of overlapping Hermes skills into fewer unified skills: dt-loop (dt-loop + prototype + loop), bro (how + bro), create-coach (learning-module-generator + learning-crucible + learning-designer), cs-art + create-cs, and ship-db (ship-db + get-shit-done), while dropping $grill-me as a dedicated skill and replacing its references with a single line offering up to 10 questions.
+- Richard runs a split model routing: OpenRouter's deepseek-v4.1-flash is his chat/default model (a model he says he loves and for which he has searched cheaper equivalents), while the local rapid-mlx qwen3.8-27b-4bit on port 8001 is the default for cron jobs and delegations.
+- Contradiction / behavioural update: as of 2026-10-20 Richard gated publishing behind his own explicit authorisation (authorising individual Notion updates one at a time and approving staged plans before they shipped), but on 2026-10-27 he instructed that the Notion AI Hub be treated as canonical and published unconditionally on every create or edit with no review gate.
+- Richard deprioritises infrastructure changes while skill/merge work is in flight and prefers his agent to finish remaining work itself rather than delegating: on 2026-10-27 he deferred the gateway restart until the pending merge-groups, trims and skills tasks were done, and later told Clarity to do the pending work in the current session rather than handing it to others.
+- Richard's 2026-10-27 trimming effort in delegation unit deleg_459dc15c covered 16 SKILL.md files in total: its two subagents each trimmed 8 files, spanning both the Studio-local tree /Users/chdwck9studio/.hermes/utils/ and the NAS-backed mirror /Volumes/Live/@Edge/.ai/skills/, each to a body of at most 700 words with version bumped, last-used set to 2026-10-27, and 'scope' dropped from the frontmatter.
+- Contradiction: delegation unit deleg_459dc15c is recorded as dispatched at 2026-10-27 17:05:48 yet also as reported at 16:40:36 with a total duration of 1912.42 s — a ~32-minute run would have started near 16:08, not 17:05, so the dispatch timestamp and the report timestamp/duration cannot both be correct.
+- Richard organises new capability areas as topic-specific Discord channels, each bound to its own dedicated agent persona and skill set: #health-stack with the dr-alder persona (taking over create-medical-report, medical-checkin and add-to-medical-file) and #dutch-stack with $jesse pinned to it.
+- Richard's delegation pipeline hinges on a single local inference service — rapid-mlx serving qwen3.8-27b-4bit on port 8001, the default backend for both cron and delegation. When that service stopped answering on 2026-10-27 it produced wholesale subagent failures across delegation units (deleg_ec4c5304 lost all 3 tasks after ~14 s; delegates reported provider 'rapid-mlx' did not answer after 3 attempts), even though the same backend successfully served deleg_459dc15c for 1912 s.
+
+## richard · explicit  (549)
+
+- Richard's shared agent brain is a git repository at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- Richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard's Honcho scope names are permanent because Honcho scopes cannot be deleted via the API.
+- Richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard verified that Honcho named-scope JWTs confine a client server-side, with reading outside the scope returning a 401.
+- Richard found that the honcho-ai SDK 2.6.0 (latest) calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- Richard found that the Hermes honcho plugin has no scope support and cannot request a scope projection.
+- Richard prefers that bulk or repeatable actions be done with a parameterised script that reuses or adapts an existing one rather than many individual tool calls, to keep token consumption low.
+- Richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query/delete/archive/props, including sql-delete/sql-archive/sql-props loops.
+- Richard's Honcho scopes are named bonds, craft, edge, and craft-mambu, which are his Richard OS pillars.
+- Richard's Hermes uses Honcho as its memory provider, configured via ~/.hermes/honcho.json with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- Richard runs a self-hosted Honcho memory server on his Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard's 'ai' Docker Compose stack is located at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale IP 100.84.130.79.
+- Richard's shared agent brain is located at /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6.
+- Richard uses OpenRouter as his text LLM.
+- richard's validation output included an lsof status error on the literal argument 'should': No such file or directory.
+- richard's validation output included two 401 responses.
+- richard's validation output included lsof version 4.91.
+- richard's validation output included an lsof status error on the literal argument 'listener': No such file or directory.
+- richard's validation output included an lsof status error on the literal argument 'a': No such file or directory.
+- richard's validation output included an lsof status error on the literal argument 'show': No such file or directory.
+- richard's validation output included an lsof status error on the literal argument 'now': No such file or directory.
+- As of 2026-10-19 14:53:33, richard was getting validation output that included lsof status errors.
+- richard successfully restarted the gateway before 2026-10-19 14:53:33.
+- richard's validation output included an lsof status error on the literal argument '#': No such file or directory.
+- On 2026-10-19 at 14:54:57, richard reported an HTTP status code of 000 for the local POST probe to http://localhost:8644/webhooks/notion-ship.
+- On 2026-10-19 at 14:54:57, richard reported an HTTP status code of 502 for the external POST probe to https://hooks.dykes.digital/webhooks/notion-ship.
+- Richard's Honcho named-scope JWTs confine a client server-side, as verified by reading outside the scope returning 401.
+- Richard's shared agent brain is at /Volumes/Live/@Edge/.ai on his Synology NAS (192.168.2.6), a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- Richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query, delete, archive, and props operations, including sql-delete, sql-archive, and sql-props loops.
+- Richard wants Clarity to own her own memory, with memory writes pre-approved and memory.write_approval off, so Clarity should not ask before saving.
+- Richard uses OpenRouter as his text LLM.
+- Richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are his Richard OS pillars and cannot be deleted via API.
+- Richard's Honcho configuration uses workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- Richard's Hermes reads skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard's shared agent brain is mounted as NFS at /Volumes/Live on his Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard sent a webhook event 'unknown' on route 'notion-ship' with JSON payload containing "probe": true and "source": "clarity-e2e-test".
+- Richard uses a Mac Studio (host wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) as his always-on AI host.
+- Richard prefers that for bulk or repeatable actions, a parameterised script is written and an existing one is reused or adapted rather than issuing many individual tool calls, to keep token consumption low.
+- Richard uses Hermes with Honcho as its memory provider via ~/.hermes/honcho.json.
+- Richard runs a self-hosted Honcho memory server on his Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard's 'ai' Docker Compose stack is located at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard's honcho-ai SDK version 2.6.0 calls _ensure_workspace() via POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- Richard's Hermes Honcho plugin has no scope support and cannot request a scope projection.
+- Richard attempted to update the Indeed MCP and the update failed.
+- Richard stated that the Indeed MCP needs a backend update.
+- Richard accepted clarity's proposal to bind the API server to 127.0.0.1.
+- Richard performed the Hermes gateway restart that clarity had instructed on 2026-10-19.
+- After performing the restart on 2026-10-19, Richard stated the result was still 000.
+- Richard required Clarity to plan and execute the task.
+- Richard was planning to test the webhook on 2026-10-19 at 15:04:40.
+- Richard instructed that Clarity's completion report include what Clarity did, the outcome, and any next actions.
+- Richard stated on 2026-10-19 at 15:04:40 that he was going to assign something to Clarity.
+- Richard required Clarity to read the prompt from the body for the task.
+- Richard required Clarity to update the status of the Notion task from Doing to Shipped once verified.
+- Richard stated a rule for Notion tasks that they should always be wrapped in a loop.
+- Richard stated a rule for Notion tasks that their output should be verified.
+- Richard instructed Clarity to give a very brief report once the task was complete.
+- Richard permitted Clarity to use Discord to ask questions.
+- Richard permitted Clarity to work autonomously on the task.
+- Richard instructed Clarity to create a new thread in Discord channel 1560628428636426240.
+- On 2026-10-19 at 15:08:37, richard assigned a task to the peer Clarity.
+- richard mounts his shared agent brain as NFS at /Volumes/Live on his Mac Studio.
+- richard's shared agent brain is /Volumes/Live/@Edge/.ai on his Synology NAS (192.168.2.6), a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- richard uses Honcho scopes named bonds, craft, edge, and craft-mambu, which are his Richard OS pillars; the scopes cannot be deleted via the API, so the names are permanent.
+- richard's Hermes uses Honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard runs a self-hosted Honcho memory server on port 7806 on his Mac Studio, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard's Hermes Honcho plugin has no scope support and cannot request a scope projection.
+- richard's Hermes reads skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard verified that Honcho named-scope JWTs confine a client server-side, with reading outside the scope returning 401, but the honcho-ai SDK 2.6.0 calls _ensure_workspace() via POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- richard mounts his shared agent brain via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py supporting Notion query, delete, archive, and props operations, including sql-delete, sql-archive, and sql-props loops.
+- richard wants Clarity to own her own memory, with memory writes pre-approved because memory.write_approval is off, so she should not ask before saving.
+- richard's Mac Studio (host wolfsmacstudio-1.home, Tailscale address 100.84.130.79) is his always-on AI host.
+- richard prefers that for bulk or repeatable actions a parameterised script be written and reused or adapted rather than issuing many individual tool calls, to keep token consumption low.
+- richard thinks a utility is needed to manage the new workflow.
+- richard's shared agent brain is a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard runs a Cloudflare tunnel named 'edge-ai' on his Mac Studio with config at ~/.cloudflared/config.yaml.
+- richard verified that Honcho named-scope JWTs confine a client server-side, with reads outside the scope returning 401.
+- richard's honcho-ai SDK version is 2.6.0 (the latest at the time), which calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor, an operation a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- richard's Hermes honcho plugin has no scope support at all and cannot request a scope projection.
+- richard's preference for bulk or repeatable actions is to write a parameterised script and reuse or adapt an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query, delete, archive, and props, including sql-delete, sql-archive, and sql-props loops.
+- richard wants Clarity to own her own memory, with memory writes pre-approved (memory.write_approval off) and no approval question before saving.
+- richard's Honcho scopes are named bonds, craft, edge, and craft-mambu (his Richard OS pillars).
+- richard's Mac Studio (host wolfsmacstudio-1.home, Tailscale 100.84.130.79) is his always-on AI host.
+- richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- A self-hosted Honcho memory server runs on richard's Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard's Hermes uses honcho as its memory provider via the config file ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard's Honcho scope names are permanent because scopes cannot be deleted via the API.
+- richard's text LLM is OpenRouter.
+- richard's shared agent brain is /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6.
+- Richard Dykes is the name displayed for richard.
+- The Homebrew install run in richard's environment placed COLMAP version 4.2.1_3 at /opt/homebrew/Cellar/colmap/4.2.1_3.
+- richard's background process proc_a5687158faa9, which ran the command `brew install colmap`, completed normally with exit code 0 on 2026-10-19 at 17:17:19.
+- As of 2026-10-19 17:29:32, Richard wants his children to be posed together for the 3D figurine project.
+- Richard suggested making the finish of the scanned mesh angular trapezoids after the mesh has been captured, expecting angular trapezoids to hide some imperfections from the scanning process.
+- richard directed that the staged skill be changed to just “reverse-engineer”.
+- richard stated there is no need for the MCP server.
+- richard stated he will only run the reverse-engineering capability on a local base.
+- richard requested an MCP reload.
+- richard approved publishing the staged skill.
+- As of 2026-10-19 19:45:20, richard's SSD has only 160 GB of free space.
+- richard has an SSD.
+- richard's Hermes gateway reported on 2026-10-19 at 19:45:39 that the background process proc_06eb37f76391, which ran `bash /tmp/sizes.sh`, completed normally with exit code 0.
+- The honcho-ai SDK version 2.6.0, the latest, calls _ensure_workspace() which POSTs to /v3/workspaces before nearly every accessor, and a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- richard's Hermes honcho plugin has no scope support at all and cannot request a scope projection.
+- richard's Hermes shell has no Full Disk Access, so du/find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang.
+- richard's SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- richard's Honcho scope names are permanent because Honcho scopes cannot be deleted via API.
+- macOS lacks timeout/gtimeout, so richard wraps du in Python subprocess timeouts.
+- Docker Desktop's Docker.raw on richard's system is sparse: ls shows max size while du shows real usage.
+- For bulk or repeatable actions, richard prefers a parameterised script be written and reused or adapted from an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query/delete/archive/props, including sql-delete/sql-archive/sql-props loops.
+- richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard wants Clarity to own her own memory, with memory writes pre-approved because memory.write_approval is off, so Clarity should not ask before saving.
+- richard's Mac Studio, hostname wolfsmacstudio-1.home with Tailscale address 100.84.130.79, is his always-on AI host.
+- A self-hosted Honcho memory server runs on richard's Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard's text LLM is OpenRouter.
+- Tailscale is installed across richard's devices: his Studio, NAS, laptops, iPad, and Fold6.
+- Honcho named-scope JWTs confine a client server-side, verified by richard as returning 401 when reading outside the scope.
+- richard's shared agent brain is at /Volumes/Live/@Edge/.ai on his Synology NAS (192.168.2.6), a git repository at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- richard's Hermes reads skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard's Hermes uses Honcho as its memory provider, configured via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard's Honcho scopes are named bonds, craft, edge, and craft-mambu, corresponding to his Richard OS pillars.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard's full name is Richard Dykes.
+- On 2026-10-20 at 06:11:11, richard suggested possibly generating the 3D reconstruction using a base model and the images as references.
+- Richard stated that the two children in the figurine discussed with Clarity are aged 6 and 2 (as of 2026-10-20).
+- Richard identified the older of the two children in the figurine, a boy, as Arthur, and gave Arthur's age as 6.
+- Richard gave Arthur's height as about 1.2 (unit not specified).
+- Richard identified the younger of the two children in the figurine as a girl and gave her age as 2.
+- Richard estimated the height of the younger child, a girl, at just about 90–100 cm.
+- Richard described the rendered 3D figurine image under discussion as horrifying.
+- Richard said he will add a separate task in Notion to continue the figurine work.
+- A self-hosted Honcho memory server runs on Richard's Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard's Hermes instance uses Honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- Richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are Richard's OS pillars, and Richard states these scope names are permanent because scopes cannot be deleted via the API.
+- Richard's shared agent brain is /Volumes/Live/@Edge/.ai on the Synology NAS at 192.168.2.6, a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- Richard's shared agent brain directory /Volumes/Live/@Edge/.ai is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio, configured at ~/.cloudflared/config.yaml, routing mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard has verified that Honcho named-scope JWTs confine a client server-side, since reading outside the scope returns 401, but the honcho-ai SDK version 2.6.0 calls _ensure_workspace() before nearly every accessor, which a scope key is refused.
+- Richard cannot run the stock Hermes Honcho plugin on a scope key without a shim, and Richard notes the Hermes honcho plugin has no scope support at all and cannot request a scope projection.
+- Richard's Hermes shell lacks Full Disk Access, causing du/find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash to error or hang on his Mac Studio, and causing SynologyDrive-* File Provider shares under ~/Library/CloudStorage to stall even on ls and to be unindexed by Spotlight.
+- Richard's macOS lacks timeout/gtimeout, so he wraps du in Python subprocess timeouts.
+- Richard's Docker Desktop Docker.raw is sparse: ls shows max size while du shows real usage.
+- For bulk or repeatable actions, Richard prefers writing a parameterised script and reusing or adapting an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- Richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query/delete/archive/props, including sql-delete/sql-archive/sql-props loops.
+- Richard wants Clarity to own her own memory, with memory writes pre-approved because memory.write_approval is off, and Richard does not want to be asked before saving.
+- Richard has two children: Arthur, a son who is the older child, and a younger daughter.
+- Richard is technically fluent and thinks in engineering terms, including photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- Richard wants tradeoffs and fidelity limits stated honestly rather than in a cheerleading summary, and Richard expects to make the call on approach himself.
+- Richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard's Mac Studio (hostname wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) is Richard's always-on AI host.
+- On 2026-10-20 at 07:30:55, richard stated that a Ship task had been delegated to Clarity.
+- richard identified the delegated Ship task as found=True, title=Clarity, page_id=3ff24dc8ccd980d9a31ac93d0e6b3e11, url=https://app.notion.com/p/Prepare-3D-model-of-kids-for-Dad-3ff24dc8ccd980d9a31ac93d0e6b3e11.
+- richard instructed that the $handle-delegated-task procedure be run for the delegated task: fetch the page (whose body is the brief), claim it, ping the home channel, execute, loop-verify, then mark it Shipped and report briefly.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale address 100.84.130.79.
+- Richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard runs a self-hosted Honcho memory server on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis and ai-honcho-deriver.
+- Richard's Hermes uses honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard' and aiPeer 'clarity'.
+- Richard's Honcho scopes are named bonds, craft, edge and craft-mambu, corresponding to his Richard OS pillars.
+- richard configures Hermes to read skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard's Hermes shell lacks Full Disk Access, so du/find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang, and SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio with config at ~/.cloudflared/config.yaml.
+- richard has verified that Honcho named-scope JWTs confine a client server-side, as reading outside the scope returns 401.
+- richard uses honcho-ai SDK version 2.6.0, the latest version, which calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor.
+- richard's Hermes Honcho plugin has no scope support at all and cannot request a scope projection.
+- richard's stock Hermes Honcho plugin cannot run on a scope key without a shim, because scope keys are refused by the workspace-creation call.
+- richard wants tradeoffs and fidelity limits stated honestly rather than as a cheerleading summary.
+- richard is technically fluent and thinks in engineering terms, such as photogrammetry rigging, bone posing and faceting to hide scan noise.
+- richard's prior memory files were consolidated from local conversations that took place before Honcho was activated, and he treats them as foundational context.
+- richard's Mac Studio (hostname wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) is his always-on AI host.
+- richard keeps his 'ai' Docker Compose stack at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard runs a self-hosted Honcho memory server on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis and ai-honcho-deriver.
+- richard uses Hermes with Honcho as its memory provider, configured via ~/.hermes/honcho.json with workspace 'chdwck9', user peer 'richard' and aiPeer 'clarity'.
+- richard's Honcho scopes are named bonds, craft, edge and craft-mambu, matching his OS pillars, and these scope names are permanent because scopes cannot be deleted via the API.
+- richard has two children: Arthur (his son, the older child) and a younger daughter.
+- richard wants Clarity to own her own memory, and memory writes are pre-approved for her (memory.write_approval is off) so she should not ask before saving.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py supporting Notion query/delete/archive/props, including sql-delete/sql-archive/sql-props loops.
+- richard prefers that bulk or repeatable actions be done by writing a parameterised script and reusing or adapting an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- richard's Docker Desktop Docker.raw file is sparse: ls shows maximum size while du shows real usage.
+- richard's macOS lacks timeout/gtimeout, so he wraps du in Python subprocess timeouts.
+- richard's shared agent brain is at /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6, as the git repo github.com/chdwck9/ai-stack holding skills, config, scripts and docker-compose.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio.
+- richard's shared agent brain is mounted on his other devices via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live.
+- Richard Dykes stated that if he runs /monday manually midweek, the goals (if any were set) should be reviewed.
+- Richard Dykes stated that if he runs /monday manually midweek, calendar invites should be updated.
+- Richard Dykes stated that if he starts /monday by running it from a session instead of in a cron job, it should begin by running /mind-dump and gathering inputs.
+- Richard Dykes made new additions to the /monday routine, described in a message on 2026-10-20.
+- Richard Dykes stated that triage may still be run during a manual midweek run of /monday.
+- Richard Dykes stated that clearing tasks in Habitica and backloging anything are reserved for the Monday morning job and should not be done on a manual midweek run of /monday.
+- Richard Dykes stated that if he runs /monday manually midweek, a /mind-dump should also be run.
+- richard has two children: Arthur, his son and the older child, and a younger daughter.
+- richard's shared agent brain is /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6, a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- richard's Hermes Honcho plugin has no scope support at all and cannot request a scope projection.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard's stock Hermes Honcho plugin cannot run on a Honcho scope key without a shim because the honcho-ai SDK 2.6.0 calls _ensure_workspace() via POST /v3/workspaces before nearly every accessor, which a scope key is refused.
+- richard's Hermes reads skills from his shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard wants Clarity to own her own memory, so memory writes are pre-approved with memory.write_approval off and Clarity should not ask before saving.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query, delete, archive, and props, including sql-delete, sql-archive, and sql-props loops.
+- richard's text LLM provider is OpenRouter.
+- richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are his Richard OS pillars; these scopes cannot be deleted via the Honcho API, so their names are permanent.
+- richard's macOS lacks the timeout and gtimeout commands, so he wraps du in Python subprocess timeouts.
+- Honcho named-scope JWTs confine a client server-side on richard's setup, verified by reading outside the scope returning 401.
+- For bulk or repeatable actions, richard prefers writing a parameterised script and reusing or adapting an existing one rather than issuing many individual tool calls, to keep token consumption low.
+- Tailscale is installed across richard's devices: his Studio, NAS, laptops, iPad, and Fold6.
+- richard's Docker Desktop Docker.raw is sparse: ls shows its maximum size while du shows its real usage.
+- richard's Honcho setup uses workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard's Hermes uses honcho as its memory provider via ~/.hermes/honcho.json.
+- SynologyDrive-* File Provider shares under ~/Library/CloudStorage on richard's machines stall even on ls and are not Spotlight-indexed.
+- richard's Hermes shell has no Full Disk Access, so du and find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang.
+- A self-hosted Honcho memory server runs on richard's Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard's 'ai' Docker Compose stack is located at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard's Mac Studio is his always-on AI host; it has hostname wolfsmacstudio-1.home and Tailscale address 100.84.130.79.
+- Richard's Hermes shell on the Mac Studio lacks Full Disk Access, so du/find in ~/Library/Containers, ~/Library/Group Containers, ~/Library/Mobile Documents, and ~/.Trash error or hang.
+- Richard verified that Honcho named-scope JWTs confine a client server-side, with reading outside the scope returning 401.
+- Richard found that the honcho-ai SDK version 2.6.0 calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- Richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio with config at ~/.cloudflared/config.yaml, routing mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard's Hermes reads skills from the shared agent brain repo through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard's shared agent brain repo is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard's shared agent brain is at /Volumes/Live/@Edge/.ai on a Synology NAS at 192.168.2.6, a git repo at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- Richard's Honcho scopes cannot be deleted via the API, so their names are permanent.
+- Richard's Honcho scopes are named bonds, craft, edge, and craft-mambu, which are his Richard OS pillars.
+- Richard's Hermes uses Honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- Richard runs a self-hosted Honcho memory server on port 7806 on his Mac Studio, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale IP 100.84.130.79.
+- Richard's Hermes Honcho plugin has no scope support and cannot request a scope projection.
+- On Richard's Mac Studio, SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- Because macOS lacks timeout/gtimeout, Richard wraps du in Python subprocess timeouts.
+- On Richard's Mac Studio, Docker Desktop's Docker.raw is sparse: ls shows the max size while du shows real usage.
+- Richard prefers that, for bulk or repeatable actions, a parameterised script be written and an existing one reused or adapted rather than issuing many individual tool calls, to keep token consumption low.
+- Richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py for Notion query, delete, archive, and props operations, including sql-delete, sql-archive, and sql-props loops.
+- Richard wants Clarity to own her own memory, with memory writes pre-approved because memory.write_approval is off, and does not want to be asked before saving.
+- Richard has two children: Arthur, his older son, and a younger daughter.
+- Richard is technically fluent and thinks in engineering terms such as photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- Richard's text LLM is OpenRouter.
+- Richard wants tradeoffs and fidelity limits stated honestly rather than in a cheerleading summary, and he expects to make the call on approach himself.
+- richard expected that the weekly-reset skill should have been cleared if n8n is up and running.
+- richard has a docker checker (a scheduled check he runs).
+- richard identified the delegated Ship task's page as a Notion page with page_id 3fb24dc8ccd9805ab92ccb51c1249899, URL https://app.notion.com/p/Get-the-Openrouter-balance-and-usage-over-the-last-week-month-3fb24dc8ccd9805ab92ccb51c1249899, and title 'Get the Openrouter balance and usage over the last week/month'.
+- richard delegated a Ship task to Clarity.
+- richard instructed that the delegated task be run using the $handle-delegated-task procedure: fetch the page (the body of which is the brief), claim it, ping the home channel, execute, loop-verify, then mark it Shipped and report briefly.
+- Richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are the pillars of his Richard OS; these scope names are permanent because scopes cannot be deleted via the API.
+- Richard has turned off memory.write_approval, so memory writes are pre-approved and Clarity should not ask before saving.
+- Richard wants Clarity (his AI peer) to own her own memory.
+- Richard wants tradeoffs and fidelity limits stated honestly rather than receiving a cheerleading summary, and he expects to make the call on approach himself.
+- Richard's existing helper script for such bulk actions is ~/.hermes/scripts/notion_bulk.py, which handles Notion query, delete, archive, and props operations including sql-delete, sql-archive, and sql-props loops.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale address 100.84.130.79.
+- Richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard's self-hosted Honcho memory server runs on port 7806 on his Mac Studio, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- Richard's Hermes uses Honcho as its memory provider via ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- Richard's shared agent brain repository is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- Richard's shared agent brain is /Volumes/Live/@Edge/.ai on the Synology NAS at 192.168.2.6, a git repository at github.com/chdwck9/ai-stack holding skills, config, scripts, and docker-compose.
+- Richard has two children: a son named Arthur, who is the older child, and a younger daughter.
+- Richard is technically fluent and thinks in engineering terms, such as photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- Richard found that the honcho-ai SDK version 2.6.0 calls _ensure_workspace() (POST /v3/workspaces) before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- Richard has verified that Honcho named-scope JWTs confine a client server-side, with reads outside the scope returning a 401.
+- Richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard prefers that for bulk or repeatable actions a parameterised script be written and an existing one reused or adapted, rather than issuing many individual tool calls, to keep token consumption low.
+- Richard Dykes stated that the Hub page in question (the page repurposed from the 'weekly-reset' entry to 'monday') is a Skill, not a Utility.
+- Richard Dykes asked that /morning also be added to the Hub as a Skill, and not as a Utility.
+- The skills export file at /Volumes/Live/@Edge/.ai/skills/.skills-export.json associated with richard contains 80 entries, three of which have names containing "reset" or "week": "Weekly Reset", "Weekly Project Review", and "Weekly Status Update".
+- In richard's skills export file, all 80 entries have a null (unset) archive flag.
+- richard's Hermes session ran a background process, proc_a64bbc993808, which completed with exit code 0; the command inspected the skills export file at /Volumes/Live/@Edge/.ai/skills/.skills-export.json.
+- richard instructed that the $handle-delegated-task procedure be run for the delegated task.
+- richard specified the $handle-delegated-task procedure steps as: fetch the page, claim it, ping the home channel, execute, loop-verify, then mark the task Shipped and report briefly.
+- richard stated that the body of the delegated task's page is the brief.
+- richard gave the URL https://app.notion.com/p/Prepare-3D-model-of-kids-for-Dad-3ff24dc8ccd980d9a31ac93d0e6b3e11 for the delegated task's page.
+- richard stated that the delegated task's page was found, with title "Clarity" and page_id 3ff24dc8ccd980d9a31ac93d0e6b3e11.
+- richard stated that a Ship task had been delegated to Clarity.
+- On 2026-10-20, Richard Dykes asked for a list of all Docker containers across his studio and NAS in order to do some housekeeping.
+- Richard Dykes has a studio and a NAS that run Docker containers.
+- richard specified that
+- On 2026-10-20, richard requested the creation of a skill named 'morning'.
+- richard described the 'morning' skill he requested as being similar to his /monday skill.
+- richard stated that the intention of the 'morning' skill is to do daily mail triage and to make sure he is ready for the day.
+- richard specified that the 'morning' skill should do his inbox triage for whatever comms are connected.
+- richard asked that the open item about the n8n be stored somewhere.
+- richard stated that the n8n will remove `weekly-reset` at midnight at the end of 2026-10-20.
+- richard stated that the n8n automation is on a timer and not a hook.
+- richard instructed that the `/morning` skill be published.
+- richard asked that the calendar check performed by the `/morning` skill update any new or updated calendar entries in his tasks.
+- richard asked that the calendar-check updates also refresh what is done in `/monday`.
+- richard needs the files to run skills locally.
+- richard told clarity to go ahead with the action clarity had proposed ("Do it"), stating that the change will get synced over regardless.
+- richard requested the permanent removal of the entire data stack.
+- richard requested the permanent removal of the entire cap-stack.
+- richard requested that the ai stack on the NAS be renamed to homelab.
+- richard permitted moving portainer, pihole, and npm into the homelab stack, provided it can be done without resetting everything.
+- richard permitted creating a Docker Compose file for the homelab stack at the path NAS:/volume1/Live/@Edge/.homelab.
+- richard requested renaming supabase-db to homelab-db.
+- richard requested the permanent removal of the ollama container.
+- richard requested the permanent removal of the ai-open-webui container.
+- richard requested the permanent removal of the openwebui container.
+- richard requested the permanent removal of the litellm container.
+- richard requested the permanent removal of the supabase-meta container.
+- richard requested the permanent removal of the supabase-studio container.
+- richard requested the permanent removal of the calibre-web container.
+- Richard stated that things cannot break for extended periods.
+- Richard directed that things which would cause major issues be left alone.
+- Richard accepted recreating pihole and npm even though it causes a brief DNS and reverse-proxy blip.
+- Richard directed that mounted data be left as is, including configuration files and media folders.
+- Richard authorized deleting the data of the services being removed, but not mounted data.
+- Richard approved proceeding with the rest of the services and targets listed in clarity's removal and rename plan (openwebui, ollama, litellm, supabase-studio, supabase-meta, ai-open-webui, the data stack, and the cap-stack).
+- Richard decided to ignore supabase-db, so the planned supabase-db dump/recreate/restore and rename to homelab-db is not to be carried out.
+- Richard invoked the /create-skill command, asking Clarity to check whether there are good 3D modeling skills, and suggested three possible skills: reverse engineering a model from a picture, general Blender management, and Blender setup for 3D printing.
+- Richard told Clarity on 2026-10-20 that the 3D model work on the kids figurine needs significant improvement.
+- Richard said the latest 3D model result he was shown is even worse than the previous one.
+- Richard stated that obscure tasks in craft can be moved to Thursday, 2026-10-22.
+- Richard stated his default is to wrap up 'work' by Thursday, 2026-10-22.
+- Richard instructed that a 1:1 or meeting relating to a task should be taken as the task's deadline.
+- Richard requested that $monday suggest timings for tasks in waiting based on calendar availability and apparent deadlines.
+- Richard requested another tweak for $monday.
+- Richard stated that Edge tasks can be moved to Friday, 2026-10-23.
+- Richard stated that bonds can probably be left alone.
+- Richard stated that n8n will sync changes locally on the night of 2026-10-20.
+- Richard stated that the local n8n sync will not affect Clarity's run on 2026-10-21.
+- Richard stated that the second writer on the AI Hub pages was intentional.
+- Richard stated that his Claude test probably ran reinforce, which it is supposed to do once a session.
+- Richard has Claude running a test of morning in a different environment/session.
+- Richard proposed testing $monday as a manual, midweek flow on 2026-10-20.
+- Richard's father is leaving on Friday, 2026-10-23.
+- Richard thinks the cost analysis might be a bit of a dead-end and needs to think about how to frame pricing choices for FY27.
+- Richard does not believe he will be at his current situation/employer in six months at the current rate, as of 2026-10-20.
+- Richard wants the clean cat box kept out of his GSD and considers it a reminder.
+- Richard thinks Clarity should be doing triage mid-week.
+- Richard needs to get going on a job search.
+- Richard is at the on-site on 2026-10-20 and is trying to hide.
+- Richard is trying to think of things he can offload to Clarity, and is balancing token cost against time.
+- Richard wants to try to print something for Arthur to paint for Richard's father.
+- Richard has captured the cost objective for the week, and reports that its Level 1 and Level 2 are completed.
+- Richard is thinking more optimistically about AI in general.
+- Richard has open ends including flights and transport for a December trip, practicing Dutch for tests in December, tax season starting soon, organizing Tristan's visit next year, thinking about his own training, updating his notes, and completing his templates.
+- Richard's Bonds-related objective for the week is a successful visit with his father.
+- Richard is not keen on participating in an on-site this week because of bad blood created by lay-offs.
+- Richard's Edge objective for the week is to get Clarity fully operational, available on all devices, and with some cron jobs running and tested.
+- richard's SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- richard's Mac Studio runs macOS, which lacks timeout/gtimeout, so du must be wrapped in Python subprocess timeouts.
+- richard wants tradeoffs and fidelity limits stated honestly rather than a cheerleading summary, and expects to make the call on the approach himself.
+- richard is technically fluent and thinks in engineering terms such as photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- richard's shared agent brain repo is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices, and Hermes reads skills from it through skills.external_dirs while skills.create_dir stays local at ~/.hermes/utils.
+- richard keeps his shared agent brain in a git repo at github.com/chdwck9/ai-stack on his Synology NAS (192.168.2.6), at path /Volumes/Live/@Edge/.ai, holding skills, config, scripts, and docker-compose.
+- richard's Honcho scopes are bonds, craft, edge, and craft-mambu, which are his Richard OS pillars, and these scope names are permanent because scopes cannot be deleted via the API.
+- richard uses Hermes with honcho as its memory provider, configured via ~/.hermes/honcho.json with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard runs a self-hosted Honcho memory server on his Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard wants Clarity, his AI peer, to own her own memory, and has memory write approval turned off so memory writes are pre-approved and should not require asking him first.
+- richard's Hermes shell lacks macOS Full Disk Access, so du and find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang.
+- richard has two children: a son named Arthur, who is the older child, and a younger daughter.
+- richard's Mac Studio (host wolfsmacstudio-1.home, Tailscale 100.84.130.79) is his always-on AI host.
+- richard has an existing helper script at ~/.hermes/scripts/notion_bulk.py that handles Notion query, delete, archive, and props operations, including sql-delete, sql-archive, and sql-props loops.
+- richard prefers that bulk or repeatable actions be done with a parameterised script that reuses or adapts an existing one instead of many individual tool calls, in order to keep token consumption low.
+- richard's Docker Desktop Docker.raw file on his Mac Studio is sparse: ls shows its max size while du shows real usage.
+- Richard said the token costing utility task can already be marked as delegate if there is enough context to start working.
+- richard delegated a Ship task to Clarity on 2026-10-20 10:10:48.
+- On 2026-10-20, Richard reported that he had not completed the tasks associated with the Level 1 and Level 2 analysis + recommendations milestone.
+- On 2026-10-20, Richard reported that his Level 1 and Level 2 analysis + recommendations milestone was still in progress.
+- On 2026-10-20, Richard reported that he had completed adding the Level 1 and Level 2 analysis + recommendations milestone to the board.
+- richard has a MEGA account.
+- richard specified that the When? for the December 2026 MEGA account renewal task should be sometime in December 2026.
+- richard specified that the When? for the December 2026 MEGA account renewal task should preferably be before December 20, 2026.
+- richard will go on leave on December 20, 2026.
+- richard requested that a task be added for December 2026 to renew his MEGA account.
+- richard stated that normal task requirements apply to the December 2026 MEGA account renewal task.
+- richard's Hermes agent uses Honcho as its memory provider via the config file ~/.hermes/honcho.json, with workspace 'chdwck9', user peer 'richard', and aiPeer 'clarity'.
+- richard's Honcho scopes are named bonds, craft, edge, and craft-mambu, corresponding to his Richard OS pillars.
+- richard's existing bulk-action helper is ~/.hermes/scripts/notion_bulk.py, which supports Not
+- richard's Honcho scopes cannot be deleted via the API, so those scope names are permanent.
+- richard's shared agent brain is the directory /Volumes/Live/@Edge/.ai on his Synology NAS at 192.168.2.6.
+- richard prefers that for bulk or repeatable actions a parameterised script be written and reused or adapted rather than issuing many individual tool calls, to keep token consumption low.
+- richard's Docker Desktop Docker.raw file is sparse: ls shows its maximum size while du shows its real usage.
+- richard's macOS lacks the timeout/gtimeout commands, so he wraps du in Python subprocess timeouts.
+- richard's Hermes shell has no Full Disk Access, so du/find in ~/Library/{Containers,Group Containers,Mobile Documents} and ~/.Trash error or hang, and SynologyDrive-* File Provider shares under ~/Library/CloudStorage stall even on ls and are not Spotlight-indexed.
+- richard's Hermes Honcho plugin has no scope support and cannot request a scope projection.
+- richard's honcho-ai SDK, version 2.6.0 (the latest), calls _ensure_workspace() -> POST /v3/workspaces before nearly every accessor, which a scope key is refused, so the stock Hermes plugin cannot run on a scope key without a shim.
+- richard's shared agent brain is the git repository github.com/chdwck9/ai-stack, holding skills, config, scripts, and docker-compose.
+- richard's shared agent brain is mounted as NFS at /Volumes/Live on his Mac Studio and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on his other devices.
+- richard has a Cloudflare tunnel named 'edge-ai' on his Mac Studio, configured at ~/.cloudflared/config.yaml, routing mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- richard's Honcho named-scope JWTs confine a client server-side, which he verified by confirming that reading outside the scope returns HTTP 401.
+- richard's Mac Studio (hostname wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) is his always-on AI host.
+- richard runs a self-hosted Honcho memory server on his Mac Studio on port 7806, with containers ai-honcho-api, ai-honcho-db, ai-honcho-redis, and ai-honcho-deriver.
+- richard's 'ai' Docker Compose stack lives at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- richard's Hermes reads skills from the shared agent brain through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- richard stated that a Ship task has been delegated to Clarity.
+- richard requested on 2026-10-20 at 10:18:44 that the 'Renew MEGA account' task (item #5, assigned to @Edge) be changed to Waiting.
+- Richard Dykes stated on 2026-10-20 that Clarity has the context for the task, but it just was not added to the task body.
+- Richard Dykes stated on 2026-10-20 that other sessions should be checked for testing $monday.
+- Richard Dykes stated on 2026-10-20 that if there is anything useful in the Notion captures, it should be saved as utils.
+- Richard Dykes stated on 2026-10-20 that the Notion captures "Blender Toolkit Claude Code Skill", "How to Design for 3D Printing in Blender", and "Figure out Blender for 3D printing" were early drafts and were not tested.
+- Richard Dykes instructed Clarity on 2026-10-20 to update its utilities so that it has visibility of normal Clarity functionality.
+- Richard Dykes stated on 2026-10-20 that Clarity has access to shell because Clarity runs on the host.
+- Richard wants reminders like the Renew MEGA account reminder to be set to Waiting already.
+- Richard's sprint is timeboxed to only the current week.
+- Richard generally adds items to his sprint by setting their status to Waiting.
+- Richard's workflow requires an explicit move from Backlog into the sprint.
+- Richard wants reminders like the Renew MEGA account reminder to be placed in the future sprint by default.
+- As of 2026-10-20, Richard will not see the Renew MEGA account reminder in his current sprint view or in Habitica.
+- richard wants to know whether Clarity can pull OpenRouter usage and balance information.
+- richard has a task to get a dashboard or small report of OpenRouter usage by week and month plus balance.
+- richard wants to know what access Clarity has on the current credentials.
+- richard approved Clarity's plan to implement option 1 (cron report and low-balance alert) and option 3 (daily snapshot of usage_weekly/usage_monthly) now, and to switch to option 2 (native per-day history via a provisioning key) if a provisioning key is created.
+- richard is looking for cheaper models that have the same benchmarks and reasoning as Deepseek v4.1 flash.
+- richard is concerned that he spends a couple euros a day on chatting.
+- richard loves Deepseek v4.1 flash.
+- richard uses the model Deepseek v4.1 flash for chatting.
+- richard has crons.
+- richard requested that Clarity make the fix to reduce tool output size by using the parameterised scripts `notion_bulk.py`, `ship_query.py`, and `token_cost.py` instead of raw payloads.
+- richard stated he will work on shorter sessions.
+- richard requested that Clarity make the fix regarding his `skills.auto_load: [create-utility]` setting, which currently loads `create-utility` every session though it is only needed when making a utility.
+- richard requested that a task be added for him to review his own skills, possibly on 2026-10-21.
+- richard requested that Clarity make the fix to switch his Hermes Honcho `recallMode` from `"hybrid"` to `"tools"`.
+- richard permits updates to be pushed to Notion.
+- richard stores Clarity as a persona in the AI Hub.
+- Richard requested removal of the unused duplicate `clarity` persona page.
+- On 2026-10-20, Richard authorized clarity to create Notion Hub pages for six new files: `token-costing`, `clarity-capabilities`, `openrouter-usage`, `blender-headless-scripting`, `image-to-3d-model`, and `blender-print-prep`.
+- On 2026-10-20, Richard authorized clarity to push two updates to Notion: `monday` to v9 (the OpenRouter dashboard step) and `handle-delegated-task` to v2 (the probe-before-claiming-gap pitfall).
+- On 2026-10-20, Richard accepted filing the three Blender-related new files as Type=Skills, Category=creative, and the three Clarity-related new files as Type=Utilities, Category=utilities, Visibility=private, Version=1, with full SKILL.md in the page body and frontmatter as a plain `---` header, never fenced.
+- Richard stated that Notion should always be updated.
+- Richard stated that Notion is the canonical source.
+- Richard requested that Notion be updated.
+- Richard's always-on AI host is a Mac Studio with hostname wolfsmacstudio-1.home and Tailscale IP 100.84.130.79.
+- On 2026-10-22 07:59:47, Richard requested 'cyberpunk' and 'raynearth' to Jellyseerr using 'anime' as the tag.
+- Richard accesses the shared agent brain's NFS share at /Volumes/Live on the Mac Studio and Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on other devices; Hermes reads skills via skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard's Honcho scope JWTs work server-side, returning 401
+- Richard's Mac Studio is an always-on AI host; it has the hostname wolfsmacstudio-1.home and the Tailscale IP address 100.84.130.79, and its hardware is a Mac13,2 Apple M1 Ultra with 64GB of unified RAM.
+- Richard's 'ai' Docker Compose stack is located at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard has a self-hosted Honcho server running on port 7806; Hermes accesses it via the file ~/.hermes/honcho.json, with the workspace named 'chdwck9' and the peers richard and clarity.
+- Richard's Honcho scopes named bonds, craft, edge, and craft-mambu are permanent and cannot be deleted via the Honcho API.
+- Richard maintains a shared agent brain at /Volumes/Live/@Edge/.ai on a Synology NAS with IP address 192.168.2.6; the git repository is github.com/chdwck9/ai-stack and contains skills, config, scripts, and compose.
+- Richard Dykes's background process proc_5db0c451a437 completed normally with exit code 0 on 2026-10-23 at 13:46:41. The process ran a Docker command that attempted to create a network named 'coolify', validate the Docker Compose configuration in ~/docker/apps/coolify, and start the Coolify containers; its output showed the image docker.io/coollabsio/coolify:latest was pulled, volumes coolify-redis were created, containers coolify-redis and coolify were created, and the coolify-redis container failed to start because it was unhealthy.
+- Richard's Honcho scope JWTs work server-side but the honcho-ai SDK calls _ensure_workspace() before most accessors, causing scope keys to be refused; the stock Hermes plugin cannot run on a scope key and has no scope
+- Richard has a Mac Studio (hostname wolfsmacstudio-1.home, Tailscale IP 100.84.130.79) that functions as an always-on AI host, with hardware Mac13,2 Apple M1 Ultra and 64GB unified RAM.
+- Richard runs an 'ai' Docker Compose stack at /Volumes/Live/@Edge/.ai/docker-compose.yaml.
+- Richard runs a self-hosted Honcho server on port 7806, and Hermes uses it via ~/.hermes/honcho.json with workspace 'chdwck9' and peers richard/clarity.
+- Richard's Honcho scopes bonds/craft/edge/craft-mambu are permanent and cannot be deleted via API.
+- Richard maintains a shared agent brain at /Volumes/Live/@Edge/.ai on a Synology NAS at 192.168.2.6, with the git repository github.com/chdwck9/ai-stack containing skills, config, scripts, and compose files.
+- Richard accesses the shared agent brain via NFS at /Volumes/Live on the Mac Studio, and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on other devices.
+- Richard has Hermes read skills via skills.external_dirs, while skills.create_dir remains local at ~/.hermes/utils.
+- Richard has a Cloudflare tunnel named 'edge-ai' on the Mac Studio with config at ~/.cloudflared/config.yaml.
+- Richard will hire a car in Montpelier or at the airport/train terminus.
+- Richard is open to traveling to an airport at most 4 hours' drive from Montpelier.
+- Richard would consider travel by plane or train, but if traveling by plane, he prefers a non-stop flight.
+- Richard wants to keep the travel cost under 400 per person for the return trip.
+- Richard is willing to extend the trip by one night on either side if it results in savings.
+- Richard Dykes needs to arrange travel to and from Montpelier for himself and three other people, making a group of four traveling together.
+- Richard wants to visit the Christmas market in Montpelier on Saturday.
+- Richard's travel planning is constrained by Arthur's school closing at 2 PM on the Friday before the Saturday Christmas market.
+- Richard wants a balance of cost savings and speed for travel to Montpelier.
+- Richard prefers first-class MCP and catalog integrations over bespoke plumbing.
+- Richard expects to make the call on which approach to take.
+- Richard's escalation bar is to raise only what needs his unique perspective or genuine value-add, never to add a body to the count.
+- Richard is making a 3D-printed figurine gift for the grandfather of his children Arthur and his younger daughter.
+- Richard wants Clarity to own her own memory, with memory writes pre-approved (memory.write_approval is off), so she should not ask before saving.
+- Richard has two children: Arthur, his older child and son, and a younger daughter.
+- Richard wants tradeoffs and fidelity limits stated honestly to him rather than delivered as a cheerleading summary.
+- Richard does not take on bureaucratic or engineering-manager-owned work such as sign-offs, approvals, access requests, and ticket gates.
+- Richard's lane is translating customer and user requirements and aligning expectations.
+- Richard's philosophy is to hire engineers who manage themselves.
+- Richard is technically fluent and thinks in engineering terms, including photogrammetry rigging, bone posing, and faceting to hide scan noise.
+- For bulk or repeatable actions, Richard prefers writing a parameterised script and reusing an existing one to reduce tool calls and tokens, using helpers such as ~/.hermes/scripts/notion_bulk.py for Notion query/delete/archive/props loops and hub_sync_all.py to push all local skills and utilities to the AI Hub.
+- Richard's role is not tied to the engineering teams.
+- Richard considers flagging routine engineering or engineering-manager gates to be over-escalation.
+- Richard Dykes considers LM Studio to be resource-hungry.
+- Richard Dykes asked for a set of previously referenced items to be migrated, because LM Studio is slow and resource-hungry.
+- Richard Dykes considers LM Studio to be slow.
+- richard declined the proposal to bind the embed service's published port 7807 to 127.0.0.1 only, saying he is still looking into how to extend his memory to other tools.
+- richard decided to keep LM Studio installed and instead delete the models it stores, declining to uninstall LM Studio and remove the ~/.lmstudio directory.
+- richard chose to remove the dormant lmstudio provider block from the Hermes config file at ~/.hermes/config.yaml.
+- Richard's Mac Studio is an always-on M1 Ultra 64GB AI host with Tailscale address 100.84.130.79.
+- Richard treats his Notion AI Hub as the source of truth for every skill, utility and persona, and wants it published unconditionally on every create or edit with no review gate, keeping exactly one local mirror at skills.external_dirs = /Volumes/Live/@Edge/.ai/skills.
+- Richard runs opencode2api on port 8080 with the aliases oc, oc-free, oc-glm and oc-nem.
+- Richard self-hosts Honcho on port 7806 via ~/.hermes/honcho.json, with workspace 'chdwck9' and peers richard/clarity, and scopes bonds/craft/edge/craft-mambu that are permanent because the API has no delete.
+- On Richard's Studio, rapid-mlx serves qwen3.8-27b-4bit on port 8001 (dense 27B, is_moe=false) and is the default for both cron and delegation, launched via the plist com.rapidmlx.user.
+- Richard maintains a shared agent brain at /Volumes/Live/@Edge/.ai on his Synology NAS (192.168.2.6), which is a git repo at github.com/chdwck9/ai-stack containing skills, config, scripts and compose files.
+- Richard designates ~/.hermes/utils as the UTILITIES store (skills.create_dir) and never wants skills placed there.
+- Richard wants duplicate local copies collapsed (a flat .md beside a same-name directory, or a name present in both utils and library), with personas and plugin skills exempt.
+- Richard's work laptop is the herdr host 'workbox' at 192.168.2.20.
+- Richard accesses that shared agent brain via NFS at /Volumes/Live on his Studio machine and via Synology Drive at ~/Library/CloudStorage/SynologyDrive-Live on other machines.
+- Richard has Hermes read skills through skills.external_dirs, while skills.create_dir stays local at ~/.hermes/utils.
+- Richard runs an 'embed' container on his Studio mapping port 7807 to 9931, serving nomic-embed-text-v1.5 at 768 dimensions.
+- Richard wants Clarity to own her own memory
+- Richard's default model is openrouter/deepseek-v4.1-flash and his cron failure_repeat_alert_hours is set to 8760.
+- Richard's Studio machine lacks Full Disk Access, so du/find hang in ~/Library/{Containers,Group Containers,Mobile Documents}, ~/.Trash and CloudStorage, and since macOS has no timeout they must be wrapped in Python subprocess timeouts.
+- Richard has found that the stock Hermes plugin fails on Honcho scope JWTs because the honcho-ai SDK's _ensure_workspace() refuses scope keys.
+- Richard has Tailscale installed across his devices: Studio, NAS, laptops, iPad and Fold6.
+- Richard runs a Cloudflare tunnel named 'edge-ai' on his Studio, with config at ~/.cloudflared/config.yaml, which routes mcp.dykes.digital to localhost:7804 and hooks.dykes.digital to localhost:8644.
+- Richard prefers Clarity to read compactly by using parameterised scripts (notion_bulk.py, ship_query.py, token_cost.py, openrouter_usage.py) rather than raw dumps, because large tool results are re-sent on every later call.
+- richard's subagents reported that provider 'rapid-mlx' did not answer after 3 attempts and appeared temporarily unavailable.
+- richard's task 6 of 9 was to execute the 'group-trim-a' section of the brief: trim each of 4 listed SKILL.md files to at most 700 body words
+- richard's task 1 of 9 was to execute the 'group-local-inference' section of the brief: merge 3 local-LLM skills into one 'local-llm-inference' SKILL.md with a body of at most 700 words and brief-compliant frontmatter, trim 'local-model-backend' to at most 700 words, and write outputs to the brief's output contract paths plus manifest-local-inference.json.
+- richard's task 2 of 9 was to execute the 'group-3d' section of the brief: merge 3 blender/photo skills into one 'photo-to-3d-print' SKILL.md with at most 700 body words, trim 'blender-print-prep' and 'blender-headless-scripting' to at most 700 words each, and write manifest-3d.json.
+- richard's skills-consolidation work is defined by a brief located at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md.
+- richard's failed delegation batch deleg_58342fe5 ran on model qwen3.8-27b-4bit in the leaf role, with a total duration of 515.36 seconds.
+- richard's task 3 of 9 was to execute the 'group-ship' section of the brief: merge 'ship-db' and 'get-shit-done' into one 'ship-db' SKILL.md typed as a Skill with a body of at most 900 words, Type=Skills and Category=pm-kit, move bulk operational detail into references/ files as needed, append the brief's '## Taste' section, and write manifest-ship.json.
+- richard's task 4 of 9 was to execute the 'group-remote' section of the brief: merge 'remote-agent-orchestration' into 'remote-agent-kickoff' as one SKILL.md with at most 700 body words, trim 'herdr-agent-runtime' and 'hermes-multi-edge' to at most 700 words each, and write manifest-remote.json.
+- richard dispatched an async delegation batch with id deleg_58342fe5 on 2026-10-27 at 16:34:22.
+- richard's delegation batch deleg_58342fe5 consisted of 9 subagent tasks, all of which failed with the error 'Internal error during streaming'.
+- richard's task 5 of 9 was to execute the 'group-token' section of the brief: merge 'token-costing' and 'hermes-token-economics' into one 'token-costing' SKILL.md with at most 700 body words, and write manifest-token.json.
+- richard assigned one subagent in delegation batch deleg_ec4c5304 to execute the 'group-3d' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which required merging 3 blender/photo skills into one 'photo-to-3d-print' SKILL.md of at most 700 body words, trimming 'blender-print-prep' and 'blender-headless-scripting' to at most 700 words each, writing outputs to the brief's output contract paths, writing manifest-3d.json, and verifying body word counts.
+- richard dispatched a background fan-out of subagents as delegation batch deleg_ec4c5304, which contained at least three tasks, as of 2026-10-27.
+- richard assigned a subagent in delegation batch deleg_ec4c5304 to execute the 'group-ship' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which required merging 'ship-db' and 'get-shit-done' into one 'ship-db' SKILL.md typed as a Skill with a body of at most 900 words in category pm-kit, moving bulk operational detail into references/ files as needed, appending the brief's '## Taste' section, writing output to the brief's output contract path, and writing manifest-ship.json.
+- richard's delegated task deleg_ec4c5304 task 1/3 (the 'group-ship' brief execution) failed after 14.06 seconds with error 'Internal error during streaming'.
+- All three subagent tasks in richard's delegate_task unit deleg_ec4c5304 failed because rapid-mlx did not answer after 3 attempts, reporting 'Internal error during streaming'.
+- richard dispatched a background fan-out delegate_task unit (id deleg_ec4c5304) consisting of 3 subagents on 2026-10-27.
+- richard's delegate_task unit deleg_ec4c5304 used a leaf-role model named qwen3.8-27b-4bit and ran for a total of 14.16 seconds.
+- richard's delegate_task unit deleg_ec4c5304 included a task to execute the 'group-ship' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which was to merge 'ship-db' and 'get-shit-done' into one 'ship-db' SKILL.md typed as a Skill (body <=900 words, Type=Skills, Category=pm-kit), move bulk operational detail into references/ files as needed, append the '## Taste' section specified in the brief's TASTE OVERRIDE, write output to the brief's output contract path, and write manifest-ship.json.
+- richard's delegate_task unit deleg_ec4c5304 included a task to execute the 'group-local-inference' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which was to merge 3 local-LLM skills into one 'local-llm-inference' SKILL.md (body <=700 words, brief-compliant frontmatter), trim 'local-model-backend' to <=700 words, write outputs to the brief's output contract paths, write manifest-local-inference.json, and verify each output's body word count with the command in the brief.
+- richard's 'group-local-inference' task in delegate_task unit deleg_ec4c5304 failed with an internal error during streaming after 1 API call in 14.06 seconds.
+- richard's 'group-3d' task in delegate_task unit deleg_ec4c5304 failed with an internal error during streaming after 1 API call in 13.64 seconds.
+- richard's delegate_task unit deleg_ec4c5304 included a task to execute the 'group-3d' section of the brief at /Users/chdwck9studio/.hermes/cache/scratch/hubwork/BRIEF.md, which was to merge 3 blender/photo skills into one 'photo-to-3d-print' SKILL.md (<=700 body words), trim 'blender-print-prep' and 'blender-headless-scripting' to <=700 body words each, write outputs to the brief's output contract paths, write manifest-3d.json, and verify body word counts before finishing.
+- richard's delegate_task unit deleg_ec4c5304 wrote full live transcripts of its three tasks to /Users/chdwck9studio/.hermes/cache/delegation/live/deleg_ec4c5304/task-0.log, task-1.log, and task-2.log.
+- richard wants the dt-loop, prototype, and loop skills combined into a single skill named dt-loop.
+- richard wants best practices from hermes and claude loop included in the combined dt-loop skill.
+- richard wants $grill-me dropped as a dedicated skill.
+- richard's intended approach for create-coach is to create a unique coach for each learning topic he is interested in.
+- richard wants a new channel named #dutch-stack created, with $jesse pinned to it.
+- richard's intended approach for create-coach is to archive the coach persona once he is done learning that topic.
+- richard defines a utility as a way for hermes to access a tool, and says utilities should be closer to pseudo code.
+- richard wants utilities for hermes changed as needed.
+- richard distinguishes skills from utilities: skills are more creative, longer running, and can be tool agnostic.
+- richard wants the learning-module-generator, learning-crucible, and learning-designer skills combined into create-coach.
+- richard wants the dr-alder persona to be aimed at under 1000 words and rewritten to make sense.
+- richard wants a new channel named #health-stack created, with dr-alder loaded as the agent persona for that channel.
+- richard wants the create-medical-report, medical-checkin, and add-to-medical-file skills moved to dr-alder.
+- richard wants the how and bro skills combined into a skill named bro.
+- richard plans to hand the combined cs-art and create-cs skill off to a frontier model.
+- richard considers the cs-art/create-cs skill to be something very specific and not a routine operation.
+- richard says the combined cs-art and create-cs skill may exceed 900 words.
+- richard wants the cs-art and create-cs skills combined.
+- richard wants references to $grill-me replaced with a single line that gives up to 10 questions.
+- Richard Dykes did not approve the gateway restart at this time; he asked Clarity to ask him again about restarting the gateway after the remaining items are done.
+- Richard Dykes instructed Clarity to complete the remaining work items — the pending merge-groups, trims, and skills tasks — first, before anything else.
+- richard's delegation subagents in unit deleg_459dc15c ran in the 'leaf' role on the qwen3.8-27b-4bit model.
+- richard's trimming tasks required the frontmatter of each SKILL.md to be edited by setting description to the Title Cased skill name only, bumping version by 1, setting last-used to 2026-10-27, and dropping any 'scope
+- richard's delegation unit deleg_459dc15c had a total duration of 1912.42 seconds (31m52s) by the time it reported.
+- richard dispatched a background fan-out delegation unit identified as deleg_459dc15c, consisting of 2 subagents, dispatched at 2026-10-27 17:05:48.
+- The other task richard dispatched in delegation deleg_459dc15c was to trim 8 SKILL.md files — n8n-workflows, operational-alert-monitoring, productivity/notion-live-reports, creative/image-generation and honcho-memory-service under /Users/chdwck9studio/.hermes/utils/, plus docker-fleet-healthcheck, mcp-server-onboarding and hermes-model-sources under /Volumes/Live/@Edge/.ai/skills/ — to a body of at most 700 words each while preserving every operational fact.
+- One of the two tasks richard dispatched in delegation deleg_459dc15c was to trim 8 SKILL.md files located under /Users/chdwck9studio/.hermes/utils/ — calendar-meetings-to-ship, dagu-pipelines, granola-meetings, hermes/chat-surface-verbosity, handle-delegated-task, hermes-approvals, autonomous-ai-agents/hermes-skill-library, and media-volume-management — to a body of at most 700 words each while preserving every operational fact.
+- richard instructed Clarity (his agent) to do the pending work itself in the current session rather than delegating it to others.
+- richard has two children: Arthur, his older son, and a younger daughter.
+- As of 2026-10-28, richard has an n8n-prod instance.
+- As of 2026-10-28, richard has an auth token for Dykes Digital.
+- richard's full name is Richard Dykes.
+
+## richard · inductive  (37)
+
+- richard runs a self-hosted, always-on AI infrastructure on his own hardware (a Mac Studio as host plus a Synology NAS for shared storage) rather than relying on managed cloud services.
+- richard keeps his agent skills and configuration in a single version-controlled shared agent brain (git repo) that is synchronised across devices via NFS and Synology Drive.
+- richard channels agent work and delivery through Discord, having the agent create threads there and configuring webhook routes to deliver results to Discord.
+- richard uses Tailscale to network his full fleet of personal devices (Mac Studio, Synology NAS, laptops, iPad, and Fold6) for consistent private access.
+- richard is a hands-on operator who personally runs commands on his machines (gateway restarts, curl probes) and reports the raw results and error codes back to his agent for diagnosis.
+- richard delegates tasks with autonomy but expects his agent to plan and execute independently, escalating questions through Discord rather than blocking, and he permits proactive memory ownership.
+- richard prefers concise, structured completion reporting from his agent — a very brief report that states what was done, the outcome, and any next actions.
+- richard standardizes recurring Notion task work with explicit process rules: tasks are wrapped in loops, their output is verified, and their status is moved from Doing to Shipped only once verified.
+- richard prefers automating bulk or repeatable work through reusable, parameterised scripts (adapting an existing helper rather than issuing many one-off tool calls) in order to keep token consumption low.
+- richard consistently prefers local and self-hosted execution over managed cloud services: he runs his AI stack on his own hardware, uses local embeddings, and explicitly restricts capabilities to a local base only.
+- richard tends to build or reuse dedicated, reusable tooling for recurring workflows (e.g. the notion_bulk.py helper, a sizes.sh usage script, and expressing that a utility is needed to manage a new workflow) rather than performing repeated manual steps.
+- richard maintains a consistent personal naming and branding scheme across his systems: the handle 'chdwck9' as workspace/GitHub identity, 'dykes' (surname) in the dykes.digital domain, and a themed set of 'Richard OS pillars' (bonds, craft, edge, craft-mambu) used for his Honcho scopes.
+- richard troubleshoots his own infrastructure iteratively and empirically — personally running commands (gateway restarts, curl probes, size scripts) and reporting raw results, error codes and validation output back to his agent — and he will abandon a component once he concludes it is not needed (as with the Indeed MCP after a failed update).
+- richard brings personal and family craft projects to his agent stack — most notably commissioning a 3D-printed figurine of his two young children (Arthur, 6, and a 2-year-old daughter) to be posed together on a diorama, and contributing design ideas such as an angular-trapezoid finish and generating geometry from a base model plus reference images.
+- richard enforces explicit process discipline on his agent: work is staged, looped, and its output verified before any state is advanced (e.g. Notion tasks wrapped in a loop and only moved Doing→Shipped once verified; a skill staged as a draft, approved, then published under a final name).
+- Richard gates new capabilities and content behind his own explicit review and approval before they go live or are published — staging drafts, approving plans, and authorizing updates one by one rather than letting changes ship unreviewed.
+- Richard treats his personal and working life as an engineered system with a single canonical source of truth and enforced process rules: Notion is the canonical, always-updated record, the sprint is strictly timeboxed, items only enter via an explicit Backlog move, and task output must be looped and verified before status advances.
+- Richard wants honest, unvarnished assessments — tradeoffs and fidelity limits stated plainly rather than a cheerleading summary — and consistently reserves the final decision on approach for himself even when he delegates execution.
+- Richard is highly cost-conscious about his AI/LLM spend: he tracks how much chatting costs him daily, actively hunts for cheaper models with equivalent reasoning, and frames the problem in terms of balancing token cost against the time saved by delegating to his agent.
+- Richard habitually builds recurring, scheduled cadences to run his life and infrastructure — an automated Monday planning job (/monday), a daily morning triage skill, a scheduled docker checker, and cron jobs — rather than handling these things ad hoc.
+- Richard keeps many parallel personal, family, and professional threads in flight at once — ongoing family obligations, language tests, tax season, travel logistics, a job search, and his own self-improvement goals — and manages the load with structured planning rather than dropping items.
+- Richard works in deliberately bounded, short sessions and timeboxes his commitments to specific near-term windows (e.g. only the current week) rather than leaving work open-ended.
+- Richard is a technically fluent, hands-on problem-solver who specifies engineering approaches himself rather than only delegating: he thinks in photogrammetry rigging, bone posing and faceting to hide scan noise, proposed an angular-trapezoid finish to mask scanning imperfections, suggested reconstructing from a base model plus reference images, and named the specific 3D-modeling skills he wanted built.
+- Richard habitually prunes dead weight from his systems: he abandons components once judged unnecessary (the Indeed MCP after a failed update), removes unused artifacts (the duplicate clarity persona page, the dormant lmstudio provider block), and deletes resource-heavy data he no longer uses (LM Studio's ~90 GB of models). He tends to shed anything that is not actively earning its place.
+- Richard is bluntly self-critical and values candor over reassurance, applying the same unvarnished standard to his own projects: he called his rendered 3D figurine 'horrifying', said the next attempt was 'even worse', judged the model work as needing 'significant improvement', and flagged his own skill notes as untested early drafts.
+- Richard is cost-conscious across domains, not just engineering: he worries about daily AI/LLM chat spend (a couple of euros a day), caps personal travel at under 400 per person for a leg, will extend a trip by a night if it saves money, and frames trade-offs explicitly as cost savings versus speed. He optimizes spend in both his agent stack and his personal logistics.
+- Richard demands verified, accountable work from his agent: he rules that task output must be verified before status advances (Doing to Shipped), requires completion reports to state what was done, the outcome and next actions, wants to audit what access the agent holds on credentials, and tells it to check other sessions when testing is in question.
+- Richard runs his life on a structured personal operating system: themed pillars (bonds, craft, edge, craft-mambu) act as permanent Honcho scopes, each with explicit weekly objectives (a successful visit with his father, getting Clarity fully operational, a cost objective), tracked with numbered milestones (Level 1 and Level 2), and new items enter his strictly week-long sprint only via an explicit move.
+- When trimming his stack Richard protects optionality and reachability rather than isolating aggressively: he kept LM Studio installed (removing only the models it stored), removed just its dormant provider block, and declined localhost-only binding of the embed port 7807 so he can still extend his memory to other tools — preserving capability while shedding only what costs resources.
+- Richard is family-oriented and channels that into hands-on personal craft: he is making a 3D-printed figurine of his two young children (Arthur and his younger daughter) posed together as a gift for their grandfather, wants to print something for Arthur to paint for Richard's own father, and sets a successful visit with his father as his weekly Bonds objective.
+- richard prioritises finishing in-flight knowledge/skill work before making infrastructure changes: on 2026-10-27 he withheld approval for a gateway restart until the pending merge-groups, trims and skills tasks were complete, and told his agent to finish the remaining work itself in the current session rather than delegating it.
+- richard consistently consolidates and deduplicates overlapping agent skills into fewer unified skills rather than letting the skill library sprawl — on 2026-10-27 he merged dt-loop+prototype+loop, how+bro, learning-module-generator+learning-crucible+learning-designer, cs-art+create-cs, ship-db+get-shit-done, and local-LLM and blender/3D clusters, and dropped $grill-me as a dedicated skill.
+- richard decomposes large refactors into precisely scoped tasks with explicit output contracts and verification steps — specifying named output paths, manifest files, and mandatory checks (e.g. verifying body word counts before finishing) rather than issuing open-ended instructions.
+- richard organises agent capability by topic-specific Discord channels, each bound to its own dedicated persona and skill set — #health-stack with the dr-alder persona (which took over create-medical-report, medical-checkin and add-to-medical-file) and #dutch-stack with $jesse pinned to it.
+- richard imposes strict brevity limits and standardized frontmatter on his agent's knowledge artifacts: SKILL.md bodies capped at ~700 words (900 for exceptions), the dr-alder persona aimed under 1000 words, descriptions kept to the Title Cased name only, version bumped, last-used set, and 'scope' dropped.
+- richard runs his week on a fixed work rhythm that wraps up by Thursday, pushes infrastructure/Edge work to Friday, and reserves personal (Bonds) time — rather than spreading work evenly across the week.
+- richard wants his agent to escalate only genuine value-add issues that need his unique perspective, explicitly rejecting escalation of routine bureaucratic/engineering-manager gates (sign-offs, approvals, access requests, ticket gates) as over-escalation.

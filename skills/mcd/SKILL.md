@@ -5,9 +5,9 @@ name: mcd
 
 uuid: 3d724dc8-ccd9-81eb-876e-f5a2e9ff1099
 
-version: 4
+version: 5
 
-last-used: "2026-09-16T19:12:00+02:00"
+last-used: "2026-09-23T15:50:00+02:00"
 
 description: "MCD"
 
@@ -182,6 +182,8 @@ Node types are `intent | constraint | decision | stakeholder | customer | contra
 - Never move or rename a page based only on title similarity; fetch and confirm identity/content first.
 
 - Never assume a move succeeded because the tool returned success. Verify parentage with a fetch.
+
+- When restructuring a manifest via `replace_content`, include `<page url="...">` tags for every existing child page that must survive (the operation refuses and lists them otherwise), and re-check the page's title/`Name` property in the same verification pass — `replace_content` has been observed to silently corrupt the title alongside content, and Step 8's hierarchy/content check alone will miss that.
 
 - Never delete a child page during replacement without an explicit instruction to delete it and a visible preservation/deletion check.
 
