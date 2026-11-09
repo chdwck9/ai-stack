@@ -14,3 +14,44 @@ config/
 # Local hand-off secrets (never commit)
 .secrets/
 models/
+
+# --- macOS / Synology metadata --------------------------------------------
+@eaDir/
+._*
+**/._*
+
+# --- secrets and credentials ----------------------------------------------
+# The brain repo is public history: anything committed here is world-readable
+# and survives in git history even after deletion. Never commit key material.
+.env
+.env.*
+.secrets
+.secrets.*
+*.pem
+*.key
+id_*
+*_rsa
+*_ed25519
+mcp-tokens/
+credentials*
+*.token
+*.pfx
+
+# --- machine state / databases --------------------------------------------
+# state.db and its WAL are live session data, not documentation.
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# --- backups / transient copies -------------------------------------------
+*.bak
+*.bak-*
+*.bak.*
+*.orig
+*.tmp
+
+# --- personal memory dumps and conversation transcripts (PII) -------------
+Memory/raw-honcho-dump.json
+Memory/sessions/
