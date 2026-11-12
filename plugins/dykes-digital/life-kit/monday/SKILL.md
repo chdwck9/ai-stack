@@ -3,7 +3,7 @@
 
 name: monday
 uuid: 3fb24dc8-ccd9-8196-92b0-cd7259c1fc25
-version: 16
+version: 17
 description: "Monday Reset"
 return: "Week report: backlog · board · meetings · deep work · mail · alerts · timed · remotes · Jira · automations"
 last-used: 2026-10-27T12:00:00+01:00
@@ -63,7 +63,7 @@ Copy these steps verbatim into the task list before starting. A skipped step sta
 
 1. **Dispatch ****`$open-week`** — propose the milestones, write the alerts, time the `Waiting` queue.
 
-  Each step is **one run of its own skill**: `hermes chat -q "<step>" --skills <name>`. Pass the window and nothing else — never restate a step's rules, add guidance, or run two steps in one context.
+Each step is **one run of its own skill**: `hermes chat -q "<step>" --skills <name>`. Pass the window and nothing else — never restate a step's rules, add guidance, or run two steps in one context.
 
 1. **Remotes.** `herdr machine list`, then per remote: `workspace create` → `agent start --kind claude` → `agent prompt "<brief>" --wait --until idle --until done` → `agent read`. Work (Mambu) items run on **workbox, always Claude Code**; everything else on the **Studio, local-model-first**. Headless Claude Code needs `--allowedTools` set before it starts. Unreachable → skip and name once; `blocked` → **Needs Richard**.
 
@@ -123,7 +123,7 @@ Copy these steps verbatim into the task list before starting. A skipped step sta
 
 ## Taste
 
-*Richard-originated, grown by **`$reinforce`**. Signal → preference.*
+*Richard-originated, grown by ****`$reinforce`****. Signal → preference.*
 
 - Unfinished work returns to `Backlog`; only Richard's say-so completes a row. → Clearing Habitica is housekeeping, not evidence of completion.
 
@@ -134,6 +134,8 @@ Copy these steps verbatim into the task list before starting. A skipped step sta
 - Foreign-language mail (Les Petits) is read in full before classification. → Dutch notices hide real dates and decisions behind innocuous subjects.
 
 - One sharp, measurable milestone beats several vague ones.
+
+- Suspected duplicates are a finding, not a job. → Highlight both rows in the report and let Richard decide; never merge, archive or re-parent a look-alike row on your own (projects, backlog rows or meetings alike).
 
 ## Next steps
 

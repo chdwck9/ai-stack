@@ -98,7 +98,13 @@ prompt; the single biggest latency lever on a long run.
 
 - `--cache-memory-percent <fraction>` — a **fraction of RAM, not a percent** (default `0.20`).
 `--cache-memory-percent 35` means 3500%, not 35%, and silently makes the budget meaningless.
-Pass `0.40`-style values.
+Pass `0.40`-style values. It is also multiplied by *available* RAM measured **after** the
+weights load, so it lands far below intuition (`0.40` on a 64 GB Studio → ~4.4 GB). Read the
+boot line `Memory-aware cache enabled: limit=…MB` for the real number, and prefer an explicit
+`--cache-memory-mb` when you actually want a bigger retained budget.
+
+- `--hybrid-cache-entries` auto-defaults to `8` on a hybrid model whenever prefix cache is on;
+raising it buys little (see the trim rule below).
 
 - `--enable-prefix-cache` — re-use the shared prefix across an agent loop's turns (on by default).
 
@@ -115,6 +121,38 @@ so do not rely on it as the fix for bad tool calls.
 - **Test a flag set on a spare port before committing it to the LaunchAgent.** A rejected flag
 fails at model-load time, so a bad plist means a crash-looping service; a throwaway
 `--port 8011` instance proves the flags load first.
+
+### Is it re-reading the prompt? (measure before tuning)
+
+Almost all local latency is **prefill**, not decode: on the Studio a cold 11K-token prompt costs
+~9s (~1200 tok/s prefill) while the same prompt again costs ~0.2s, and decode on the 35B-A3B MoE
+runs ~80 tok/s. So the only question worth answering first is *how much of the prompt is being
+re-read*, and the serve log already answers it — no benchmark needed:
+
+```bash
+L=~/Library/Logs/rapid-mlx/serve.err.log
+grep -c "cache_fetch.*HIT" $L; grep -c "cache_fetch.*MISS" $L
+grep "cache_fetch" $L | tail -20          # 'cached=M remaining=N' = only N prefilled
+```
+
+Healthy is **≥95% of prompt tokens reused**. For a live probe of the four cases that matter
+(cold / identical / append / top-edit / tail-edit) run
+`scripts/cache_health_probe.py` (see References) — it streams five prompts, prints first-token
+latency for each, then tallies the same log lines.
+
+**The hybrid trim rule.** A checkpoint that reports `is_hybrid: true` (boot log:
+`Non-trimmable model cache detected`) cannot rewind its recurrent state, so the prefix cache
+serves only *exact* and *prefix-extension* matches. Editing the **top** of a prompt, or a prompt
+that **shrinks**, re-prefills the whole thing regardless of `--hybrid-cache-entries`.
+`LCP unavailable: shared=3 … non_trimmable=True` against a genuinely different prompt is normal
+(nothing shared), but the same line against a prompt that just got smaller is **context
+compression paying full prefill again** — the fix is to compact less often, not to add a flag.
+Tail edits are the good case and stay warm.
+
+**Flags that measured flat or worse here** — skip them and say so: flash-attention, larger
+(prompt-)batch sizes, swapping MLX for a llama.cpp runner, and the macOS GPU-memory-limit
+pseudo-command. `--use-paged-cache` fails closed at startup on rotating/hybrid/recurrent
+layouts. `--enable-prefix-cache` + generous `--context-length` + MLX is the whole win.
 
 ## Benchmark a local model on a real task
 
@@ -220,3 +258,7 @@ menu; name blockers (e.g. autostart needing his shell).
 
 - `references/apple-silicon-runners.md` — runner comparison, sizing table, the embeddings
 container, and the GGUF / LM Studio path.
+
+- `scripts/cache_health_probe.py` — times cold / identical / append / top-edit / tail-edit
+first-token latency against a live endpoint and tallies prefix-cache HIT/MISS in the serve log.
+Run it before recommending any serve-flag change.

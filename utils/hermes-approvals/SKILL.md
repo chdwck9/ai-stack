@@ -78,8 +78,29 @@ The card offers **Allow Once / Allow Session / Always Allow / Deny** (plus
 persist the command's coarse **pattern key** (e.g. `recursive delete`) — never "everything", so a
 later command in a different category prompts again. Do not describe "Always Allow" as "allow
 everything". Session YOLO (`/yolo`) is the only per-session blanket: saved with the session, checked
-before the allowlist, keyed by session. Full detail — including the smart-DENY card rule and the
-Discord **Allow Everything** button: `references/tiers-and-yolo.md`.
+before the allowlist, keyed by session. Full detail — including the smart-DENY card rule: `references/tiers-and-yolo.md`.
+
+### "Allow Everything" on the Discord card is OUR patch, not a Hermes feature
+
+Upstream ships exactly Allow Once / Allow Session / Always Allow / Deny. The extra **Allow Everything**
+button on the Discord exec-approval card is a local edit in this install's git working tree: invisible
+in `git log`, absent from a fresh install, and stashed by `hermes update`.
+
+- It exists because the coarse `session`/`always` tiers re-prompt on the next *category* of command,
+which is useless for a long job kicked off from chat. The button enables session YOLO and resolves
+the pending entry with `once`, so the rest of the job runs unprompted.
+
+- Stock equivalent, two actions, zero maintenance: `/yolo` in the thread, then click **Allow Once**.
+When a port is inconvenient, offer this instead of patching reflexively.
+
+- **Before any ****`hermes update`****:** `cd $HERMES_HOME/hermes-agent && git diff > ~/.hermes/patches/<topic>.patch`,
+and judge survival with `git diff --stat HEAD origin/main -- <file>`. A rewritten file means the
+stash will not re-apply.
+
+- **Before proposing to drop a local affordance, establish that it is dead.** Search past conversations
+(`session_search`) for who asked for it, and grep the log for its own line
+(`grep "Allow Everything" logs/*.log`) — the button logs every use. Something clicked most days is a
+convenience worth keeping, not cruft.
 
 ## Pitfalls
 

@@ -3,7 +3,7 @@
 
 name: mo-factory
 
-uuid: factory-mo-001
+uuid: 40e24dc8-ccd9-81ba-bf6e-eacfc64640af
 
 version: 1
 

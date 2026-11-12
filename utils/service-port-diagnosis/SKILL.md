@@ -115,9 +115,19 @@ docker inspect -f '{{json .Mounts}}' <container>   # bind mounts + named volumes
 
 - **Never nest quoting to build a remote command.** `===` and `?` inside `ssh host '...'` get parsed by the remote shell as test/glob syntax and produce confusing failures (`==PID not found`, `no matches found`). Write the probe to a file and pipe it: `ssh host 'bash -s' < probe.sh` — `bash -s` (not `zsh -lc`) is the non-interactive choice for probes.
 
+- **On appliance/NAS hosts, ship the probe to the remote HOME and run it with ****`sh`****.** `scp host:/tmp/x.sh` and other system paths can be absent or non-writable, and `bash` is not guaranteed (DSM ships `sh`/busybox). This form works everywhere and needs no writable system directory:
+
+  ```bash
+  ssh host 'cat > ~/probe.sh' < probe.sh && ssh host 'sh ~/probe.sh'
+  ```
+
+  A failed `scp` to `/tmp` or an application directory is a permissions quirk of the host, not evidence about the service — do not read it as one.
+
 - **A remote non-login shell lacks the Homebrew/package PATH.** `ssh host 'docker ...'` can fail with `command not found` while the binary exists; resolve it once with `ssh host 'zsh -lc "command -v docker"'` and use the absolute path, or wrap the probe in `zsh -lc`.
 
 - **"Nothing is listening" from one vantage is not global.** `localhost:PORT` refused on a client machine says nothing about the server's own listeners — always probe the host that owns the service.
+
+- **A socket listing inside a container is not the container's reachability.** `netstat -ltn` / `ss -ltn` in a container can omit the service entirely when it binds IPv6-only (`::`), and its output is truncated by default. A connection refused seconds after a start is a service still booting, not a dead one — re-probe the published port from the host before concluding either way.
 
 ## Verification
 

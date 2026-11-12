@@ -3,7 +3,7 @@
 
 name: ship-db
 uuid: 3fb24dc8-ccd9-8172-aa13-d15ce25bfabc
-version: 11
+version: 10
 description: "Ship DB"
 last-used: "2026-10-27"
 thinking: "Medium"
@@ -74,8 +74,13 @@ when one exists. If nothing fits, choose the correct `Level` rather than default
 
 1. **Write** through the Notion MCP. **Never delete** — correct only an erroneous entry.
 
-1. **Verify** — re-read the row, then check a few minutes later that **`Linked?`** populated (the
-downstream-automation signal). Never write `Linked?` yourself.
+1. **Verify** — re-read the row by the page id the create call returned. **`Linked?`**** populates only
+during the week of the row's event/date**, not on creation: an empty `Linked?` on a future-dated
+row is the expected state, not a fault, and must not be reported as a risk (Richard's correction).
+Never write `Linked?` yourself. Prove a *new* row exists by
+fetching it by the page id the create call returned: `notion_bulk.py props` and the `sql-*` verbs
+only update rows that already exist and print `ok` even on a no-match, so they never prove
+creation.
 
 1. **Report** what changed, and anything that now threatens the week.
 
@@ -134,10 +139,16 @@ reaches another person; never send.
 - `@Ship-DB-Reference` — every property, the ten views and their filter rules, automations, and the
 write-authority contract.
 
-- `@Calendar-To-Ship` — `/Volumes/Live/@Edge/.ai/resources/standards/calendar-to-ship.md` — the
-calendar → `Connect` procedure, pillar routing and the CRM rules. Callable form: `$calendar-meetings-to-ship`.
+- `references/ship-model-and-rules.md` — linking rules, delegation flow, the daily/weekly rhythm,
+verification, and the **full pitfall list** (Status/`When?` traps, invisible rows, buckets vs
+windows).
 
-- `@Ship-DB-Rules` — `/Volumes/Live/@Edge/.ai/resources/standards/ship-db/` — the rebuilt operational
-standards: `ship-model-and-rules.md`, `notion-bulk-and-query.md`, `notion-write-mechanics.md`,
-`notion-triggers.md`, `ship-projects.md`. A `references/` folder next to this file is wiped by the
-nightly Hub → local sync — do not put extended notes there.
+- `references/ship-calendar.md` — the calendar → `Connect` procedure and the CRM rules.
+
+- `references/ship-projects.md` — projects in Ship and the consolidation rules.
+
+- `references/notion-bulk-and-query.md` — bulk operations, SQL quoting rules, payload shapes.
+
+- `references/notion-triggers.md` — webhooks vs in-app automations, and the dedupe guards.
+
+- `references/notion-write-mechanics.md` — comment/retitle/closeout payloads, targeted content edits, and their traps.

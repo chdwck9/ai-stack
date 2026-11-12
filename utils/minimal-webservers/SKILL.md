@@ -1,6 +1,7 @@
 ---
 
 
+uuid: 40e24dc8-ccd9-81db-8b9a-d0a8022b2fd7
 name: minimal-webservers
 version: 1
 description: "Wrap scripts/tools into stdlib HTTP endpoints for demos."

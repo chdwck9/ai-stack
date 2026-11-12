@@ -110,6 +110,16 @@ $2 is out and one between $1 and $2 needs an explicit reason to be preferred.
 Also treat as disqualifying, and say so plainly: empty `content` at the cap (see Pitfalls),
 and any fabrication of a value a tool never returned.
 
+## Cross-route check (OpenCode Zen)
+
+OpenRouter is the price baseline, not the whole board. The OpenCode free lane
+(`models.opencode.ai` catalogue + local proxy `:8080`) can undercut every OpenRouter price at
+$0/M. On the same Monday, check `opencode_route_watch.py`'s state and **probe the model, do not
+trust the catalogue**: a listed free model can be geo-blocked — `inkling-2-small-free` priced at
+$0/M with 1M ctx returned `403 This model is not available in your country` from the Studio on
+2026-11-09, and `deepseek-v4.1-flash-free` returns `429 Free usage limit reached`. A free route
+that does not serve is not a contender; report it as unavailable, never as the cheapest option.
+
 ## Decision rule
 
 Switch only when the contender **beats the current default on the blend and clears both hard
@@ -128,7 +138,19 @@ change the recommendation.
 **Needs Richard** the exact action (switch command / nothing).
 ```
 
-State explicitly when nothing changed. Never pad a quiet week into a report.
+State explicitly when nothing changed. Never pad a quiet week into a report — but **always
+deliver one**. A no-change week is two lines (current default + est $/day, next cheapest
+contender + delta, "stay").
+
+### Never emit the SILENT token on a week that has a report
+
+The cron wrapper treats a response containing `[SILENT]` as "skip delivery" — it swallows the
+whole post, including a perfectly good report appended before it. On 2026-11-09 the run
+produced a correct "no contenders" verdict and then ended with `[SILENT]`, so Richard never saw
+the weekly beat and had to ask whether OpenRouter was covered at all. If there is anything to
+say (even "no change"), say only that. Reserve suppression for a **failed catalogue fetch**
+where you genuinely cannot report a number — and then say the fetch failed in one line instead
+of suppressing.
 
 ## Pitfalls
 
@@ -157,6 +179,11 @@ Re-read the raw text of every disagreement and exclude a row you cannot defend.
 - **Score tool calls on outcomes, not tool names** (`write_file` vs `terminal`+redirect), and
 cap turns at 4 — a model still probing at the cap "did not conclude in budget", it did not
 fail.
+
+- **`t4-error-recovery`**** and ****`t7-blocker-report`**** fail for every model** (verified 2026-11-09, both
+contenders): the harness's simulated terminal returns placeholder text, so no model can reach a
+diagnosis inside 4 turns. Both probe correctly and neither fabricates — score them as "did not
+conclude in budget" and exclude from the head-to-head, or Phase B reads as a false 6/8 ceiling.
 
 - **One rep at temp 0 is still non-deterministic.** Treat a single-task gap as noise unless it
 repeats across both phases.

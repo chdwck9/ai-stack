@@ -58,46 +58,6 @@ services:
     volumes:
       - /Volumes/Live/@Edge/.ai/data/anythingllm:/app/server/storage
 
-  # --- Embeddings: headless llama.cpp server (replaces LM Studio :1234) ---
-  # OpenAI-compatible /v1/embeddings on host port 7807. Model file is a copy of
-  # LM Studio's bundled nomic-embed-text-v1.5 Q4_K_M (identical vectors, 768d).
-  embed:
-    image: ghcr.io/ggml-org/llama.cpp:server
-    container_name: ai-embed
-    restart: unless-stopped
-    command:
-      - "--host"
-      - "0.0.0.0"
-      - "--port"
-      - "9931"
-      - "--embeddings"
-      - "--pooling"
-      - "mean"
-      - "--ctx-size"
-      - "8192"
-      - "--batch-size"
-      - "2048"
-      - "--ubatch-size"
-      - "2048"
-      - "--alias"
-      - "nomic-embed-text-v1.5"
-      - "-m"
-      - "/models/nomic-embed-text-v1.5.Q4_K_M.gguf"
-    ports:
-      - "7807:9931"
-    volumes:
-      - /Volumes/Live/@Edge/.ai/models/nomic-embed-text-v1.5:/models:ro
-    healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "python3 -c \"import urllib.request;urllib.request.urlopen('http://localhost:9931/health',timeout=2).read()\" || exit 1",
-        ]
-      interval: 10s
-      timeout: 5s
-      retries: 6
-      start_period: 20s
-
 networks:
   default:
     name: edge-net

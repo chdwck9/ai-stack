@@ -3,7 +3,7 @@
 
 name: calendar-meetings-to-ship
 uuid: 3fb24dc8-ccd9-8139-8845-c93518322ded
-version: 7
+version: 9
 description: "Calendar Meetings To Ship"
 last-used: "2026-10-27"
 thinking: "Medium"
@@ -20,7 +20,7 @@ resources:
 
 # Calendar meetings → Ship
 
-Copy Richard's calendar meetings into Ship — routing 1:1s to the CRM's `Next Connection` instead — so meetings surface on the board, the sprint and the n8n/Habitica syncs. Callable from Clarity, skills/utilities and cron. Idempotent. Full detail, pitfalls and quick reference: `references/pipeline-detail.md`.
+Copy Richard's calendar meetings into Ship — routing 1:1s to the CRM's `Next Connection` instead — so meetings surface on the board, the sprint and the n8n/Habitica syncs. Callable from Clarity, skills/utilities and cron. Idempotent. Full detail, pitfalls and quick reference: `@Calendar-To-Ship` = `/Volumes/Live/@Edge/.ai/resources/standards/calendar-to-ship.md` (durable copy in `@Standards` — a `references/` file inside a skill directory is wiped by the nightly Hub→local sync, so do not put specs there).
 
 ## When to Use
 
@@ -62,6 +62,8 @@ Copy these steps verbatim into the task list before starting. A skipped step sta
 
 ## Boundaries
 
+The mechanical twin is `~/.hermes/scripts/calendar_apply.py`, run by the dagu DAGs `monday-mechanical` and `morning-mechanical` at 08:00. It must implement THIS spec, not a simplified version of it: `Priority = Connect` on every meeting row, pillar from the **calendar** (Personal shared into the work account is `@Bonds`, not `@Craft`), 1:1s to the CRM and never a `#5` Ship row, dailies excluded. When meeting rows start looking wrong, diff that script against this skill before touching the board — it is the part that drifts silently. Its dedupe query must also treat a rate-limited/error response as a failure, never as "no rows" (that is how duplicate rows appear).
+
 Dedupe before creating; never set `This week`, `Linked?`, `Checked`, `Print`, `Phase`. Copy only — never accept/decline invites, message attendees, or move events. Default-exclude dailies. 1:1s go to the CRM, never your own Ship row. Never create a CRM connection that doesn't exist — report the miss. Current week only unless asked. `Live` is required and pillar-only.
 
 ## Verification
@@ -74,7 +76,7 @@ Dedupe before creating; never set `This week`, `Linked?`, `Checked`, `Print`, `P
 
 ## Pitfalls
 
-Read all three calendars — `primary` alone misses every Mambu meeting. Store UTC ISO with `is_datetime = 1` (a partial `When?` can default to "now"). Never copy `Lunch`/`Focus Block`. An untitled invite (`summary = null`) is not a row yet — report the miss, then write a full-day task for its window; never invent a title. Use `gwork`/`gpers`, never re-point `HERMES_HOME` by hand. Full pitfalls: `references/pipeline-detail.md`.
+Read all three calendars — `primary` alone misses every Mambu meeting. Store UTC ISO with `is_datetime = 1` (a partial `When?` can default to "now"). Never copy `Lunch`/`Focus Block`. An untitled invite (`summary = null`) is not a row yet — report the miss, then write a full-day task for its window; never invent a title. Use `gwork`/`gpers`, never re-point `HERMES_HOME` by hand. Full pitfalls: `@Calendar-To-Ship` (see the standard above).
 
 ## Output
 

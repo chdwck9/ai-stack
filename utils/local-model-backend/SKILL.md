@@ -96,6 +96,38 @@ $H config set fallback_providers '[{"provider":"openrouter","model":"deepseek/de
 
 Verify: `hermes fallback list` shows Primary + chain; `hermes chat -q "Run the shell command 'date +%Y-%m-%d' and tell me only the output."` must show a real tool call.
 
+## Restart hygiene (don't restart on a timer)
+
+Diagnose before scheduling restarts. Evidence to collect in `~/Library/Logs/rapid-mlx/serve.err.log`:
+
+- `[Metal memory] active=… peak=… cache=…` — if `cache=0.0GB` and `active` plateaus (e.g. 22→34GB then flat), nothing is leaking and a restart buys nothing.
+
+- `Chat completion (stream): N tokens in Ss (X tok/s)` — regressions usually track a **model swap**, not uptime. Find the epoch boundaries by splitting the log on `Loading model with BatchedEngine`.
+
+- `[cache_persist] shutdown budget would not fit … no entries saved successfully` — the prefix cache is NOT persisted on shutdown (3.5s budget vs ~14s predicted write), so every restart starts cold. Measure the cost: same prompt twice = cold vs warm prefill (seen ~2.1s vs ~0.5s per 2k tokens). Big-context jobs re-prefill from scratch after a restart.
+
+- MLLM lane overrides `--max-num-seqs`: log says `MLLM Scheduler started ... max_num_seqs=1` even when the plist passes 4. Check the served lane before blaming concurrency.
+
+Prefer a **conditional** restart (active Metal > ~44GB with 0 running requests, or repeated `D-METAL-CAP` / `Insufficient Memory` backpressure) over a daily one. A timer on a healthy process costs a cold cache and gains nothing.
+
+**`--idle-cache-clear-seconds N`**** is the built-in substitute**: drops prefix/KV cache after N idle seconds while keeping weights loaded, so nothing ratchets to the Metal cap overnight and no reload is paid.
+
+## Measured on M1 Ultra 64GB (mlx_[bench.py](http://bench.py/), temp=0)
+
+- Prefix cache is the whole ball game: same 30k prompt = 24.1s cold vs 0.4s warm. Agent-job latency tracks cache hit rate far more than model choice — size `--cache-memory-percent` up before touching anything else.
+
+- `--no-mllm` (text lane) is worth ~+10% decode and drops the vision tower, but changes nothing structural: on this checkpoint the numbers are close either way. Loses image input on that endpoint.
+
+- `--prefill-step-size`: 2048 (default) beat 8192 (1131 vs 990 tok/s) and 32768 (801 tok/s). Do not raise it blindly.
+
+- `--force-spec-decode` is a no-op for `mlx-community` checkpoints — they ship **no MTP/drafter weights**. Spec decode only engages on rapid-mlx's own `-MTP-MLX` repos (`/v1/models` → `speculative_decoding.runtime_state: active`). Verify there before believing an alias profile that says "Spec decode: ✓ default-on".
+
+- `--pflash auto` does not trigger below its prompt threshold (12k prompt unchanged); it is lossy, so treat as an opt-in for very long prompts only.
+
+## Restarting the LaunchAgent from Hermes
+
+`launchctl bootout` is allowed; **`bootstrap`****/****`submit`**** are blocked** inside the gateway regardless of label. The running job keeps its argv in launchd memory, so `kickstart -k` will NOT pick up plist edits. Prepare the plist + hand Richard `bash ~/.hermes/scripts/rapidmlx_reload.sh` (bootout → bootstrap → readiness wait → auto-rollback to the previous plist). Test candidate flags first on a spare port (`:8002`, `--no-mllm --context-length 16384 --cache-memory-percent 0.10 --gpu-memory-utilization 0.45` keeps the footprint low enough to coexist with the live server).
+
 ## Hard constraints
 
 - **Never hand-edit ****`config.yaml`** — use `hermes config set`. Back it up first; a stray indent breaks the live gateway. Changes take effect on **new sessions**, not mid-conversation (prompt caching).

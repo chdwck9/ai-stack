@@ -20,7 +20,8 @@ tags: [media, jellyfin, plex, smb, nfs, docker, macos, nas, volumes, mounts]
 
 # Media volume management
 
-Mount and troubleshoot media storage for Jellyfin / Plex on macOS.
+Mount and troubleshoot media storage for Jellyfin / Plex on macOS, and keep the download side of the
+media stack off the home IP.
 
 ## When to Use
 
@@ -30,6 +31,8 @@ files existing on the server.
 - A NAS share needs remounting after a network reconnect or reboot.
 
 - A media container cannot see mounted volumes.
+
+- The torrent client needs to be routed through a VPN with a real kill switch.
 
 ## Core principle
 
@@ -94,6 +97,63 @@ curl -s -o /dev/null -w '%{http_code}' http://localhost:13377   # expect 200/302
 
 Only when the host cannot mount SMB at all. Expect apt-get latency and possible SMB negotiation
 failure; keep Strategy A as the fallback.
+
+## Routing the download client through a VPN
+
+A SOCKS5 proxy set in the client is **not** anonymisation: if the proxy drops, the client falls back to
+the home IP. A real kill switch is a network namespace — put the client inside the VPN container's
+namespace so a dead tunnel leaves it with no interface at all.
+
+```yaml
+  vpn:
+    image: qmcgaw/gluetun
+    cap_add: [NET_ADMIN]
+    devices: ["/dev/net/tun:/dev/net/tun"]
+    env_file: [/volume1/docker/gluetun/nord.env]      # credentials out of the compose file
+    environment:
+      - VPN_SERVICE_PROVIDER=custom                    # a downloaded .ovpn, not a built-in provider
+      - VPN_TYPE=openvpn
+      - OPENVPN_CUSTOM_CONFIG=/gluetun/custom.ovpn
+      - FIREWALL_OUTBOUND_SUBNETS=192.168.2.0/24       # LAN peers can still reach the UI
+    ports: ["9710:9710", "9711:9711", "9711:9711/udp"]
+    networks:
+      media_net:
+        aliases: [qbittorrent]                         # keep the old DNS name
+
+  qbittorrent:
+    image: linuxserver/qbittorrent
+    network_mode: "service:vpn"                        # no ports:, no networks:
+    depends_on: [vpn]
+```
+
+- **Every published port moves to the VPN container.** The client keeps none.
+
+- **Give the VPN container the client's old network alias**, so sonarr/radarr/readarr keep resolving
+the same hostname and no download-client setting changes.
+
+- **A loopback bridge (****`socat`****) must move too** — `network_mode: "service:vpn"` — or its upstream
+`127.0.0.1:<port>` lands in a different namespace.
+
+- **Prove it before touching the live stack:** run the VPN image standalone with the real config,
+wait for `Initialization Sequence Completed` in the logs, and read the public IP gluetun reports.
+With NordVPN, the OpenVPN service credentials are the `NORDVPN_USER_ID` / `NORDVPN_API_KEY` pair and
+the `.ovpn` already carries its CA and tls-crypt.
+
+- **After the tunnel is up, harden the client itself:** clear any configured proxy, and turn **off**
+DHT, PeX and LSD — they leak peer discovery past the tunnel's reach.
+
+- Expect **fewer incoming peers** with providers that do not offer port forwarding (NordVPN, for one).
+
+**Synology has no TUN device by default.** `/dev/net` does not exist and `tun` is not loaded, so any
+VPN container fails until the host provides it — but `/lib/modules/tun.ko` is usually present:
+
+```bash
+sudo sh -c 'insmod /lib/modules/tun.ko; mkdir -p /dev/net; mknod /dev/net/tun c 10 200; chmod 600 /dev/net/tun'
+ls -l /dev/net/tun     # crw------- 1 root root 10, 200
+```
+
+This does **not** survive a NAS reboot — add a DSM triggered/boot-up task, or the client silently comes
+back without its tunnel.
 
 ## Pitfalls
 
