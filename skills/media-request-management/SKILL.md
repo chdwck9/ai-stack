@@ -3,7 +3,7 @@
 
 uuid: 40624dc8ccd9818cb76ecdc1277e02e7
 name: media-request-management
-description: "Audit Jellyseerr/Seerr requests, fix sign-in or subtitle tracks."
+description: "Audit, request and remove media; fix sign-in, subs, tracks."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -24,6 +24,8 @@ category: media
 Use this skill when Richard asks what films/series/anime he is missing, what to request in Jellyseerr, or whether a candidate is already available, requested, processing, or partially available.
 
 Also use it when Richard names **one specific thing he wants** — "there was a special released a few months back, can you request/download it for me?", a film, a back season, an OVA. That is a request-and-grab job on a single title, not a triage sweep: identify the exact item, prove it is not already in the library, confirm a healthy release exists, and stop at the approval gate. See **Specials and one-off episodes (Season 0)** when the target is a special/OVA rather than a normal episode.
+
+Also use it when Richard wants a title **gone** — "remove X and Y, delete the files as well", "drop that series". That is a full-stack removal, not a request audit: see **Removing a title from the stack (end to end)**.
 
 Also use it when Jellyseerr sign-in fails ("Something went wrong while trying to sign in", rejected passwords) or when its Jellyfin link looks dead (a sync job erroring on a timer). That is a different job from auditing requests — go to **§2.5** and `references/media-server-auth-troubleshooting.md`, and do not attempt to fix it by re-entering credentials.
 
@@ -187,6 +189,38 @@ NAS has no `unzip`; `/usr/bin/7z l <file>` is the way to inspect.
 
 - **`Episode has a TBA title and recently aired`** — Sonarr's TBA guard refusing to map a file onto an episode whose title metadata is still placeholder. Fix is metadata, not media: `POST /api/v3/command {"name":"RefreshSeries","seriesId":N}`, and the pending import completes by itself once the episode has a real title.
 
+## Fake magnet releases that never resolve
+
+A queue row that sits in `metaDL` at 0 bytes for days with `errorMessage: qBittorrent cannot resolve magnet link with DHT disabled` is not a slow download — it is a fake release. Treat `[SelfExtract Bundle]` in a title (and `[SelfExtract*]` generally) as malware bait: 0 seeds, dozens of leechers, no metadata ever. Drop it and take a real release:
+
+`DELETE /api/v3/queue/{id}?removeFromClient=true&blocklist=true&skipRedownload=true`, then search `/api/v3/release?seriesId=&episodeId=` and grab an acceptable release in the same call. Verify with `GET /api/v3/episode/{id}` `hasFile` once the import lands (a 0.8 GB WEB-DL at ~1.5k seeders imports in minutes).
+
+## Sonarr rejects every release with "Existing file meets cutoff"
+
+On this stack the anime profile is **upgradeAllowed: false** (cutoff HDTV-720p). That makes *every* release — including better ones and same-tier replacements — rejected as `Existing file meets cutoff: HDTV-720p`, so a language/quality-driven swap can never be grabbed while the old file exists. The only path is `DELETE /api/v3/episodefile/{id}` first, then search+grab. Do the search **before** deleting to prove a good candidate exists, and report the deletion as the destructive step.
+
+## Adding a whole new series (single-title request)
+
+Requestor scripts: Sonarr lookup → pick the TVDB entry matching the anime (not a regional duplicate: `Prison School` 293267 vs `Prison School (MBS)` 300465), then `POST /api/v3/series` with the lookup body plus `rootFolderPath: /anime`, `qualityProfileId: 1`, `monitored: true`, `seasonFolder: true`, `addOptions: {monitor: 'all', searchForMissingEpisodes: true}`. Season 0 stays unmonitored — that is normal, specials never auto-arrive.
+
+Traps on this stack, in order of frequency:
+
+- **Profile 1 (****`Any`****) is not actually "Any":** it rejects `Bluray-1080p*` and `Remux` outright (`Bluray-1080p is not wanted in profile`). Every BD batch on Nyaa (Reaktor, Tenrai, iAHD, the 90 GB remux) is rejected, so for an older anime the *only* Sonarr-acceptable route is a WEB-DL/WEBRip/HDTV release — often per-episode only, so a title that exists solely as a BD batch shows zero acceptable releases.
+
+- **A batch Sonarr cannot parse is rejected at grab time** with 404 `Unable to find matching series and episodes, will need to be manually provided` (e.g. `[Reaktor] Prison School + OVA Uncensored Complete v2`). It is still usable: fetch the `.torrent` yourself (Nyaa RSS `https://nyaa.si/?page=rss&q=<terms>`, then `https://nyaa.si/download/<id>.torrent`), push it straight into qBittorrent through the loopback bridge (`torrents/add` with `urls=`/`savepath=/downloads`), and `ManualImport` it afterwards. Sonarr parses `- E01 Uncensored v2 …` style files correctly in `/manualimport?folder=`, so pass each file with its `episodeIds`, the parsed `quality`, and `languages: [{id:1 English},{id:8 Japanese}]`; filter out `OP`, `NCOP`, `NCED`, `OVA`, and `Video Commentary` files or they import onto episode 1.
+
+- **Season packs get chosen over singles and are frequently the wrong language edition.** Check the grabbed title before waiting: `VOSTFR` (French subs) and `[English Dub]` packs satisfy the profile and win on size, but are not Japanese-audio-with-English-subs. Cancel with `blocklist=true` and let the search re-run; deleting a pack row only needs `removeFromClient=true` on the **first** row of a shared `downloadId` (the rest 404, which is fine).
+
+- A 12-episode `MissingEpisodeSearch` that keeps producing 12 rows sharing one `downloadId` is one torrent, not twelve downloads.
+
+## Indexer seeders lie — check the real swarm
+
+A grabbed release showing 350+ seeders on the indexer can crawl at 1 KB/s because the actual swarm is dead (qBittorrent `num_complete: 1`). Before waiting, read `~/.hermes/edge/qbt.sh torrents/info` for that hash: if `progress` is under ~10% after 3-4 min with `num_seeds: 0`, drop the row (`DELETE /api/v3/queue/{id}?removeFromClient=true&blocklist=true&skipRedownload=false`) and grab the same episode from [Nyaa.si](http://nyaa.si/) instead — public-tracker swarms there are real. Also expect Sonarr to grab a second release for an episode that briefly had no file; check the queue after each import and clear duplicates.
+
+## Bazarr cannot add a subtitle on demand here
+
+`PATCH /api/episodes/subtitles?language=en` returns **500** on this Bazarr build: the traceback in `/config/log/bazarr.log` is `original_format = profile['originalFormat'] → TypeError: list indices must be integers`, i.e. a Bazarr bug, not a provider or API-key problem. Don't chase providers; go straight to replacing the file with a `MultiSub` release. ToonsHub titles ending `, Japanese Sub)` are the single-language variant (jpn audio + jpn subs only) — Erai-raws `MultiSub` WEB-DL is the equivalent with eng/por/spa/ara/fre/ger/ita/rus.
+
 ## Jellyseerr never flips imported media to AVAILABLE
 
 Content can be fully imported and on disk while Jellyseerr still reports `PROCESSING` with `jellyfinMediaId: null`, and its `jellyfin-recently-added-scan` / `jellyfin-full-scan` / `availability-sync` jobs run happily without changing anything. Check the pairing: `GET /api/v1/settings/jellyfin` `serverId` against the live `Id` from `<jellyfin>/System/Info/Public`. Here Jellyseerr stores `79fc06b9…` while the live NAS Jellyfin is `c14999a1…` — it is still paired to the retired docker Jellyfin 10.11 instance, so availability sync is dead (see `references/jellyseerr-jellyfin12-login.md`). Verify the media landed by listing the library path on disk, and report the pairing as the separate fault rather than re-running scans.
@@ -277,9 +311,26 @@ Specials never arrive on their own. Sonarr's series `seasons` list and Jellyseer
 
 - Clean up a stuck queue row with `DELETE /api/v3/queue/{id}?removeFromClient=true&blocklist=false` once the file is confirmed in the library.
 
+## Removing a title from the stack (end to end)
+
+"Remove X" plus "delete the files" is action-specific authorization for *that title only* — execute it and report, don't hand back a checklist. Same shape for a series or a film: find every place the title lives, remove in this order, verify each layer by reading state back.
+
+1. **Find it before deleting it.** Dump the library index to a file (`GET /api/v3/series`, or `/api/v3/movie` for films) and filter titles in Python on the memorable words. On-disk folder names drift from catalogue titles (`Nia Liston: The Merciless Maiden`, `Magic Knight Rayearth (2026)` with a year suffix), so match loosely. Record `id`, `path`, `statistics.episodeFileCount`, `sizeOnDisk` — and cross-check with `ssh chdwck9NAS 'find "<path>" -type f -printf "%s\t%p\n"'` for the real file list and the GB figure you report.
+
+1. **Delete from the *arr with files**: `DELETE /api/v3/series/{id}?deleteFiles=true&addImportListExclusion=true` → 200; Sonarr removes the folder and files itself. Then re-read `/api/v3/series` and `ls -d "<path>"` to prove both the record and the directory are gone. A 200 alone is not proof.
+
+1. **Kill the torrents**, or the deleted content comes straight back on the next search/grab. Hashes must be form data (`--data-urlencode`) on the loopback bridge; query-string params return `Bad Request`. `|` joins them in one call:
+`ssh chdwck9NAS "curl -sS -H 'Host: 127.0.0.1:9710' -X POST --data-urlencode 'hashes=h1|h2|h3' -d 'deleteFiles=true' 'http://127.0.0.1:9713/api/v2/torrents/delete'"` → confirm no title matches remain in `torrents/info` and `/volume1/temp` is clean.
+
+1. **Clean Jellyseerr so a later re-request isn't blocked**: `DELETE /api/v1/request/{requestId}` then `DELETE /api/v1/media/{mediaId}` (both 204). Media records carry **no title field** — only `tmdbId`, `mediaType`, `status`, `jellyfinMediaId` — so resolve the tmdbId via `/api/v1/search?query=` and match on that; filtering the media list on the title string silently returns zero hits and looks like "nothing to clean". A title added straight into Sonarr has no Jellyseerr record at all: absence is normal, not a missed delete.
+
+1. **Jellyfin holds only catalogue rows** — nothing to delete there, just a scan. Studio instance: `POST /Library/Refresh` with `Authorization: MediaBrowser Token="$JELLYFIN_API_KEY"` (204). The live NAS Jellyfin has **no API keys at all** (the `ApiKeys` table in `/volume1/@appdata/jellyfin/data/data/jellyfin.db` is empty, and Jellyseerr's stored key 401s against it), so its stale entries clear only on its own scheduled library scan — state that plainly rather than hunting for a key or creating one.
+
+Report as: per-title episode count and GB freed, what was removed at each layer with the verification that proved it, and the one item that genuinely still needs Richard.
+
 ## Ports on the NAS stack (do not assume defaults)
 
-`8989` is lighttpd (Synology), NOT Sonarr. Actual published ports: Sonarr `9701`, Radarr `9704`, Lidarr `9702`, Readarr `9709`/`9708`, Prowlarr `9700`, Bazarr `9705`, Jellyseerr `9712`, Mylar `9703`, qBittorrent `9710`, Jellyfin(docker, stale) `896`, native Jellyfin `8096`, Portainer `9000`, n8n `56780`. Confirm with `ssh chdwck9NAS 'sudo -n /usr/local/bin/docker ps --format "{{.Names}}\t{{.Ports}}"'`. Sonarr's `/downloads` bind is `/volume1/temp`; the anime library is `/volume1/Play/Anime` → `/anime`.
+`8989` is lighttpd (Synology), NOT Sonarr. Actual published ports: Sonarr `9701`, Radarr `9704`, Lidarr `9702`, Readarr `9709`/`9708`, Prowlarr `9700`, Bazarr `9705`, Jellyseerr `9712`, Mylar `9703`, qBittorrent `9710`, Jellyfin(docker, stale) `896`, native Jellyfin `8096`, Portainer `9000`, n8n `56780`. Confirm with `ssh chdwck9NAS 'sudo -n /usr/local/bin/docker ps --format "{{.Names}}\t{{.Ports}}"'`. Reach the *arr APIs over the LAN address (`http://192.168.2.6:<port>`) or `ssh chdwck9NAS 'curl ...'`; the older Tailscale IP can hang until timeout while the LAN path answers immediately, and SSH-then-curl also avoids firewall surprises. Sonarr's `/downloads` bind is `/volume1/temp`; the anime library is `/volume1/Play/Anime` → `/anime`.
 
 ## Readarr — is this book already in my library? (two instances)
 

@@ -3,9 +3,9 @@
 
 name: granola-meetings
 uuid: 40524dc8-ccd9-8173-8c98-d21e4c8eb5b0
-version: 2
+version: 3
 description: "Granola Meetings"
-last-used: "2026-10-27"
+last-used: "2026-11-12"
 thinking: "Low"
 temperature: 0.2
 author: Richard Dykes, Hermes Agent
@@ -74,8 +74,19 @@ final day. Whenever the caller means a specific week (a Monday reset), pass expl
 
 ## Pitfalls
 
-- **Transcripts are behind the paid tier** — the call errors rather than returning text. Say so;
-never infer content from a failed read, and never present a summary as a verbatim quote.
+- **Transcripts are behind the paid tier** — `get_meeting_transcript` and `search_transcripts` both
+error rather than returning text. Say so; never infer content from a failed read, and never
+present a summary as a verbatim quote.
+
+- **The history cap is 30 days, not just the transcripts.** `query_granola_meetings` and
+`list_meetings` only reach ~30 days back; older notes are excluded with an access notice. A nil
+result for a name ("is there anything on customer X?") therefore means *not in the visible
+window*, never *never discussed*. Report it that way, and ask for the note link plus its date —
+the user can open it even when the MCP cannot.
+
+- **There is no local Granola store to search instead.** The desktop app is not installed on the
+Studio (only a `.dmg` lies around), and the browser cache is an IndexedDB blob, not a queryable
+db. Don't hunt for a local bypass; the platform limit is the limit.
 
 - **A thin result is not proof of no meetings.** Public/workspace notes are excluded on this plan
 (the response carries an access notice) and account history can start partway through a period.

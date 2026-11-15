@@ -1,58 +1,58 @@
 {
  "run": "morning-mechanical",
- "generated_at": "2026-11-11T08:03:14.569323+01:00",
- "day": "2026-11-11",
+ "generated_at": "2026-11-13T08:00:46.541250+01:00",
+ "day": "2026-11-13",
  "window": {
-  "start": "2026-11-11T00:00:00+01:00",
-  "end": "2026-11-12T00:00:00+01:00"
+  "start": "2026-11-13T00:00:00+01:00",
+  "end": "2026-11-14T00:00:00+01:00"
  },
  "steps": {
   "calendar-to-ship": {
    "step": "calendar-to-ship",
    "window_kind": "day",
-   "day": "2026-11-11",
+   "day": "2026-11-13",
    "window": {
-    "start": "2026-11-11T00:00:00+01:00",
-    "end": "2026-11-12T00:00:00+01:00"
+    "start": "2026-11-13T00:00:00+01:00",
+    "end": "2026-11-14T00:00:00+01:00"
    },
-   "events": 14,
+   "events": 6,
    "created": [],
    "refreshed": [],
-   "one_to_ones_routed_to_crm": [],
+   "one_to_ones_routed_to_crm": [
+    {
+     "person": "Adrian",
+     "date": "2026-11-13",
+     "enriched": "2026-11-13 10:30",
+     "dry_run": false
+    },
+    {
+     "person": "Adrian",
+     "date": "2026-11-13",
+     "enriched": "2026-11-13 12:00",
+     "dry_run": false
+    }
+   ],
    "crm_misses": [],
    "failed": [],
-   "already_on_board": 5,
+   "already_on_board": 2,
    "drift_needs_review": [],
    "corrected": [],
    "one_to_ones_pending_review": [],
    "archived_rows_untouched": [],
    "duplicate_rows": [],
-   "recurring_one_row_kept": {
-    "arthur swimming": 2,
-    "minx dutch lesson weekly": 2
-   },
-   "dailies_excluded": [
-    {
-     "name": "Platform eng AWS daily",
-     "days_in_window": 1
-    }
-   ],
+   "recurring_one_row_kept": {},
+   "dailies_excluded": [],
    "needs_richard": {
     "untitled_invites": [],
     "birthdays": [
      {
-      "name": "Dewald Kruger's birthday",
-      "start": "2026-11-11"
-     },
-     {
-      "name": "Crispin Webb's birthday",
-      "start": "2026-11-11"
+      "name": "Zac Millard's birthday",
+      "start": "2026-11-13"
      }
     ],
     "holidays_not_tasks": []
    },
    "placeholders_skipped": [
-    "Armistice Day (no attendees)",
     "Focus Block",
     "Home",
     "Lunch"
@@ -62,36 +62,33 @@
   "mail-noise": {
    "step": "mail-noise",
    "window": "newer_than:2d",
-   "scanned": 12,
+   "scanned": 9,
    "noise": 3,
    "archived": 3,
    "by_sender": {
-    "jooble.org": 3
+    "mail.notion.com": 3
    },
    "dry_run": false,
-   "ts": "2026-11-11T08:00:10.698851+01:00"
+   "ts": "2026-11-13T08:00:40.684248+01:00"
   },
   "openrouter": {
    "step": "openrouter",
    "built": true,
-   "report": "wrote /tmp/or_usage.html\nOpenRouter — balance\n  credits $80.00 · used $62.42 · REMAINING $17.58\n  key limit $30.00 · remaining $11.71 · free tier False\n\nOUR INFERENCE SPEND (OpenRouter actual + local equivalent)\n  Today        OpenRouter    $0.00   local-eq    $0.00   TOTAL    $0.00   (saved $0.00)\n  Last 7 days  OpenRouter    $8.92   local-eq    $0.06   TOTAL    $8.98   (saved $0.06)\n  Last 30 days OpenRouter   $44.23   local-eq    $1.31   TOTAL   $45.54   (saved $1.31)\n  local valued at qwen/qwen3.6-35b-a3b rates\n\nOpenRouter — usage (rolling, authoritative for this key)\n  today    $0.00\n  last 7d  $4.16\n  last 30d $18.29\n  all-time $62.40\n\nOpenRouter — account spend by app (AUTHORITATIVE, last 30d)\n  TOTAL                              $44.96\n  Hermes Agent                       $43.69   ",
+   "report": "wrote /tmp/or_usage.html\nOpenRouter — balance\n  credits $80.00 · used $63.16 · REMAINING $16.84\n  key limit $30.00 · remaining $10.97 · free tier False\n\nOUR INFERENCE SPEND (OpenRouter actual + local equivalent)\n  Today        OpenRouter    $0.00   local-eq    $0.00   TOTAL    $0.00   (saved $0.00)\n  Last 7 days  OpenRouter    $5.44   local-eq    $0.03   TOTAL    $5.47   (saved $0.03)\n  Last 30 days OpenRouter   $43.99   local-eq    $1.32   TOTAL   $45.31   (saved $1.32)\n  local valued at qwen/qwen3.6-35b-a3b rates\n\nOpenRouter — usage (rolling, authoritative for this key)\n  today    $0.00\n  last 7d  $4.90\n  last 30d $19.03\n  all-time $63.14\n\nOpenRouter — account spend by app (AUTHORITATIVE, last 30d)\n  TOTAL                              $44.85\n  Hermes Agent                       $43.58   ",
    "embed": {
-    "ok": false,
-    "tail": "ntent_length\": 12943, \"status\": \"uploaded\", \"markdown_source\": \"file-upload://41524dc8-ccd9-8166-a935-00b25\nnew src: file-upload://41524dc8-ccd9-8166-a935-00b25d48c8cf\nbody len: 990\nembeds swapped: 1\n"
+    "ok": true,
+    "tail": "embed source=\"notion-file-block://d5665a84-2d97-4696-ae28-4c3124d3b794/72a4eb1f-fdb0-4399-a52f-5cdf51425a2d?space_id=914e3c34-0a79-4cf8-863d-f6dd6391f772&name=openrouter-usage.html\"> Inference Spend \n"
    },
-   "ts": "2026-11-11T08:03:13.693932+01:00"
+   "ts": "2026-11-13T08:00:45.827764+01:00"
   }
  },
  "board": {
-  "rows_in_window": 7,
+  "rows_in_window": 5,
   "undated": [],
   "meetings": [
-   "Product Demo Session",
-   "MKX #1: Behind the Scenes of Running a Business",
-   "DR Commercial state and updates",
-   "EOD Weekly",
-   "Arthur Swimming",
-   "Minx dutch lesson weekly"
+   "1:1 Adrian / Richard",
+   "PM Brown Bag Session(AI Focused)",
+   "Adrian"
   ]
  },
  "headline": {
@@ -105,18 +102,13 @@
   "untitled_invites": [],
   "birthdays": [
    {
-    "name": "Dewald Kruger's birthday",
-    "start": "2026-11-11"
-   },
-   {
-    "name": "Crispin Webb's birthday",
-    "start": "2026-11-11"
+    "name": "Zac Millard's birthday",
+    "start": "2026-11-13"
    }
   ],
   "holidays_not_tasks": []
  },
  "placeholders_skipped": [
-  "Armistice Day (no attendees)",
   "Focus Block",
   "Home",
   "Lunch"
