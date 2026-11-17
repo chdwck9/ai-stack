@@ -1,247 +1,118 @@
 {
  "run": "monday-mechanical",
- "generated_at": "2026-11-02T08:02:51.749908+01:00",
+ "generated_at": "2026-11-16T08:02:34.687502+01:00",
  "window": {
-  "monday": "2026-10-26",
-  "sunday": "2026-11-01"
+  "monday": "2026-11-09",
+  "sunday": "2026-11-15"
  },
  "steps": {
   "backlog-return": {
    "step": "backlog-return",
    "window": {
-    "monday": "2026-10-26",
-    "sunday": "2026-11-01"
+    "monday": "2026-11-09",
+    "sunday": "2026-11-15"
    },
-   "found": 32,
-   "moved": 32,
+   "found": 16,
+   "moved": 16,
    "dry_run": false,
    "rows": [
     "Marktplaats ads - expand",
-    "Conclude SLA research",
-    "$home-lab utility",
     "Fix the personal Google token",
     "Submit 1 job application",
-    "Vinted - Senior Product Manager, VGo Carrier Technology",
-    "Nebius - Senior Product Manager, Commercial Agreements & Pricing Mechanics",
-    "Mendix (Siemens) - Product Manager, Workflow",
     "Adyen - Senior Product Manager, Data / Machine Learning & GenAI Platform",
-    "Prosus - Group Product Manager",
-    "Just Eat Takeaway.com - Senior Group Product Manager, Logistics Services & Growth",
     "Booking.com - Payouts Platform Product Lead",
     "JetBrains - Senior Product Manager, JetBrains Air (Agentic Development in IDEs)",
     "Adyen - Group Product Manager, Fraud Intelligence",
     "Adyen - Senior Product Manager, Developer Experience (IDP cluster)",
-    "PM Brown Bag Session",
-    "Update MCD: Mambu Cost Margin Analysis — SLA ownership unresolved, tiering decision owed",
-    "PM Brown Bag Session",
-    "Follow up with Carmelita on NCC contract review",
-    "Update pricing calculator with revised GCP multipliers",
-    "Publish OAuth app for chdwck9",
-    "Assemble pricing team & setup first review",
-    "Deck of proposals + show it",
-    "Pricing suggestion: packaging per use case",
-    "End of Sale process + existing backlog (with Dom)",
-    "GCP - AWS parity or better than campaign",
-    "Sub Account Pricing (MC + wallets, etc.)",
-    "Introduce Regional Pricing",
-    "Sandbox incremental Tenant",
-    "Adjust discount thresholds for certain customers",
-    "Sick leave",
-    "Exam leave request"
+    "Add cost assumptions to Adrian's P&L Explorer",
+    "JetBrains - Senior Product Manager, JetBrains Air (Agentic Development in IDEs)",
+    "PostHog — Product Manager, Observability (ex-founder or ex-product engineer)",
+    "to Sarah: explanation of the packaging",
+    "Mo memory and taste",
+    "PM Brown Bag Session(AI Focused)",
+    "Attend MTB vrijwilligersbedankavond (bijltjesdag)",
+    "Review security alerts: Adobe, Google x2, Notion device"
    ],
-   "ts": "2026-11-02T08:02:18.772654+01:00"
+   "ts": "2026-11-16T08:01:26.603780+01:00"
   },
   "habitica": {
    "step": "habitica",
-   "open_todos": 45,
-   "cleared": 45,
+   "open_todos": 28,
+   "cleared": 28,
    "failed": [],
    "remaining_open": 0,
    "names": [
-    "KPN - Product Lead IAM (Network and Security)",
-    "Reply: Tegus expert call (Temenos research)",
-    "Exam leave request",
-    "Sick leave",
-    "Sandbox incremental Tenant",
-    "Introduce Regional Pricing",
-    "Adjust discount thresholds for certain customers",
-    "End of Sale process + existing backlog (with Dom)",
-    "GCP - AWS parity or better than campaign",
-    "Sub Account Pricing (MC + wallets, etc.)",
-    "Update pricing calculator for the new PS stuff",
-    "Security: review webhook route exposure + shell access",
-    "⏳ upgrade cloudflared",
-    "Pricing suggestion: packaging per use case",
-    "Richard / Douwe",
-    "Platform eng AWS daily",
-    "DR daily",
-    "Deck of proposals + show it",
-    "Assemble pricing team & setup first review",
-    "List of new pricing items to Edward",
-    "Marktplaats ads - expand",
-    "$home-lab utility",
-    "Conclude SLA research",
-    "Fix the personal Google token",
-    "Submit 1 job application",
-    "Vinted - Senior Product Manager, VGo Carrier Technology",
-    "Nebius - Senior Product Manager, Commercial Agreements & Pricing Mechanics",
-    "Prosus - Group Product Manager",
-    "Mendix (Siemens) - Product Manager, Workflow",
+    "Kentalis intake Arthur",
+    "Add metabase to my data stack",
+    "Legal message about DR",
+    "Pay The Dunes NGF 2027 invoice",
+    "Reply to Emilie Wardle on positioning",
+    "Internal Platform Domain",
+    "Decide: what to do about Peter not attending",
+    "Answer Artūras: CFM-1515 relevant?",
+    "Sketch: Dorothy’s assistant",
+    "Proposal Deck",
+    "Demo model analysis",
+    "Clarity demo filmed",
     "Adyen - Senior Product Manager, Data / Machine Learning & GenAI Platform",
     "Booking.com - Payouts Platform Product Lead",
-    "Just Eat ",
-    "Adyen - Group Product Manager, Fraud Intelligence",
-    "bol - Senior Product Manager, Identification & Trust Platform",
-    "Adyen - Group Product Manager, Fraud Intelligence",
-    "Booking.com",
-    "bol - Senior Product Manager, Identification & Trust Platform",
     "Adyen - Senior Product Manager, Developer Experience (IDP cluster)",
     "JetBrains - Senior Product Manager, JetBrains Air (Agentic Development in IDEs)",
-    "PM Brown Bag Session",
-    "Update MCD: Mambu Cost Margin Analysis — SLA ownership unresolved, tiering decision owed",
-    "PM Brown Bag Session",
-    "Publish OAuth app for chdwck9",
-    "Update pricing calculator with revised GCP multipliers",
-    "Follow up with Carmelita on NCC contract review"
+    "Adyen - Group Product Manager, Fraud Intelligence",
+    "Marktplaats ads - expand",
+    "Fix the personal Google token",
+    "Submit 1 job application",
+    "Mo memory and taste",
+    "Review security alerts: Adobe, Google x2, Notion device",
+    "Attend MTB vrijwilligersbedankavond (bijltjesdag)",
+    "Add cost assumptions to Adrian's P&L Explorer",
+    "JetBrains - Senior Product Manager, JetBrains Air (Agentic Development in IDEs)",
+    "PostHog — Product Manager, Observability (ex-founder or ex-product engineer)",
+    "to Sarah: explanation of the packaging",
+    "PM Brown Bag Session(AI Focused)"
    ],
    "dry_run": false,
-   "ts": "2026-11-02T08:01:59.542956+01:00"
+   "ts": "2026-11-16T08:01:16.045816+01:00"
   },
   "mail-noise": {
    "step": "mail-noise",
-   "scanned": 78,
-   "noise": 62,
-   "archived": 62,
+   "scanned": 30,
+   "noise": 8,
+   "archived": 8,
    "by_sender": {
-    "jooble.org": 48,
-    "mail.notion.com": 14
+    "mail.notion.com": 4,
+    "jooble.org": 4
    },
    "dry_run": false,
-   "ts": "2026-11-02T08:02:51.686584+01:00"
+   "ts": "2026-11-16T08:02:34.624712+01:00"
   },
   "openrouter": {
    "step": "openrouter",
    "built": true,
-   "report": "wrote /tmp/or_usage.html\nOpenRouter — balance\n  credits $50.00 · used $44.60 · REMAINING $5.40\n  key limit none · remaining n/a · free tier False\n\nOpenRouter — usage (rolling, authoritative for this key)\n  today    $0.01\n  last 7d  $0.01\n  last 30d $0.48\n  all-time $44.59\n\nHermes-recorded OpenRouter spend (estimated; excludes other apps)\n  by week\n    2026-W41   32 sess  in 19,389,183  $11.47\n    2026-W42   27 sess  in 14,042,195  $2.43\n    2026-W43   78 sess  in 28,179,053  $6.69\n    2026-W44   62 sess  in 19,143,224  $5.61\n    2026-W45    1 sess  in     20,584  $0.00\n  by month\n    2026-10  197 sess  in 80,467,031  $26.15\n    2026-11    3 sess  in    307,208  $0.06\n  daily (last 7 days)\n    2026-10-27   18 sess  in  4,798,931  out   839,234  $1.43\n    2026-10-28   16 sess  in  4,354,389 ",
+   "report": "wrote /tmp/or_usage.html\nOpenRouter — balance\n  credits $80.00 · used $63.57 · REMAINING $16.43\n  key limit $30.00 · remaining $10.55 · free tier False\n\nOUR INFERENCE SPEND (OpenRouter actual + local equivalent)\n  Today        OpenRouter    $0.00   local-eq    $0.00   TOTAL    $0.00   (saved $0.00)\n  Last 7 days  OpenRouter    $2.86   local-eq    $0.02   TOTAL    $2.88   (saved $0.02)\n  Last 30 days OpenRouter   $40.11   local-eq    $1.33   TOTAL   $41.44   (saved $1.33)\n  local valued at qwen/qwen3.6-35b-a3b rates\n\nOpenRouter — usage (rolling, authoritative for this key)\n  today    $0.00\n  last 7d  $0.00\n  last 30d $19.45\n  all-time $63.56\n\nOpenRouter — account spend by app (AUTHORITATIVE, last 30d)\n  TOTAL                              $40.11\n  Hermes Agent                       $38.84   ",
    "embed": {
     "ok": true,
-    "tail": "embed source=\"notion-file-block://afea56fc-e7ea-449b-b812-0908f1c27cbd/ef634fd4-8819-49fd-aa9f-7a227caa3a8c?space_id=914e3c34-0a79-4cf8-863d-f6dd6391f772&name=openrouter-usage.html\"> OpenRouter usage\n"
+    "tail": "embed source=\"notion-file-block://41a24dc8-ccd9-81d5-a5d0-d9b60d4b092d/de9f7c3e-2e0c-4824-bb5d-85b985c52cdb?space_id=914e3c34-0a79-4cf8-863d-f6dd6391f772&name=openrouter-usage.html\"> Inference Spend \n"
    },
-   "ts": "2026-11-02T08:02:43.248038+01:00"
+   "ts": "2026-11-16T08:02:29.720492+01:00"
   },
   "time-waiting": {
    "step": "time-waiting",
    "week": {
-    "monday": "2026-11-02",
-    "sunday": "2026-11-08"
+    "monday": "2026-11-16",
+    "sunday": "2026-11-22"
    },
-   "candidates": 20,
-   "dated": [
-    {
-     "name": "Security: review webhook route exposure + shell access",
-     "pillar": "Edge",
-     "to": "2026-11-06",
-     "reason": "Edge rule"
-    },
-    {
-     "name": "DR daily",
-     "pillar": "Craft",
-     "to": "2026-11-05",
-     "reason": "Craft rule"
-    },
-    {
-     "name": "Dom / Richard",
-     "pillar": "Craft",
-     "to": "2026-11-05",
-     "reason": "Craft rule"
-    },
-    {
-     "name": "Artūras / Richard Biweekly",
-     "pillar": "Craft",
-     "to": "2026-11-05",
-     "reason": "Craft rule"
-    },
-    {
-     "name": "DR team weekly roadmap review",
-     "pillar": "Craft",
-     "to": "2026-11-05",
-     "reason": "Craft rule"
-    },
-    {
-     "name": "Platform eng AWS daily",
-     "pillar": "Craft",
-     "to": "2026-11-05",
-     "reason": "Craft rule"
-    },
-    {
-     "name": "Edward / Richard - Hubspot",
-     "pillar": "Craft",
-     "to": "2026-11-05",
-     "reason": "Craft rule"
-    }
-   ],
-   "left": [
-    {
-     "name": "Agentic Platform Subscription Workshop (Part 2)",
-     "reason": "already dated 2026-11-03"
-    },
-    {
-     "name": "Platform Product ~ Weekly Sync",
-     "reason": "already dated 2026-11-03"
-    },
-    {
-     "name": "Clean cat box",
-     "reason": "already dated 2026-11-03"
-    },
-    {
-     "name": "Rytis / Richard Biweekly",
-     "reason": "already dated 2026-11-04"
-    },
-    {
-     "name": "EOD Weekly",
-     "reason": "already dated 2026-11-04"
-    },
-    {
-     "name": "Arthur Swimming",
-     "reason": "already dated 2026-11-04"
-    },
-    {
-     "name": "Minx dutch lesson weekly",
-     "reason": "already dated 2026-11-04"
-    },
-    {
-     "name": "Beatrix meeting",
-     "reason": "already dated 2026-11-05"
-    },
-    {
-     "name": "Minx going to see chanels house",
-     "reason": "already dated 2026-11-05"
-    },
-    {
-     "name": "Follow-up",
-     "reason": "already dated 2026-11-06"
-    },
-    {
-     "name": "😎 Decompress",
-     "reason": "already dated 2026-11-06"
-    },
-    {
-     "name": "Natalie and mike plans",
-     "reason": "already dated 2026-11-07"
-    },
-    {
-     "name": "Wine tasting with pips",
-     "reason": "already dated 2026-11-08"
-    }
-   ],
+   "candidates": 11,
+   "dated": [],
+   "left": [],
    "dry_run": false,
-   "ts": "2026-11-02T08:02:39.923072+01:00"
+   "ts": "2026-11-16T08:02:25.541149+01:00"
   }
  },
  "headline": {
-  "backlog_returned": 32,
-  "waiting_dated": 7,
-  "mail_noise_archived": 62,
+  "backlog_returned": 16,
+  "waiting_dated": 0,
+  "mail_noise_archived": 8,
   "openrouter_ok": true
  }
 }

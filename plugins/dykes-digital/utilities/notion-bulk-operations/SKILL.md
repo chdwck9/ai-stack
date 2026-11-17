@@ -82,6 +82,28 @@ def q_rows(mcp, sql, ds, tries=3, wait=31):
 The same applies to writes: the update call returns a **text/error string** on failure rather than
 raising. Check it before recording success.
 
+## Targeted page edits: match the escaped text, and read the warnings
+
+- `notion-update-page` with `command: "update_content"` takes an array of `{old_str, new_str}` operations and applies them as a batch. **A ****`warnings: [{code: "no_match"}]`**** entry means that one operation did nothing while the rest applied** — a half-succeeded batch that still looks like a 200. Read the warnings array, then re-fetch and assert every string landed.
+
+- `old_str` must match the page markdown **including its escapes**: `agent\_notes`, `\|` inside table cells, and `<b>`/`<i>` tags rather than `**`/`*`. Quote the string from a fresh fetch rather than retyping it from memory — an underscore that is escaped on the page will not match an unescaped retype.
+
+- The batch is the right shape for correcting a source-of-truth document in several places at once (version bump, a paragraph, a skills line, a standing note). Prefer it to `replace_content`, which rewrites the whole page and risks dropping child pages.
+
+## A select property write can no-op while reporting success
+
+`notion_bulk.py props <page_id> '{"Where": {"select": {"name": "Nike"}}}'` prints `ok` and changes nothing. Set select properties through the MCP tool instead — `notion-update-page` with `command: "update_properties"` and the plain value (`{"Where": "Nike"}`) — then query the column back. Same rule as everywhere else: the helper's own success message is not evidence the field persisted.
+
+## SQL mode: the table name is the collection URL, and reserved columns need quoting
+
+- The table is named by the full data-source URL: `SELECT ... FROM "collection://<uuid>"`. The bare uuid fails with `Invalid data source URL`; a made-up table name fails with `table <x> is not an allowed data source`.
+
+- Columns whose names are SQL keywords must be double-quoted — `"Where"`, `"When"`, `"Jobs"`. Unquoted, the parser returns a long list of expected tokens that buries the actual cause.
+
+- Date properties are expanded columns: `"date:Open Date:start"`, never `"Open Date"`.
+
+- `%` wildcards go in the value, not the column: `WHERE Name LIKE '%Nike%'`.
+
 ## Dates are two properties, always
 
 - Date-only: `{start: "YYYY-MM-DD", is_datetime: 0}`.

@@ -204,6 +204,34 @@ that reports the effective setting (`Memory-aware cache: N% of RAM`). A server c
 on defaults while a plist claiming otherwise sits on disk — and `ps` truncates argv without
 `-ww`, so use `ps -ww` before concluding a flag is missing.
 
+### On-demand serving (load on first request, unload when idle)
+
+An always-on server pins ~20-27 GB of *wired* footprint even when serving nothing, which on a
+64 GB Studio keeps the compressor and swap busy and the fans up. Instead of KeepAlive-on-boot,
+put a tiny supervisor in front and keep the same port so no client config changes:
+
+- `~/.hermes/scripts/mlx_ondemand.py` — stdlib-only reverse proxy on the port agents already use
+(8001). The first inference request spawns the model on a private backend port (8002), waits for
+`/health` `"ready":true`, then proxies (SSE passed through; non-streamed replies get an explicit
+Content-Length or the client hangs to its timeout). After `idle_timeout_seconds` with no
+in-flight request it terminates the child, releasing the weights. `/health` and `/v1/models` are
+answered locally while unloaded, so a readiness probe never triggers a 30-90 s load.
+
+- `~/.hermes/scripts/mlx_ondemand_config.json` — backend argv (mirror the old plist exactly, with
+`--port 8002`), idle timeout, alias list.
+
+- `~/Library/LaunchAgents/com.rapidmlx.ondemand.plist` runs the supervisor (`KeepAlive` true); the
+old `com.rapidmlx.user` plist is parked as `.plist.disabled` so it cannot grab the weights at login.
+
+- `~/.hermes/scripts/rapidmlx_switch_ondemand.sh {switch|probe|revert}` does the bootout/bootstrap
+dance and times a real cold start. **Richard must run it from a normal Terminal** — the gateway
+blocks `launchctl bootstrap|bootout` by design.
+
+The cost is cold-start latency on the first request after the idle window, with a cold prefix
+cache. Verify the supervisor against a fake backend before trusting it: a slow-start stub plus a
+test script asserting unloaded `/health`, static `/v1/models`, cold start, streaming, warm
+latency, idle unload and reload — a bound port proves nothing.
+
 ## Pitfalls
 
 - **One LLM server at a time.** Two ~20 GB models will not both fit a 64 GB Mac. Both can appear

@@ -1,11 +1,11 @@
 {
  "source": "studio-health-watch",
- "checked_at": "2026-11-15T03:00:00.474874+01:00",
+ "checked_at": "2026-11-17T03:00:00.308991+01:00",
  "ok": true,
  "alertable": [],
  "alerted": false,
  "alert_window": ">= 12:00",
- "last_alert_day": null,
+ "last_alert_day": "2026-11-16",
  "problems": [],
  "delivery": {
   "delivered": false,

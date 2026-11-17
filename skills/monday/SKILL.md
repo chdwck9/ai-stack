@@ -6,7 +6,7 @@ uuid: 3fb24dc8-ccd9-8196-92b0-cd7259c1fc25
 version: 17
 description: "Monday Reset"
 return: "Week report: backlog · board · meetings · deep work · mail · alerts · timed · remotes · Jira · automations"
-last-used: 2026-10-27T12:00:00+01:00
+last-used: 2026-11-16T16:00:00+01:00
 thinking: High
 temperature: 0.3
 resources:

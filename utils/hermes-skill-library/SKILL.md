@@ -4,7 +4,7 @@
 uuid: 40524dc8-ccd9-81d6-90fd-eabe027bd511
 name: hermes-skill-library
 description: "Hermes Skill Library"
-version: 1.2.0
+version: 1.3.0
 author: Richard Dykes, Hermes Agent
 license: MIT
 platforms: [macos, linux]
@@ -82,6 +82,10 @@ body still updates. `Type` and `Category` are independent; set and read back bot
 - `hub_sync_all.py` supersedes `hub_sync.py` (which only published its hardcoded `TARGETS`); it
 preserves a page's `Type`/`Category` unless `--set-type` is passed.
 
+- **A first push can leave ****`Description`**** empty even though the **[**SKILL.md**](http://skill.md/)** frontmatter carries it.** `hub_push_one.py` reads `description` from the frontmatter, but the push still reports `CREATED` and the body lands correct — so the failure is invisible until the Hub list shows a blank row. Read the property back after every first push and set it explicitly if blank (`notion_bulk.py props <page-id> '{"Description": "…"}'`). To read a page's properties back, use `notion_bulk.py query-rows --ds collection://<id> --where '"Name" = …'` — the plain `query` subcommand fails with a sqlite parse error when the `collection://` URL appears in a `FROM` clause.
+
+- Hub `Active` is `__NO__` on ordinary `Type=Skills` pages — that is the norm, not a failed write; do not "repair" it.
+
 - `hub_sync_all.py` derives its target list from `~/.hermes/utils/**/SKILL.md` **only**. A no-`scope`
 skill stored in the local tier (`~/.hermes/skills/**`) never reaches the Hub through it — the script
 and the midnight timer both look at the utils tree — so it stays local-only until you push it with
@@ -95,7 +99,16 @@ path-classify a non-utils location as `Utilities`).
 create duplicates. A `notion-query-data-sources` SELECT silently caps at 100 rows — page it.
 
 - Test plugins with the Hermes venv python (`~/.hermes/hermes-agent/venv/bin/python`), not system
-`python3`. A bare `<name>.md` beside `<name>/SKILL.md` makes the skill unloadable by name.
+`python3`.
+
+- **A bare ****`<name>.md`**** beside ****`<name>/SKILL.md`**** makes the skill unreadable and unpatchable.** The loader
+refuses with "Ambiguous skill name … refusing to guess" instead of picking one, so `skill_view` and
+`skill_manage` both fail and the skill cannot be reviewed, corrected or pushed — a silent hole in the
+library that only shows up when someone tries to use that skill. Strays appear when a skill is written
+to the store root instead of its own directory, or when a copy is left behind by a move. Audit by
+listing the skills root and flagging any `<name>.md` that also has a `<name>/` directory. Fix by
+moving the stray out of the skills tree (e.g. `.archive/<name>.md.duplicate-<date>`), never by
+deleting it, then resolve the skill by name once to confirm the collision is gone.
 
 - **Editing a skill file on the network-mounted store: write it in Python, not with the patch tool.**
 The patch tool writes through a temp file (`<dir>/.hermes-tmp.<pid>`) and renames; on the NAS mount

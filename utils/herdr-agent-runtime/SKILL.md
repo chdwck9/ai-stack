@@ -57,6 +57,10 @@ names are scoped to one server, so selecting a machine in the TUI does **not** r
 
 - Non-interactive contexts use the `default` session unless you pass `--remote-session <name>`.
 
+- **To keep a host reachable without a client attached, run ****`herdr server`**** (headless) under a
+systemd user unit — not a TUI in a terminal, which dies with the session.** Autostart recipe,
+read-only-rootfs install locations and the sleep caveat: `references/linux-host-persistence.md`.
+
 ## Drive agents (the point)
 
 Most commands print **JSON** — parse it and read IDs out of responses; never predict an ID.
@@ -143,6 +147,11 @@ background process with `persist_on_release` so it survives the session.
 - **Detach is not reboot persistence.** herdr restores the saved layout and may resume supported
 agent sessions after a server or machine restart, but the original pane processes do not survive.
 
+- **A persistent host must be awake.** A sleeping laptop or handheld runs no server and cannot be
+woken from the controller, so "always reachable" is only true on AC power with idle-suspend off.
+Establish the power/sleep policy before promising remote control, and say plainly when the honest
+answer is "control while awake, not wake from afar".
+
 - **`machine add`**** needs working SSH auth first.** Verify `ssh <target>` by key; an interactive
 password/MFA prompt cannot be completed by the controller.
 
@@ -192,3 +201,7 @@ agent lifecycle/wait recipe.
 
 - `references/remote-kickoff-options.md` — decision table for kicking off remote agent work: herdr
 vs T3 Code vs ACP vs SSH + headless Claude Code vs Anthropic Remote Control.
+
+- `references/linux-host-persistence.md` — make a Linux/SteamOS host an always-reachable herdr
+server: install paths on read-only rootfs, headless server, systemd user unit + linger, sleep and
+GUI boundaries.

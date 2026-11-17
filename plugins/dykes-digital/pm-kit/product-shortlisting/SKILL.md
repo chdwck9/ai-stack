@@ -43,6 +43,10 @@ Research and rank purchasable products against a stated spec, returning a link-b
 
 1. **Never purchase.** Shortlists and links only; buying needs the user's account and payment.
 
+1. **Settle sibling-SKU capability gaps on the vendor's own comparison page.** Before telling the user "model A can, model B can't", read the manufacturer's comparison chart or buying-guide post. Feature bullets are written per listing and listed unevenly across products that share a platform, so an absent bullet is not an absent feature — and the user is buying on that exact difference, which makes a wrong gap worse than no gap.
+
+1. **Check the accessory's own compatibility footnote.** Near-identical adapters, docks and splitters routinely exclude the newest model inside their own title ("Not for <new model>"). Read the per-SKU compatibility text and name the supported models explicitly; also read the manufacturer's "What's in the box" panel so you can say what still has to be bought.
+
 ## Procedure
 
 1. **Restate requirements.** Write the hard constraints vs the soft ones.
@@ -73,6 +77,10 @@ Research and rank purchasable products against a stated spec, returning a link-b
 
 - **Confusing material with the property the user cares about** (warping is gauge, not steel type; heat is conductivity, not brand).
 
+- **Feature gap inferred from one SKU's marketing bullets** → shared platform features are documented unevenly; confirm the difference on the vendor's comparison page before citing it.
+
+- **Accessory recommended that excludes the new model** → with three near-identical adapters, two may be incompatible; the exclusion is usually written in the accessory's own title.
+
 ## Verification
 
 - [ ]Every item has a working link and a price.
@@ -82,3 +90,7 @@ Research and rank purchasable products against a stated spec, returning a link-b
 - [ ]Per-unit normalisation applied to multi-packs.
 
 - [ ]The verdict states whether the hard requirement is truly met.
+
+- [ ]Any A-vs-B capability claim was checked against the vendor's comparison page, not inferred from one listing.
+
+- [ ]Every accessory named is confirmed compatible with the exact model recommended.
