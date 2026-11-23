@@ -3,10 +3,10 @@
 
 name: triage-inbox
 uuid: 3fb24dc8-ccd9-81c1-ad11-df575c99a2b5
-version: 7
+version: 8
 description: "Triage Inbox"
 return: "Triage report · reply drafts · Ship tasks · waiting queue · saved items · blockers"
-last-used: 2026-10-27T12:00:00+01:00
+last-used: 2026-11-19T09:15:00+01:00
 scope: synced
 synced-version: 5
 thinking: Medium
@@ -92,6 +92,26 @@ Copy these steps verbatim into the task list before starting. A skipped step sta
 ## Output
 
 Surfaces (reached/unreached) · Archived + the label each batch went to · Action (drafts · tasks) · Waiting · Saved · Left in inbox · Needs Richard.
+
+## Edge implementation (this machine)
+
+- Surfaces: `~/config/google/gwork` ([richard@dykes.digital](mailto:richard@dykes.digital)) and `gpers` ([chdwck9@gmail.com](mailto:chdwck9@gmail.com)) — `gmail search "in:inbox" --max 100`. Spark is the desktop client; its set-aside state is not visible over the API, so INBOX presence is the only available test.
+
+- Gmail has no snooze over the API. **Wait** = archive the thread into its named label **and** create a Ship `Waiting` row dated the day it must resurface. Never file into the `Later` / `Snoozed` labels — those are the client's set-aside markers.
+
+- Archive/move: `HERMES_HOME=~/config/google/<acct> python3 ~/.hermes/scripts/gmail_bulk.py bulkmod --add "<Label>" --remove INBOX,UNREAD --ids <id…>` — creates the label if missing; removing UNREAD stops the archived mail reappearing as unread.
+
+- Drafts: `~/.hermes/scripts/gmail_draft.py --account work|pers --to … --subject … [--thread …] --body-file …` creates a draft and never sends.
+
+- Ship rows: `~/.hermes/scripts/ship_add.py --name … --live <pillar> --level "To Do" --status Waiting --priority "#3" --when YYYY-MM-DD`. Personal → Bonds (`https://app.notion.com/dd0eacbf51ec49dd9d41c2ad5b26d584`), work → Craft.
+
+- Notion SQL: the FROM table must be `"collection://<data-source-id>"` and match `--ds`; no `ILIKE` (use `LIKE`); column names are case-sensitive (`date:When?:start`).
+
+- Scripts need `HERMES_HOME` set explicitly: `HERMES_HOME=~/config/google/<acct> python3 ~/.hermes/scripts/gmail_bulk.py …`. The `gwork`/`gpers` wrappers only export it for the CLI — calling the script directly without it fails on `~/.hermes/google_token.json`.
+
+- **Check Ship before creating a task.** Two runs over the same inbox are normal (a mail stays in the inbox while its task already exists from an earlier run). Search Notion by the mail's own nouns (`Oranjestraat`, `ThePhoneLab`, `Dunes NGF`) first; update or comment on the existing row instead of adding a duplicate. Also check `in:draft` for the thread so a reply isn't drafted twice.
+
+- Label namespaces differ per account — run `gmail_bulk.py labels` first. Personal: `newsletters`, `orders`, `security`, `linkedin`, `jobs`, `family`, plus an old `consume/*` tree. Work: `newsletters`, `house`, `jobs`, `security`. File into the existing name rather than minting near-duplicates.
 
 ## Next steps
 

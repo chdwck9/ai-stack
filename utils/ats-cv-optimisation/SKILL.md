@@ -4,7 +4,7 @@
 uuid: 40d24dc8-ccd9-81a8-bba3-fff960d3a726
 name: ats-cv-optimisation
 description: "Use when tailoring a CV for a role, ATS or referral."
-version: 3
+version: 4
 author: hermes-curator
 license: MIT
 metadata:
@@ -136,6 +136,10 @@ The designed version is a **rendering of the same source**, not a parallel docum
 
 **Converting a designed CV back into a working source** (asked for as "convert this into .md"): transcribe faithfully — preserve the printed order, headings and wording — and record every discrepancy against the Meta CV (dates, titles, typos) in the file's frontmatter rather than silently correcting them in the body. The body stays a true copy so Richard can see what the document actually said; the frontmatter carries the correction list that drives the next revision.
 
+## Cover letters
+
+Many EU portals require one alongside the CV and say so in the posting; treat that as a requirement, not an invitation. One page, rendered in letter mode. Shape, ordering and the traps: `references/cover-letters.md`.
+
 ## Critique checklist
 
 - **Evidence density** — quantified outcome per role, or only titles + thematic tags + project-name chips? (Most common fatal flaw.)
@@ -176,12 +180,16 @@ The designed version is a **rendering of the same source**, not a parallel docum
 
 - **A role captured and then rejected is marked, not deleted.** Keep the capture date, set `Status = Abandoned` with `Jobs = 0 - Identified`, and say why in the page. Deleting it destroys the record that it was considered and rejected, which is the signal that stops the next sweep re-surfacing it as new.
 
+- **Fresh prose fabricates; editing does not.** Writing new bullets from an evidence file is where invented numbers and invented antecedents enter, because a plausible figure is easy to produce and nothing in the source contradicts it. Every number and every "replaced X" claim must trace to a line in the source; a round quantity that sounds right ("a hundred people now quote the same way") and a plausible predecessor ("the spreadsheets and dashboards it replaced") are the two easiest fabrications to commit and the two easiest for an interviewer to open up. If the source gives no quantity, write the qualitative outcome. Re-read your own draft against the source before rendering, not just the source against the draft.
+
 ## references/
 
 - `references/screening-stacks.md` — how Greenhouse and agentic/LLM screeners actually score, with evidence quality and sources.
+
+- `references/cover-letters.md` — the one-page cover letter: required-not-optional, the seven-move structure, and what makes a letter read as a real person.
 
 - `references/job-board-apis.md` — identifying a company's ATS from its careers page and pulling the live board as JSON, so req IDs and open/closed status are verified rather than remembered.
 
 ## scripts/
 
-- `scripts/render_cv.py` — renders a CV markdown file to single-column, parser-safe HTML → PDF + DOCX via headless LibreOffice, and gates the output: it prints a banned-prose report (em-dashes, internal provenance phrases) and flags a page count over two. Run `uv run --with markdown python scripts/render_cv.py <cv.md> "<output basename>"`. Tune only the CSS block (font size, line-height, page margins) to land on two pages; do not restructure the content to make it fit.
+- `scripts/render_cv.py` — renders a CV or cover letter markdown file to single-column, parser-safe HTML → PDF + DOCX, and gates the output: it prints a banned-prose report (em-dashes, internal provenance phrases) and flags a page count over budget (two for a CV, one for a letter). Run `uv run --with markdown python scripts/render_cv.py <cv.md> "<output basename>"` and add `letter` as a third argument for a cover letter. The PDF is printed by a Chromium-class browser, because LibreOffice's HTML import ignores `text-indent` and `padding` on block elements (wrapped bullet lines collapse to the left margin) and drops `<li>` markers on some items; the DOCX is still converted by LibreOffice, but in a local temp dir and copied in, because it writes unreliably straight into a mounted network share. If no Chromium is installed it falls back to LibreOffice and says so, in which case read the rendered pages before delivering. Tune only the CSS block (font size, line-height, page margins) to land on budget; do not restructure the content to make it fit.

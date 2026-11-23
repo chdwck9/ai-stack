@@ -1,6 +1,7 @@
 ---
 
 
+uuid: 41a24dc8-ccd9-8158-ab66-d8eff939cf8f
 name: host-resource-triage
 description: "Use when a host runs hot, loud or slow: attribute first."
 version: 1.0.0

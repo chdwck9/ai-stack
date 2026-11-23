@@ -43,6 +43,11 @@ Usable budget ≈ RAM − ~8–10 GB for the OS (~70–75% for weights + KV). A 
 runs ~20 GB models; a 120B MoE at 4-bit (~60 GB) does not fit. **Choose the model equal to the
 measured RAM, not to optimism.**
 
+**Two caps, not one.** The OS reserve (~8–10 GB) and the GPU-visible share are separate limits:
+Metal lets one process keep only **~¾ of unified memory** resident (≈48 GB on a 64 GB Mac), so a
+pack sized above that streams no matter how much headroom the OS figure suggests. Size against the
+smaller of the two and say which one you hit.
+
 ## 1. Size the model
 
 - **Prefer MoE and size by ACTIVE parameters, not total.** A 30B-A3B decodes like a small dense
@@ -56,6 +61,11 @@ The quant is in the alias (`-4bit` / `-6bit` / `-8bit`): take the highest that f
 Default **Rapid-MLX** — Homebrew core, MLX, OpenAI *and* Anthropic `/v1/messages`, tool-call
 focus, `rapid-mlx launch <agent>`. It cannot run GGUF. Alternatives and the RAM→model table:
 `references/apple-silicon-runners.md`.
+
+When the ask is a **100B+ MoE that cannot be resident**, a third-party SSD-streaming engine
+(Strata/Metal) is the only local path — read **SSD-streamed MoE engines** in that reference first.
+It trades roughly an order of magnitude of decode speed for model size; say that plainly instead
+of implying it competes with the MLX runner.
 
 ## 3. Procedure (Rapid-MLX — verified end-to-end)
 

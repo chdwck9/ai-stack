@@ -72,6 +72,20 @@ agent currently inside a pane.
 `codex`, `pi`, `omp`, `hermes`, `opencode`, `cursor`, `grok`. `agent start` requires an existing
 shell pane sitting at its prompt; it never creates layout.
 
+- **`agent start`**** answering ****`agent_not_ready`**** means a startup dialog, not a failed start.** A fresh
+cwd throws Claude's "Is this a project you trust?" prompt and the agent counts as blocked. Clear it
+with `agent send-keys <name> Down` then `agent send-keys <name> Enter` — the cursor starts on
+"No, exit", so a bare Enter exits the session — then re-read `pane read <pane-id>` for the input
+box before prompting. **Point the pane at a narrow scratch dir, never ****`$HOME`****:** accepting the
+trust prompt grants the agent read/edit/execute across everything under that cwd.
+
+- **Do not hold ****`agent prompt … --wait --until idle`**** across a long task.** The wait can outlast the
+caller's own timeout (a 300 s cell) while the prompt *was* submitted and the agent is still
+working; the run then looks hung and the output looks lost. Prompt **without** `--wait`, then poll
+`agent list` for `agent_status` (`working` → `done`) and read the answer with `agent read <name>`.
+Long answers also scroll out of `agent read`, so ask for terse output (a numbered list under N
+lines) or re-prompt for the part you missed rather than assuming it was truncated.
+
 - `herdr --machine <m> agent prompt <name> "…" --wait --until idle --until done` submits and waits.
 Lifecycle state is semantic: `working` / `blocked` / `done` / `idle`. **`blocked`**** means the agent
 hit an approval or question UI** — prompting a blocked agent returns `agent_blocked` without
@@ -170,7 +184,14 @@ than concluding the instructions are missing.
 
 - **`agent read`**** can return an empty string while the pane is full.** It reports the agent's
 conversation view; when a read comes back blank, use `pane read <pane-id>` for the literal screen
-before concluding the agent produced nothing.
+before concluding the agent produced nothing. The inverse also happens: `pane read` on a
+full-screen agent TUI often returns a repainted frame with nothing but the status bar, so a blank
+`pane read` is not evidence of an idle agent either — use `agent read <name>` for the transcript.
+
+- **Headless ****`claude -p`**** over a plain SSH shell can report "Not logged in" while the same CLI works
+inside a herdr pane on that host.** Claude's credentials sit in the GUI login session (Keychain /
+credentials file the non-GUI SSH session cannot unlock), so dispatching through a pane is the
+supported path; do not read that message as "Claude is unusable on this machine".
 
 - **Verify the artefact on the machine that did the work — a completion status is not evidence.**
 `agent_status: idle` (or a `done` banner in the pane) only says the agent stopped talking; it does

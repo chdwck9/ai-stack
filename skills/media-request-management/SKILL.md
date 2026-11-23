@@ -189,6 +189,10 @@ NAS has no `unzip`; `/usr/bin/7z l <file>` is the way to inspect.
 
 - **`Episode has a TBA title and recently aired`** — Sonarr's TBA guard refusing to map a file onto an episode whose title metadata is still placeholder. Fix is metadata, not media: `POST /api/v3/command {"name":"RefreshSeries","seriesId":N}`, and the pending import completes by itself once the episode has a real title.
 
+### Romelia War Chronicle (series 155) — baseline
+
+E1–E7 are Erai-raws/ToonsHub CR `MultiSub` (jpn audio, eng/por/spa/ara/fre/ger/ita/rus subs) — use as the reference when spotting a regrab of the NF `Japanese Sub` single-language variant. E8 airs 2026-11-23T14:30Z, weekly after.
+
 ## Fake magnet releases that never resolve
 
 A queue row that sits in `metaDL` at 0 bytes for days with `errorMessage: qBittorrent cannot resolve magnet link with DHT disabled` is not a slow download — it is a fake release. Treat `[SelfExtract Bundle]` in a title (and `[SelfExtract*]` generally) as malware bait: 0 seeds, dozens of leechers, no metadata ever. Drop it and take a real release:
@@ -237,7 +241,7 @@ Content can be fully imported and on disk while Jellyseerr still reports `PROCES
 
 - `POST /api/v3/command {"name":"SeasonSearch","seriesId":N}` with no `seasonNumber` defaults to **season 0** (specials) and silently searches nothing. Always pass `seasonNumber`.
 
-- Anime profile here (id 1, used by all 86 `/anime` series) allows only WEBDL/WEBRip/HDTV 1080p+720p, **requires the literal term ****`sub`**** in the release title**, and enforces min 1 seeder. Bluray releases and dual-audio batches named without "sub" are rejected outright — so a title with only BD rips shows `acceptable 0` and needs a profile change (approval gate), not a re-search.
+- Anime profile here (id 1, used by all 86 `/anime` series) allows only WEBDL/WEBRip/HDTV 1080p+720p, **requires the literal term ****`sub`**** in the release title**, and enforces min 1 seeder. **Do not propose relaxing that required ****`sub`**** term, nor the ****`[ToonsHub]`**** ignore in release profile ****`Anime no sub`** — Richard decided both stay (2026-11-19): the term is mandatory to him, ToonsHub releases misbehaved historically, and release supply is not a constraint. Language sorting belongs in custom-format scores instead. Bluray releases and dual-audio batches named without "sub" are rejected outright — so a title with only BD rips shows `acceptable 0` and needs a profile change (approval gate), not a re-search.
 
 - Prowlarr rate-limits under multi-episode anime searches: `429 TooManyRequests` disables indexers for 1-5 min mid-run, and each series' full episode sweep can take 20+ min. Long `started` MissingEpisodeSearch commands are normal, not stuck.
 
@@ -364,7 +368,7 @@ Exact commands, the port/key table and a worked example: `references/readarr-boo
 
 ## Reading large Sonarr/arr responses
 
-The terminal tool truncates stdout, which silently produces invalid JSON for release searches and episode lists. Always `curl ... -o /tmp/x.json` and parse the file; never parse captured stdout.
+The terminal tool truncates stdout, which silently produces invalid JSON for release searches and episode lists. Always `curl ... -o /tmp/x.json` and parse the file; never parse captured stdout. A full-indexer `GET /api/v3/release?seriesId=&episodeId=` can take over 60 s — set the HTTP timeout to 240 s+, or the search dies and the seconds-long release cache is gone with it.
 
 ## Jellyseerr login broken after a Jellyfin upgrade (Jellyfin 12.x)
 

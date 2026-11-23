@@ -45,6 +45,8 @@ lsof -nP -iTCP:PORT -sTCP:LISTEN          # macOS
 ess -ltnp 'sport = :PORT'                  # Linux
 ```
 
+**On macOS, unprivileged ****`lsof`**** cannot see a root-owned listener** — an empty `lsof -iTCP:PORT -sTCP:LISTEN` is not evidence the service is down (macOS `smbd`, for one, runs as root and is socket-activated). Cross-check with `netstat -anv -p tcp | grep ':PORT ' | grep LISTEN`, whose output carries the owner PID, or `ps -Ao pid,user,command | grep NAME`.
+
 Read the **bind address**, not just the command name. A wildcard bind (`*:PORT`, `0.0.0.0:PORT`) and a specific `127.0.0.1:PORT` / `[::1]:PORT` can coexist on the same port number — the specific bind wins for clients that resolve to that interface. Two entries for one port is the single most common cause of "it's up but I can't reach it".
 
 ### 2. Probe from every vantage point
